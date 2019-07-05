@@ -1,4 +1,4 @@
-import Application from '../common/application.js';
+import Application from '../common/js/application.js';
 
 class PaintApp extends Application {
     constructor() {
