@@ -5,7 +5,7 @@ class CindyApp extends Application {
         super();
         console.log("CindyApp called");
         this._cindy = null;
-        this._cindyPromise = (async () => createCindy.newInstance(await this.cindyArgs(this.canvas)))()
+        this._cindyPromise = (async () => createCindy.newInstance(await this.cindyArgs))()
             .then(cindy => this._cindy = cindy);
         this._isReady = false;
         this._readyPromise = CindyApp.waitForDomInsertion(this.canvas, document)
@@ -44,8 +44,14 @@ class CindyApp extends Application {
         return this._cindy;
     }
 
-    async cindyArgs(canvas) {
-        throw new Error('Unimplemented');
+    get cindyArgs() {
+        if (typeof this._cindyArgs === 'undefined')
+            this._cindyArgs = this._initCindyArgs();
+        return this._cindyArgs;
+    }
+
+    async _initCindyArgs() {
+        throw new Error(`Unimplemented. Must be implemented in subclass ${this.constructor.name}.`);
     }
 
     static async waitForDomInsertion(element, root) {

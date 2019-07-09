@@ -5,7 +5,7 @@ class EventTesterApp extends CindyApp {
         super();
     }
 
-    async cindyArgs(canvas) {
+    async _initCindyArgs() {
         const relativeUrl = filename => new URL(filename, import.meta.url);
         return {
             scripts: await CindyApp.loadScripts(relativeUrl('EventTester_'), ['init', 'mousedown', 'mouseup', 'mousedrag', 'draw'], '.cs'),
@@ -22,7 +22,7 @@ class EventTesterApp extends CindyApp {
                 }],
             ports: [
                 {
-                    element: canvas,
+                    element: this.canvas,
                     background: "rgba(255,255,255,1)", transform: [{visibleRect: [-12.38, 11.5, 20.02, -8.82]}]
                 }],
             cinderella: {build: 1812, version: [2, 9, 1812]}

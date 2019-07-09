@@ -5,7 +5,7 @@ class ImageSpiralApp extends CindyApp {
         super();
     }
 
-    async cindyArgs(canvas) {
+    async _initCindyArgs() {
         const relativeUrl = filename => new URL(filename, import.meta.url);
         return {
             scripts: await CindyApp.loadScripts(relativeUrl('ImageSpiral_'), ['init', 'mousedown', 'draw', 'tick'], '.cs'),
@@ -19,7 +19,7 @@ class ImageSpiralApp extends CindyApp {
                 test6: relativeUrl('assets/test6.png'),
             },
             ports: [{
-                element: canvas,
+                element: this.canvas,
                 background: "rgba(0,255,0,0)",
                 transform: [{visibleRect: [-12, 16, 30, -14]}]
             }],

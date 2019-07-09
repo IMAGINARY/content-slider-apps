@@ -5,7 +5,7 @@ class KaleidoscopeApp extends CindyApp {
         super();
     }
 
-    async cindyArgs(canvas) {
+    async _initCindyArgs() {
         const relativeUrl = filename => new URL(filename, import.meta.url);
         return {
             scripts: await CindyApp.loadScripts(relativeUrl('Kaleidoscope_'), ['init', 'mousedown', 'mouseUpX', 'draw', 'tick'], '.cs'),
@@ -19,7 +19,7 @@ class KaleidoscopeApp extends CindyApp {
                 bildX: relativeUrl("assets/bildX.png"),
             },
             ports: [{
-                element: canvas,
+                element: this.canvas,
                 background: "rgba(0,0,0,0)",
                 transform: [{visibleRect: [-24.77777777777778, 20.944444444444443, 32.111111111111114, -21.72222222222222]}]
             }],
