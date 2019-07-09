@@ -1,0 +1,13 @@
+drawcircle((0,0),1);
+drawcircle((3,0),1);
+drawcircle((6,0),1);
+draw((0,0)+gauss(exp(i*pi/8*down)));
+draw((3,0)+gauss(exp(i*pi/8*up)));
+draw((6,0)+gauss(exp(i*pi/8*drag)));
+apply(1..length(l),drawtext((10,13-#*.7),l_#));
+apply(st,connect(#);
+draw(#_1);
+draw(#_(-1),color->(1,0,0));
+);
+connect(sta,color->red(1));
+;
