@@ -1,4 +1,3 @@
-l=[];
 button1=[[14+9,7],[20+9,7],[20+9,8.7],[14+9,8.7]];
 button2=[[14+9,4],[20+9,4],[20+9,5.7],[14+9,5.7]];
 pressed1=false;
@@ -8,11 +7,11 @@ oldb=B.xy;
 oldc=C.xy;
 
 
-
-
+n=300;
+lastsimulationtime = 0;
 
 reset():=(
-
+lastsimulationtime = 0;
 stopanimation();
 A.homog=(4, -2.40740, 0.462962);
 B.homog=(8, 4, 1);
@@ -28,5 +27,5 @@ pause():=(
   pauseanimation();
 );
 resume():=(
-  if(pressed1, playanimation(););
+  if(pressed1, lastsimulationtime = 0; l=[]; playanimation(););
 );

@@ -8,7 +8,7 @@ class DoublePendulumApp extends CindyApp {
     async _initCindyArgs() {
         const relativeUrl = filename => new URL(filename, import.meta.url).href;
         return {
-            scripts: await CindyApp.loadScripts(relativeUrl('DoublePendulum_'), ['init', 'mousedown', 'draw'], '.cs'),
+            scripts: await CindyApp.loadScripts(relativeUrl('DoublePendulum_'), ['init', 'mousedown', 'draw', 'simulationstep'], '.cs'),
             defaultAppearance: {},
             ports: [{
                 element: this.canvas,

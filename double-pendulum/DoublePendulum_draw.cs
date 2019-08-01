@@ -31,15 +31,6 @@ drawtext(button2_1+(2,.5),"Spur",color->(1,1,1),size->34);
 draw(F,G, arrow->true,size->7,color->(1,1,1));
 
 if(pressed2,
-n=300;
-if(l_1!=C.xy,
-  l=[C.xy]++l;
-);
-
-if(length(l)>n,
-l=apply(1..(length(l)-1),l_#);
-);
-
 forall(reverse(1..length(l)),
 r=exp(-#*.01)*0.4;
 fillcircle(l_#,r,alpha->(1-#/n)/1.5,color->(1,1,0));
