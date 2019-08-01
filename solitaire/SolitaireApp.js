@@ -6,7 +6,7 @@ class SolitaireApp extends CindyApp {
     }
 
     async _initCindyArgs() {
-        const relativeUrl = filename => new URL(filename, import.meta.url);
+        const relativeUrl = filename => new URL(filename, import.meta.url).href;
         return {
             scripts: await CindyApp.loadScripts(relativeUrl('Solitaire_'), ['draw', 'init', 'mousedown', 'mousedrag', 'mouseup', 'tick'], '.cs'),
             defaultAppearance: {},

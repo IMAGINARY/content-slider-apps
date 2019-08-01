@@ -6,7 +6,7 @@ class EventTesterApp extends CindyApp {
     }
 
     async _initCindyArgs() {
-        const relativeUrl = filename => new URL(filename, import.meta.url);
+        const relativeUrl = filename => new URL(filename, import.meta.url).href;
         return {
             scripts: await CindyApp.loadScripts(relativeUrl('EventTester_'), ['init', 'mousedown', 'mouseup', 'mousedrag', 'draw'], '.cs'),
             defaultAppearance: {fontFamily: "sans-serif", lineSize: 1, pointSize: 5.0},
