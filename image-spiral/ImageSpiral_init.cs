@@ -1,5 +1,5 @@
 sel=1;
-ss=1.6;
+ss=1;
 pendanimation=true;
 images=[
 [(21,1),"test1",.9/ss],
