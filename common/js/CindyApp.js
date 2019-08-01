@@ -23,7 +23,7 @@ class CindyApp extends Application {
         // TODO: error handling for failed loads
         for (let infix of infixes)
             promises.push($.get(prefix + infix + suffix).then(scriptText => scripts[infix] = scriptText));
-        Promise.all(promises);
+        await Promise.all(promises);
         return scripts;
     }
 
