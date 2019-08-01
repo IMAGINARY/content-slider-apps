@@ -330,7 +330,7 @@ ty3((30,7));
 
 
 apply(1..4,ind=images_#;
-  drawimage(ind_1,ind_2,scale->ind_3*.3,alpha->if(sel==#,1,0.45))
+  drawimage(ind_1,ind_2,scale->ind_3,alpha->if(sel==#,1,0.45))
 );
 
 
