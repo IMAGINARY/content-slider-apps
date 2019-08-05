@@ -73,7 +73,6 @@ class CindyApp extends Application {
     }
 
     get ready() {
-        console.log(this._readyPromise);
         return this._readyPromise;
     }
 
