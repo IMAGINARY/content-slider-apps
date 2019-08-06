@@ -67,14 +67,14 @@ drawtile();
 
 
 colorplot(
-  position = #;
-  z=complex(position-posb)/complex(posa-posb)*2;
-  z = z/complex(str);
-  z = z*complex((1.0,-1.0))/2+i;
-  z = z*i;
-  annotcol= imagergba((0,0),(1,0),"annot", z, repeat->true);
-  piccol = imagergba((0,0),(1,0),"tile", z, repeat->true);
-  annotcol*annotcol_4+(1-annotcol_4)*piccol;
+position = #;//TODO?
+z = complex(position-posb)/complex(posa-posb)*2;
+z = complex([re(z)/str_1, im(z)/str_2]);
+//z = z*complex((1.0,-1.0))/2+i;
+z = z/2;
+annotcol= imagergba((0,0),(1,0),"annot", z, repeat->true);
+piccol = imagergba((0,0),(1,0),"tile", z, repeat->true);
+annotcol*annotcol_4+(1-annotcol_4)*piccol;
 );
 
 
