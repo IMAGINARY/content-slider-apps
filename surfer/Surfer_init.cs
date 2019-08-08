@@ -26,6 +26,57 @@ sliders = (
   [PC,(0.55,-.55), (1.00,-.55), "Zoom"]
 );
 
+select(k) := (
+  sel = k;
+  if(sel==1,
+     setzoom(0.7);
+     seta(1);
+     fun(x,y,z) := (x^2+y^2+a*z^2-1);
+  );
+  if(sel==2,
+     setzoom(.6);
+     seta(1);
+     fun(x,y,z) := (x^2+a*y^2-1);
+  );
+  if(sel==3,
+     setzoom(.9);
+     seta(0);
+     fun(x,y,z) := (x^2+z^2-1/3*(1+y)^3*(1-y)^3+a);
+  );
+  if(sel==4,
+     setzoom(0.7);
+     seta(1);
+     fun(x,y,z) := ((x^2+y^2+z^2-(0.5+a)^2)^2-(3*((0.5+a)^2)-1)/(3-((0.5+a)^2))*(1-z-sqrt(2)*x)*(1-z+sqrt(2)*x)*(1+z+sqrt(2)*y)*(1+z-sqrt(2)*y));
+  );
+  if(sel==5,
+     setzoom(.6);
+     seta(1);
+     fun(x,y,z) := (4*((a*(1+sqrt(5))/2)^2*x^2-y^2)*((a*(1+sqrt(5))/2)^2*y^2-z^2)*((a*(1+sqrt(5))/2)^2*z^2-x^2)-1*(1+2*(a*(1+sqrt(5))/2))*(x^2+y^2+z^2-a^2)^2);
+  );
+  if(sel==6,
+     setzoom(.6);
+     seta(0);
+     fun(x,y,z) := (-2*a/125+x^8+y^8+z^8-2*x^6-2*y^6-2*z^6+1.25*x^4+1.25*y^4+1.25*z^4-0.25*x^2-0.25*y^2-0.25*z^2+0.03125);
+  );
+  if(sel==7,
+     seta(1);
+     setzoom(0.3);
+     fun(x,y,z) := (a*(-1/4*(1-sqrt(2))*(x^2+y^2)^2+(x^2+y^2)*((1-1/sqrt(2))*z^2+1/8*(2-7*sqrt(2)))-z^4+(0.5+sqrt(2))*z^2-1/16*(1-12*sqrt(2)))^2-(cos(0*pi/4)*x+sin(0*pi/4)*y-1)*(cos(pi/4)*x+sin(pi/4)*y-1)*(cos(2*pi/4)*x+sin(2*pi/4)*y-1)*(cos(3*pi/4)*x+sin(3*pi/4)*y-1)*(cos(4*pi/4)*x+sin(4*pi/4)*y-1)*(cos(5*pi/4)*x+sin(5*pi/4)*y-1)*(cos(6*pi/4)*x+sin(6*pi/4)*y-1)*(cos(7*pi/4)*x+sin(7*pi/4)*y-1));
+  );
+  if(sel==8,
+     setzoom(0.5);
+     seta(0);
+     fun(x,y,z) := (a+x^3+x^2*z^2-y^2);
+  );
+  if(sel==9,
+     setzoom(.1);
+     seta(.5);
+     seta(0);
+     fun(x,y,z) := (a+x^5-1*1*10*x^3*y^2+5*x*y^4-1*1*3*z^5-1*1*5*x^4-1*1*10*x^2*y^2-1*1*5*y^4+10*z^3+20*x^2+20*y^2-1*1*15*z-1*1*24);
+  );
+  init();
+);
+
 speciala = .5;
 smootha(x) := if(x<speciala,
  (-1/(speciala+.01))*(x-speciala)^2+speciala,
@@ -133,10 +184,7 @@ fun(x, y, z) := (x ^ 2 + y ^ 2 + z ^ 2 - (0.5 + a) ^ 2) ^ 2 - (3.0 * ((0.5 + a) 
 
      );
 
-     setzoom(0.7);
-     seta(1);
-     fun(x,y,z) := ((x^2+y^2+z^2-(0.5+a)^2)^2-(3*((0.5+a)^2)-1)/(3-((0.5+a)^2))*(1-z-sqrt(2)*x)*(1-z+sqrt(2)*x)*(1+z+sqrt(2)*y)*(1+z-sqrt(2)*y));
-     init();
+     select(4);
 
      //B3 is a matrix that interpolates quadratic polynomials (in monomial basis), given the values [p(-2), p(0), p(2)]
      B3 = inverse(apply([-2, 0, 2], c, apply(0 .. 2, i, c ^ i)));
