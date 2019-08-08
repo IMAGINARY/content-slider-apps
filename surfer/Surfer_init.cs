@@ -1,4 +1,4 @@
-prerender = false; //render on canvas before displaying; otherwise render in screen resolution
+prerender = true; //render on canvas before displaying; otherwise render in screen resolution
 
 if(prerender,
   resolution = 512;
@@ -13,9 +13,12 @@ poss=(
  (0.95, .5),
  (0.59, .32),
  (0.77, .32),
- (0.95, .32)
+ (0.95, .32),
+ (0.59, .14),
+ (0.77, .14),
+ (0.95, .14)
  );
- sel=1;
+ sel=4;
 
 sliders = (
   [PA,(0.55,-.25), (1.00,-.25), "Form"],

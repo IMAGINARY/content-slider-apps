@@ -98,12 +98,9 @@ if(prerender,
 //images
 
 ims = 0.07;
-drawimage(poss_1+(-ims,-ims),poss_1+(ims,-ims),"im1",alpha->if(sel==1,1,.6));
-drawimage(poss_2+(-ims,-ims),poss_2+(ims,-ims),"im2",alpha->if(sel==2,1,.6));
-drawimage(poss_3+(-ims,-ims),poss_3+(ims,-ims),"im3",alpha->if(sel==3,1,.6));
-drawimage(poss_4+(-ims,-ims),poss_4+(ims,-ims),"im4",alpha->if(sel==4,1,.6));
-drawimage(poss_5+(-ims,-ims),poss_5+(ims,-ims),"im5",alpha->if(sel==5,1,.6));
-drawimage(poss_6+(-ims,-ims),poss_6+(ims,-ims),"im6",alpha->if(sel==6,1,.6));
+forall(1..9,k,
+  drawimage(poss_k+(-ims,-ims),poss_k+(ims,-ims),"im"+k,alpha->if(sel==k,1,.6));
+);
 
 //highlight selected
 connect(
