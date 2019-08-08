@@ -71,11 +71,16 @@ class SurferApp extends CindyApp {
   }
 
   get description() {
-    return 'TODO';
+    return `Mathematik befasst sich mit abstrakten Strukturen. Meist werden diese Strukturen als Formeln schriftlich fixiert. Dennoch verbergen sich hinter den Formeln oftmals wieder Objekte, die konkrete räumliche Formen haben. Ein schönes Beispiel bilden hier die <i>algebraischen Flächen</i>. Diese werden durch Polynome in mehreren Variablen aufgeschrieben und entsprechen den Punkten im Raum, an denen diese Polynome zu Null werden. So beschreibt z.B. die Formel
+<center>
+    <p><i>x<sup>2</sup>+y<sup>2</sup>+z<sup>2</sup>-1=0</i></p>
+</center>
+eine Kugel im Raum. Abgesehen von der Tatsache, dass algebraische Kurven und Flächen sowohl in der angewandten, als auch in der reinen Mathematik von fundamentaler Bedeutung sind, besitzen sie oftmals eine große innere Ästhetik.
+`;
   }
 
   get credits() {
-    return 'TODO';
+    return 'Aaron Montag';
   }
 }
 
