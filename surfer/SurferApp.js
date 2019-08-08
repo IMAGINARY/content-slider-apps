@@ -11,7 +11,7 @@ class SurferApp extends CindyApp {
 
 
     return {
-      scripts: await CindyApp.loadScripts(relativeUrl('Surfer_'), ['init', 'draw', 'mousedown', 'mouseup'], '.cs'),
+      scripts: await CindyApp.loadScripts(relativeUrl('Surfer_'), ['init', 'draw', 'mousedown', 'mousedrag', 'mouseup'], '.cs'),
       defaultAppearance: {},
       images: {
         im1: relativeUrl("img/01_Kummer.png"),

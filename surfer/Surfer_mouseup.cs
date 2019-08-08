@@ -1,1 +1,3 @@
+playanimation();
+
 dragging = false;
