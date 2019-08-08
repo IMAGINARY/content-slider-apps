@@ -1,4 +1,4 @@
-prerender = true; //render on canvas before displaying; otherwise render in screen resolution
+prerender = false; //render on canvas before displaying; otherwise render in screen resolution
 
 if(prerender,
   resolution = 512;
@@ -8,22 +8,22 @@ if(prerender,
 
 
 poss=(
- (0.59, .5),
- (0.77, .5),
- (0.95, .5),
- (0.59, .32),
- (0.77, .32),
- (0.95, .32),
- (0.59, .14),
- (0.77, .14),
- (0.95, .14)
- );
+ (0.65, .5),
+ (0.85, .5),
+ (1.05, .5),
+ (0.65, .3),
+ (0.85, .3),
+ (1.05, .3),
+ (0.65, .1),
+ (0.85, .1),
+ (1.05, .1)
+);
  sel=4;
 
 sliders = (
-  [PA,(0.55,-.2), (1.00,-.2), "Parameter $\alpha$"],
-  [PB,(0.55,-.35), (1.00,-.35), "Transparenz"],
-  [PC,(0.55,-.5), (1.00,-.5), "Zoom"]
+  [PA,(0.6,-.2), (1.10,-.2), "Parameter $\alpha$"],
+  [PB,(0.6,-.35), (1.10,-.35), "Transparenz"],
+  [PC,(0.6,-.5), (1.10,-.5), "Zoom"]
 );
 
 text = ["",20];

@@ -28,7 +28,7 @@ class SurferApp extends CindyApp {
         element: this.canvas,
         background: "rgba(0,0,0,0)",
         transform: [{
-          visibleRect: [-.55, -.6, 1.05, .6]
+          visibleRect: [-.72, -.72, 1.20, .72]
         }]
       }],
       animation: {

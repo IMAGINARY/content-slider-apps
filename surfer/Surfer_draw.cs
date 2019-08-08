@@ -119,4 +119,4 @@ forall(sliders, s,
   draw(s_2, s_3, color->gray(.7), size->2);
 );
 
-drawtext(align->"mid", (0, .55), text_1, size->text_2, color->[1,1,1]);
+drawtext(align->"mid", (0, .62), text_1, size->text_2, color->[1,1,1]);
