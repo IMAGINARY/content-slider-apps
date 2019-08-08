@@ -6,15 +6,22 @@ if(prerender,
 );
 
 
+
 poss=(
- (-.9,.5),
- (-.9,.3),
- (-.9,.1),
- (-.9,-.1),
- (-.9,-.3),
- (-.9,-.5)
+ (0.59, .5),
+ (0.77, .5),
+ (0.95, .5),
+ (0.59, .32),
+ (0.77, .32),
+ (0.95, .32)
  );
  sel=1;
+
+sliders = (
+  [PA,(0.55,-.25), (1.00,-.25), "Form"],
+  [PB,(0.55,-.40), (1.00,-.40), "Transparenz"],
+  [PC,(0.55,-.55), (1.00,-.55), "Zoom"]
+);
 
 speciala = .5;
 smootha(x) := if(x<speciala,
@@ -22,14 +29,24 @@ smootha(x) := if(x<speciala,
  (1/(1.01-speciala))*(x-speciala)^2+speciala
 );
 
+sliderval(s) := (
+  |s_2,s_1|/|s_2,s_3|
+);
+
+setesliderval(k, v) := (
+  (sliders_k_1).xy = (1-v)*sliders_k_2+v*sliders_k_3;
+);
+
 seta(na) := (
  a = na+.0001;
  speciala = na;
- PA.y = (a-.5)*.7;
+ //PA.y = (a-.5)*.7;
+ setesliderval(1, (na+.1)/1.2);
 );
 
 setzoom(zoom) := (
- PC.y = (zoom);
+ //PC.y = (zoom);
+ setesliderval(3, zoom);
 );
 
 //initialize some variables
@@ -112,6 +129,10 @@ fun(x, y, z) := (x ^ 2 + y ^ 2 + z ^ 2 - (0.5 + a) ^ 2) ^ 2 - (3.0 * ((0.5 + a) 
          )
 
      );
+
+     setzoom(0.7);
+     seta(1);
+     fun(x,y,z) := ((x^2+y^2+z^2-(0.5+a)^2)^2-(3*((0.5+a)^2)-1)/(3-((0.5+a)^2))*(1-z-sqrt(2)*x)*(1-z+sqrt(2)*x)*(1+z+sqrt(2)*y)*(1+z-sqrt(2)*y));
      init();
 
      //B3 is a matrix that interpolates quadratic polynomials (in monomial basis), given the values [p(-2), p(0), p(2)]

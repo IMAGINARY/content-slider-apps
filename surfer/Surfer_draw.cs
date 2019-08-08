@@ -25,6 +25,18 @@ mat = mat * (
 
 
 //the 3 sliders at the left.
+//snap
+forall(sliders, s,
+  (s_1).y = (s_2).y;
+  if((s_1).x<(s_2).x, (s_1).x=(s_2).x);
+  if((s_1).x>(s_3).x, (s_1).x=(s_3).x);
+);
+
+//read values
+a = smootha(-.1+1.2*sliderval(sliders_1));
+alpha = sliderval(sliders_2)*.5+.49;
+zoom = exp(sliderval(sliders_3)-1);
+/*
 PA.x = 0.7;
 if (PA.y > .4, PA.y = .4);
 if (PA.y < -.4, PA.y = -.4);
@@ -38,7 +50,7 @@ alpha = ((.4 + PB.y) / .8) * .7 + .3;
 PC.x = 1;
 if (PC.y > .4, PC.y = .4);
 if (PC.y < -.4, PC.y = -.4);
-zoom = exp(2 * PC.y - .5);
+zoom = exp(2 * PC.y - .5);*/
 
 //configuration for the lights in the scene. A light has a position, a gamma-parameter for its shininess and a color
 lightdirs = [
@@ -82,14 +94,30 @@ if(prerender,
 
 // drawtext((-.65, -.45), "degree: $" + if(newN<100,newN,"\infty") +"$");
 
-//lines for the sliders
-draw((.7, .4), (.7, -.4), color -> (1,1,1),size->2);
-draw((.85, .4), (.85, -.4), color -> (1,1,1),size->2);
-draw((1, .4), (1, -.4), color -> (1,1,1),size->2);
 
-drawimage(poss_1+(-.10,-.10),poss_1+(.10,-.10),"im1",alpha->if(sel==1,1,.6));
-drawimage(poss_2+(-.10,-.10),poss_2+(.10,-.10),"im2",alpha->if(sel==2,1,.6));
-drawimage(poss_3+(-.10,-.10),poss_3+(.10,-.10),"im3",alpha->if(sel==3,1,.6));
-drawimage(poss_4+(-.10,-.10),poss_4+(.10,-.10),"im4",alpha->if(sel==4,1,.6));
-drawimage(poss_5+(-.10,-.10),poss_5+(.10,-.10),"im5",alpha->if(sel==5,1,.6));
-drawimage(poss_6+(-.10,-.10),poss_6+(.10,-.10),"im6",alpha->if(sel==6,1,.6));
+//images
+
+ims = 0.07;
+drawimage(poss_1+(-ims,-ims),poss_1+(ims,-ims),"im1",alpha->if(sel==1,1,.6));
+drawimage(poss_2+(-ims,-ims),poss_2+(ims,-ims),"im2",alpha->if(sel==2,1,.6));
+drawimage(poss_3+(-ims,-ims),poss_3+(ims,-ims),"im3",alpha->if(sel==3,1,.6));
+drawimage(poss_4+(-ims,-ims),poss_4+(ims,-ims),"im4",alpha->if(sel==4,1,.6));
+drawimage(poss_5+(-ims,-ims),poss_5+(ims,-ims),"im5",alpha->if(sel==5,1,.6));
+drawimage(poss_6+(-ims,-ims),poss_6+(ims,-ims),"im6",alpha->if(sel==6,1,.6));
+
+//highlight selected
+connect(
+    (
+      poss_sel+0.08*(1,1),
+      poss_sel+0.08*(-1,1),
+      poss_sel+0.08*(-1,-1),
+      poss_sel+0.08*(1,-1),
+      poss_sel+0.08*(1,1)
+  ),color->(1,1,1)*.7,size->2
+);
+
+//lines for the sliders
+forall(sliders, s,
+  drawtext(s_2+(0,.02), s_4, color->[1,1,1], size->20);
+  draw(s_2, s_3, color->gray(.7), size->2);
+);

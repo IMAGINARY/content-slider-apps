@@ -25,7 +25,7 @@ class SurferApp extends CindyApp {
         element: this.canvas,
         background: "rgba(0,0,0,0)",
         transform: [{
-          visibleRect: [-1.1, -.7, 1.1, .7]
+          visibleRect: [-.55, -.6, 1.05, .6]
         }]
       }],
       animation: {
@@ -36,7 +36,7 @@ class SurferApp extends CindyApp {
           name: "PA",
           kind: "P",
           type: "Free",
-          pos: [.5, .37, 1],
+          pos: [1, .37, 1],
           narrow: 80,
           color: [1, 1, 1],
           size: 8
@@ -45,7 +45,7 @@ class SurferApp extends CindyApp {
           name: "PB",
           kind: "P",
           type: "Free",
-          pos: [.5, .2, 1],
+          pos: [1, 2, 1],
           narrow: 80,
           color: [1, 1, 1],
           size: 8
