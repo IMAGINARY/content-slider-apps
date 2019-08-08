@@ -15,7 +15,7 @@ class IFSApp extends CindyApp {
       defaultAppearance: {},
       images: {
         im1: relativeUrl("img/01_Tree.png"),
-        im2: relativeUrl("img/01_Tree.png"),
+        im2: relativeUrl("img/02_Spiral.png"),
         im3: relativeUrl("img/01_Tree.png"),
         im4: relativeUrl("img/01_Tree.png"),
         im5: relativeUrl("img/01_Tree.png"),

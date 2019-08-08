@@ -1,5 +1,4 @@
-
-Trafos = [map(D,B,B,A), map(C,B,B,A)];
+gentrafos();
 N = length(Trafos);
 forall(1..N,k,
      Trafos_k = Trafos_k/(Trafos_k_3_3);
@@ -11,7 +10,7 @@ forall(1..N,k,
 //clearimage("seed");
 
 factors = apply(Trafos, T, sqrt(|det(T)|));
-v = 0.6+.1*sin(seconds());
+v = 0.5+.2*sin(4*seconds());
 //v = 1;
 factors = (1-v)*factors+v*factors/min(N,sum(factors));
 
