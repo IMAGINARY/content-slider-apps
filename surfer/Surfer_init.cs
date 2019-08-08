@@ -344,3 +344,16 @@ clipedScene(pixel) := (
   );
   color //return value
 );
+
+
+pause():=(
+  pauseanimation();
+);
+
+resume():=(
+  playanimation();
+);
+
+restart() := (
+  select(4);
+);
