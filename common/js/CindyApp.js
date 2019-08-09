@@ -17,12 +17,33 @@ class CindyApp extends Application {
             });
     }
 
+    static async request(obj) {
+        return new Promise((resolve, reject) => {
+            let xhr = new XMLHttpRequest();
+            xhr.open(obj.method || "GET", obj.url);
+            if (obj.headers) {
+                Object.keys(obj.headers).forEach(key => {
+                    xhr.setRequestHeader(key, obj.headers[key]);
+                });
+            }
+            xhr.onload = () => {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    resolve(xhr.response);
+                } else {
+                    reject(xhr);
+                }
+            };
+            xhr.onerror = () => reject(xhr);
+            xhr.send(obj.body);
+        });
+    }
+
     static async loadScripts(prefix, infixes, suffix) {
         const scripts = {};
         const promises = [];
         // TODO: error handling for failed loads
         for (let infix of infixes)
-            promises.push($.get(prefix + infix + suffix).then(scriptText => scripts[infix] = scriptText));
+            promises.push(CindyApp.request({url: prefix + infix + suffix}).then(scriptText => scripts[infix] = scriptText));
         await Promise.all(promises);
         return scripts;
     }
