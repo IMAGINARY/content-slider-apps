@@ -1,3 +1,4 @@
+snap();
 gentrafos();
 N = length(Trafos);
 forall(1..N,k,
@@ -9,10 +10,11 @@ forall(1..N,k,
 
 //clearimage("seed");
 
-factors = apply(Trafos, T, sqrt(|det(T)|));
-v = 0.5+.2*sin(4*seconds());
+factors = AF*apply(Trafos, T, min(MF,sqrt(|det(T)|)));
+
+//v = 0.3+.1*sin(seconds());
 //v = 1;
-factors = (1-v)*factors+v*factors/min(N,sum(factors));
+factors = (1-NC)*factors+NC*factors/sum(factors);
 
 clamp(v) := min(max(0,v),1);
 
@@ -27,11 +29,11 @@ colorplot(L,R,"ifs",
                  other = imagergba(L,R,"ifs",Trafos_k*[#_1,#_2,1]);
                  color = color + factors_k*other;
                 );
-          color
+          color*(1-(#*#)^2); //fade out
+
          );
 drawimage(L,R,"ifs");
 //drawtext((0,0), factors, color->[1,0,1]);
-//forall(allpoints(), p, errc(p); errc(p.xy));
 
 
 

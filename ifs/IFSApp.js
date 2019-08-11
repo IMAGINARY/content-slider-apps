@@ -39,7 +39,8 @@ class IFSApp extends CindyApp {
         {labeled: false, color:[1,1,1], size: 10, name: "A", type: "Free", pos: [0.5461344433141647, 1, -0.8694388507131142]},
         {labeled: false, color:[1,1,1], size: 10, name: "B", type: "Free", pos: [-0.5832007080270749, 0.17864187533740292, 1]},
         {labeled: false, color:[1,1,1], size: 10, name: "C", type: "Free", pos: [0.042069733399776155, 0.8344744471823282, 1]},
-        {labeled: false, color:[1,1,1], size: 10, name: "D", type: "Free", pos: [1, -0.3674308286190039, -0.7770817202787361]}
+        {labeled: false, color:[1,1,1], size: 10, name: "D", type: "Free", pos: [1, -0.3674308286190039, -0.7770817202787361]},
+        {labeled: false, color:[1,1,1], size: 10, name: "E", type: "Free", pos: [1, -0.3674308286190039, -0.7770817202787361]}
       ]
     };
   }
