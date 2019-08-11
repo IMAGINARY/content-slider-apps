@@ -29,7 +29,7 @@ colorplot(L,R,"ifs",
                  other = imagergba(L,R,"ifs",Trafos_k*[#_1,#_2,1]);
                  color = color + factors_k*other;
                 );
-          color*(1-(#*#)^2); //fade out
+          color*(1-((#*#)/(K*K))^2); //fade out
 
          );
 drawimage(L,R,"ifs");
@@ -37,24 +37,18 @@ drawimage(L,R,"ifs");
 
 
 
-ims = 0.07;
-forall(1..9,k,
+ims = 0.14;
+forall(1..5,k,
   drawimage(poss_k+(-ims,-ims),poss_k+(ims,-ims),"im"+k,alpha->if(sel==k,1,.6));
 );
 
 //highlight selected
 connect(
     (
-      poss_sel+0.08*(1,1),
-      poss_sel+0.08*(-1,1),
-      poss_sel+0.08*(-1,-1),
-      poss_sel+0.08*(1,-1),
-      poss_sel+0.08*(1,1)
+      poss_sel+0.15*(1,1),
+      poss_sel+0.15*(-1,1),
+      poss_sel+0.15*(-1,-1),
+      poss_sel+0.15*(1,-1),
+      poss_sel+0.15*(1,1)
   ),color->(1,1,1)*.7,size->2
-);
-
-//lines for the sliders
-forall(sliders, s,
-  drawtext(s_2+(0,.02), s_4, color->[1,1,1], size->20);
-  draw(s_2, s_3, color->gray(.7), size->2);
 );

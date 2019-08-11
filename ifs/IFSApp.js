@@ -15,20 +15,16 @@ class IFSApp extends CindyApp {
       defaultAppearance: {},
       images: {
         im1: relativeUrl("img/01_Tree.png"),
-        im2: relativeUrl("img/02_Spiral.png"),
-        im3: relativeUrl("img/01_Tree.png"),
-        im4: relativeUrl("img/01_Tree.png"),
-        im5: relativeUrl("img/01_Tree.png"),
-        im6: relativeUrl("img/01_Tree.png"),
-        im7: relativeUrl("img/01_Tree.png"),
-        im8: relativeUrl("img/01_Tree.png"),
-        im9: relativeUrl("img/01_Tree.png")
+        im2: relativeUrl("img/02_Farn.png"),
+        im3: relativeUrl("img/03_Koch.png"),
+        im4: relativeUrl("img/04_Spiral.png"),
+        im5: relativeUrl("img/05_Free.png")
       },
       ports: [{
         element: this.canvas,
         background: "rgba(0,0,0,0)",
         transform: [{
-          visibleRect: [-.72, -.72, 1.20, .72]
+          visibleRect: [-.9, -.9, 1.5, .9]
         }]
       }],
       animation: {
