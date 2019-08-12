@@ -12,9 +12,9 @@ poss=(
 
 sel=1;
 
-K = 1.5;
-L = (-K,-K);
-R = (K,-K);
+K = 1.1;
+L = (-K,-K,1);
+R = (K,-K,1);
 select(k) := (
   sel = k;
   if(sel==1,
@@ -28,7 +28,7 @@ select(k) := (
       draw(A,B, size->10, color->[1,.4,.3]);
     );
     gentrafos() := (
-      Trafos = [map(D,B,B,A), map(C,B,B,A)];
+      Trafos = [map(B, A, D, B), map(B, A, C, B)];
     );
     snap() := (
       if(|D,B|>|B,A|,
@@ -59,7 +59,7 @@ select(k) := (
       draw(A,B, size->10, color->[.6,.6,.5]);
     );
     gentrafos() := (
-      Trafos = [map(B,C,A,C), map(B,D,A,C), map(B,E,A,C)];
+      Trafos = [map(A, C, B, C), map(A, C, B, D), map(A, C, B, E)];
     );
     snap() := (
       //TODO
@@ -79,7 +79,7 @@ select(k) := (
       draw(D,E, color->[.5,.2,.4], size->30);
     );
     gentrafos() := (
-      Trafos = [map(A,B,A,E), map(B,C,A,E), map(C,D,A,E), map(D,E,A,E)];
+      Trafos = [map(A, E, A, B), map(A, E, B, C), map(A, E, C, D), map(A, E, D, E)];
     );
     snap() := (
       M = (A.xy+E.xy)/2;
@@ -105,7 +105,7 @@ select(k) := (
       fillcircle((0,0), .4, color->[3,2,0]/255);
     );
     gentrafos() := (
-      Trafos = [map(A,B,A,D), map(B,C,A,D), map(C,D,A,D)];
+      Trafos = [map(A, D, A, B), map(A, D, B, C), map(A, D, C, D)];
     );
     snap() := (
       M = (A.xy+D.xy)/2;
@@ -130,7 +130,7 @@ select(k) := (
       //draw(A,B, size->10, color->[.4,.4,.3]);
     );
     gentrafos() := (
-      Trafos = [map(C,A,B,A), map(D,E,A,B)];
+      Trafos = [map(B, A, C, A), map(A, B, D, E)];
     );
 
     snap() := (

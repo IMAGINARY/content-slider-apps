@@ -11,9 +11,8 @@ canvas(L,R,"seed",
 
 colorplot(L,R,"ifs",
           color = imagergb(L,R,"seed",#);
-          p = [#_1,#_2,1];
           forall(1..N, k,
-                 other = imagergb(L,R,"ifs",Trafos_k*[#_1,#_2,1]);
+                 other = imagergb(Trafos_k*L, Trafos_k*R, "ifs", #);
                  color = color + ((1-CF)*1.3+CF/N)*other;
                 );
           color*(1-((#*#)/(K*K))^2); //fade out
