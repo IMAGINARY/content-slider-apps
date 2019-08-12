@@ -1,20 +1,6 @@
 snap();
 gentrafos();
 N = length(Trafos);
-forall(1..N,k,
-     Trafos_k = Trafos_k/(Trafos_k_3_3);
-);
-//factors = apply(Trafos, T, min(1.1,-.2+.1*sin(seconds())+sqrt(|det(T)|)));
-
-//factors = .99*factors/sum(factors);
-
-//clearimage("seed");
-
-factors = AF*apply(Trafos, T, min(MF,sqrt(|det(T)|)));
-
-//v = 0.3+.1*sin(seconds());
-//v = 1;
-factors = (1-NC)*factors+NC*factors/sum(factors);
 
 clamp(v) := min(max(0,v),1);
 
@@ -22,19 +8,23 @@ clearimage("seed");
 canvas(L,R,"seed",
    scene();
 );
+
 colorplot(L,R,"ifs",
-          color = imagergba(L,R,"seed",#);
+          color = imagergb(L,R,"seed",#);
           p = [#_1,#_2,1];
           forall(1..N, k,
-                 other = imagergba(L,R,"ifs",Trafos_k*[#_1,#_2,1]);
-                 color = color + factors_k*other;
+                 other = imagergb(L,R,"ifs",Trafos_k*[#_1,#_2,1]);
+                 color = color + ((1-CF)*1.3+CF/N)*other;
                 );
           color*(1-((#*#)/(K*K))^2); //fade out
 
          );
 drawimage(L,R,"ifs");
-//drawtext((0,0), factors, color->[1,0,1]);
 
+pts = directproduct(-1..1,-1..1)/3;
+
+cavg = sum(pts, p, imagergb(L,R,"ifs",p+(0.02,0.05)))/length(pts);
+CF = clamp(.9*CF+.1*|cavg|);
 
 
 ims = 0.14;

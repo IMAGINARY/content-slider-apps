@@ -15,8 +15,6 @@ sel=1;
 K = 1.5;
 L = (-K,-K);
 R = (K,-K);
-MF = 1.5;
-
 select(k) := (
   sel = k;
   if(sel==1,
@@ -25,9 +23,6 @@ select(k) := (
     B.xy = [-0.0982, -0.1297]/.8;
     C.xy = [-0.2615, 0.0841]/.8;
     D.xy = [0.0708, 0.1087]/.8;
-    MF = 1.5;
-    AF = .9;
-    NC = 0;
     scene() := (
       fillcircle((0,0),10, color->[1/255,2/255,0/255]);
       draw(A,B, size->10, color->[1,.4,.3]);
@@ -56,9 +51,6 @@ select(k) := (
     C.xy = [0.4446, 0.488];
     D.xy = [-0.5969, -0.0351];
     E.xy = [-0.1151, -0.4051];
-    MF = 1;
-    AF = 1;
-    NC = 0;
     scene() := (
       fillcircle((0,0),10, color->[0,1,0]/255);
       fillcircle(E.xy,.3, color->[3,0,0]/255);
@@ -80,9 +72,6 @@ select(k) := (
     C.xy = [0,sqrt(3)/2]/2;
     D.xy = [0.5,0]/2;
     E.xy = [1.5,0]/2;
-    MF = 1.5;
-    AF = .9;
-    NC = 0.1;
     scene() := (
       draw(A,B, color->[.5,.2,.4], size->30);
       draw(B,C, color->[.5,.2,.4], size->30);
@@ -111,9 +100,6 @@ select(k) := (
     B.xy = [-1,1]/2.5;
     C.xy = [1,-1]/2.5;
     D.xy = [1.75,0]/2.5;
-    MF = 1.2;
-    AF = .9;
-    NC = 0;
     scene() := (
       fillcircle((0,0),10, color->[1/255,2/255,3/255]);
       fillcircle((0,0), .4, color->[3,2,0]/255);
@@ -138,9 +124,6 @@ select(k) := (
     C.xy = [-0.3008, 0.1794];
     D.xy = [-0.4018, 0.3581];
     E.xy = [-0.5028, 0.4606];
-    MF = 1.2;
-    AF = .95;
-    NC = 0;
     scene() := (
       fillcircle((0,0),10, color->[2/255,1/255,0/255]);
       fillcircle(A.xy, .4, color->[0,0,3]/255);
@@ -163,6 +146,7 @@ init() := (
   clearimage("ifs");
   clearimage("seed");
   resetclock();
+  CF = 0.5;
 );
 
 createimage("ifs", res, res);
