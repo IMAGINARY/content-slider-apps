@@ -35,7 +35,7 @@ forall(sliders, s,
 //read values
 a = smootha(-.1+1.2*sliderval(sliders_1));
 alpha = sliderval(sliders_2)*.5+.49;
-zoom = exp(sliderval(sliders_3)-1);
+zoom = exp(sliderval(sliders_3)-1.0001);
 /*
 PA.x = 0.7;
 if (PA.y > .4, PA.y = .4);
