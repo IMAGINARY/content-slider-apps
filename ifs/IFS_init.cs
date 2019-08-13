@@ -65,7 +65,13 @@ select(k) := (
       Trafos = [map(A, C, B, C), map(A, C, B, D), map(A, C, B, E)];
     );
     snap() := (
-      //TODO
+      if(|D,B|>|A,C|/2,
+        D.xy = B.xy+|A,C|/2/|D,B|*(D.xy-B.xy);
+      );
+      if(|E,B|>|A,C|/2,
+        E.xy = B.xy+|A,C|/2/|E,B|*(E.xy-B.xy);
+      );
+
     );
   );
   if(sel==3,
@@ -137,7 +143,17 @@ select(k) := (
     );
 
     snap() := (
-      //TODO
+      if(|C,A|>.99*|B,A|,
+        C.xy = A.xy+.99*|B,A|/|C,A|*(C.xy-A.xy);
+      );
+
+      if(|C,A|<.5*|B,A|,
+        C.xy = A.xy+.5*|B,A|/|C,A|*(C.xy-A.xy);
+      );
+
+      if(|E,D|>.8*|B,A|,
+        E.xy = D.xy+.8*|B,A|/|E,D|*(E.xy-D.xy);
+      );
     );
   );
   forall(allpoints(),p, p.pinned = true; p.visible = false);
