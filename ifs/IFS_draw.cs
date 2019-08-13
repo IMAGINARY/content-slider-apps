@@ -19,6 +19,23 @@ colorplot(L,R,"ifs",
          );
 drawimage(L,R,"ifs");
 
+exalpha = sqrt(clamp(1-(seconds()-waittime)/explaintime)*clamp(seconds()/waittime));
+if(exalpha>0.01,
+  //t = mod(seconds(),2)/2;
+  t = -cos(max(0,seconds()-waittime))/2+.5;
+  iTrafos = t*apply(Trafos, T, T/T_3_3)+(1-t)*apply(Trafos,[[1,0,0],[0,1,0],[0,0,1]]); //mix with identity
+  colorplot(
+    color = [0,0,0];
+    forall(1..N, k,
+     other = imagergb(iTrafos_k*L, iTrafos_k*R, "ifs", #);
+     color = color + ((1-t)/N+t*1)*((1-CF)*1.3+CF/N)*other;
+    );
+    exalpha*[color_1, color_2, color_3, 1];//fade background
+  );
+
+);
+
+
 pts = directproduct(-1..1,-1..1)/3;
 
 cavg = sum(pts, p, imagergb(L,R,"ifs",p+(0.02,0.05)))/length(pts);

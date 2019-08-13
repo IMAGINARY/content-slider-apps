@@ -2,6 +2,8 @@ res = 1024;
 
 use8bittextures();
 
+waittime = 1;
+explaintime = pi;
 poss=(
  (1.2, .6),
  (1.2, .3),
