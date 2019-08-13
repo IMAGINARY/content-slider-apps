@@ -182,6 +182,7 @@ pause():=(
 );
 
 resume():=(
+  select(sel);
   playanimation();
 );
 
