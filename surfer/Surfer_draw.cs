@@ -1,7 +1,12 @@
 //the following is executed for every rendered frame
 if (dragging,
     dx = 3 * (sx - mouse().x); dy = 3 * (sy - mouse().y);,
-    dx = .9*dx; dy = .9*dy;
+
+    if(idleanimation,
+      dx = cos(.3*seconds())/200; dy = sin(.1*seconds())/200;
+      ,
+      dx = .9*dx; dy = .9*dy;
+    );
 );
 
 if(|(dx,dy)|<.00001,

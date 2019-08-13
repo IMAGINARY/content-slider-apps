@@ -1,5 +1,8 @@
 prerender = false; //render on canvas before displaying; otherwise render in screen resolution
 
+idleanimation = true;
+resetclock();
+
 if(prerender,
   resolution = 512;
   createimage("canv",resolution, resolution);
@@ -345,15 +348,18 @@ clipedScene(pixel) := (
   color //return value
 );
 
-
 pause():=(
   pauseanimation();
+  select(randomint(length(poss)-1)+1);
 );
 
 resume():=(
+  select(sel);
   playanimation();
 );
 
 restart() := (
-  select(4);
+  select(randomint(length(poss)-1)+1);
+  idleanimation = true;
+  playanimation();
 );
