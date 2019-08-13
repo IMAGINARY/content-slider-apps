@@ -16,7 +16,6 @@ colorplot(L,R,"ifs",
                  color = color + ((1-CF)*1.3+CF/N)*other;
                 );
           color*(1-((#*#)/(K*K))^2); //fade out
-
          );
 drawimage(L,R,"ifs");
 
