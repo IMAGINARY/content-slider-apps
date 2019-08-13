@@ -46,7 +46,7 @@ class IFSApp extends CindyApp {
   }
 
   get description() {
-    return 'TODO';
+    return 'Fraktale sind mathematische Objekte, die gewisse Selbstähnlichkeiten aufweisen. Man kann das Fraktal innerhalb des Fraktales erneut finden. In diesem Applet kann mit diesen Selbstähnlichkeiten experimentiert werden.';
   }
 
   get credits() {
