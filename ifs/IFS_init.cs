@@ -12,6 +12,7 @@ poss=(
  (1.2, -.3),
  (1.2, -.6)
 );
+idleanimation=true;
 
 sel=1;
 
@@ -158,6 +159,7 @@ select(k) := (
   );
   forall(allpoints(),p, p.pinned = true; p.visible = false);
   forall(used,p, p.pinned = false; p.visible = true);
+  forall(allpoints(),p,p:"xy0" = p.xy);
   init();
 );
 
@@ -179,6 +181,7 @@ applytrafo(T, p) := (
 
 pause():=(
   pauseanimation();
+  select(randomint(length(poss)-1)+1);
 );
 
 resume():=(
@@ -187,5 +190,7 @@ resume():=(
 );
 
 restart() := (
-  select(1);
+  select(randomint(length(poss)-1)+1);
+  idleanimation = true;
+  playanimation();
 );
