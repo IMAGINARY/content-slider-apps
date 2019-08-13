@@ -50,7 +50,7 @@ class IFSApp extends CindyApp {
   }
 
   get credits() {
-    return 'Aaron Montag';
+    return 'Aaron Montag, basierend auf einer Idee von Felix Woitzl';
   }
 }
 
