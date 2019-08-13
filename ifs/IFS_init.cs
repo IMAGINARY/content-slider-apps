@@ -1,7 +1,8 @@
-res = 1024;
 
+K = 1.5;
 use8bittextures();
-
+//res = 1024;
+res = 2*K*screenresolution();
 waittime = 1;
 explaintime = pi;
 poss=(
@@ -14,7 +15,7 @@ poss=(
 
 sel=1;
 
-K = 1.5;
+
 L = (-K,-K,1);
 R = (K,-K,1);
 select(k) := (
