@@ -39,7 +39,8 @@ if(exalpha>0.01,
 pts = directproduct(-1..1,-1..1)/3;
 
 cavg = sum(pts, p, imagergb(L,R,"ifs",p+(0.02,0.05)))/length(pts);
-CF = clamp(.9*CF+.1*|cavg|);
+mp = min(Trafos, T, 1/(|det(T)|))*1.5;
+CF = clamp(.9*CF+.1*|cavg|/mp);
 
 
 ims = 0.14;
