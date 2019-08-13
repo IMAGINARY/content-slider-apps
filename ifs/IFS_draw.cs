@@ -27,7 +27,7 @@ CF = clamp(.9*CF+.1*|cavg|);
 
 
 ims = 0.14;
-forall(1..5,k,
+forall(1..length(poss),k,
   drawimage(poss_k+(-ims,-ims),poss_k+(ims,-ims),"im"+k,alpha->if(sel==k,1,.6));
 );
 
