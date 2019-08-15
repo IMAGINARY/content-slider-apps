@@ -38,10 +38,10 @@ class SwarmApp extends CindyApp {
             {name: "U", type: "Free", pos: [12, -2], color: [0.5, 0.5, 1], pinned: false, size: 9, narrow: 100},
             {name: "r", type: "Segment", args: ["U1", "U2"], color: [1, 1, 1], pinned: false, size: 4},
 
-            {name: "a", type: "Segment", args: ["B", "C"], color: [1, 1, 1], size: 1},
-            {name: "b", type: "Segment", args: ["C", "D"], color: [1, 1, 1], size: 1},
+            {name: "a", type: "Segment", args: ["B", "C"], color: [1, 1, 1], size: 0},
+            {name: "b", type: "Segment", args: ["C", "D"], color: [1, 1, 1], size: 0},
             {name: "c", type: "Segment", args: ["D", "E"], color: [1, 1, 1], size: 1},
-            {name: "d", type: "Segment", args: ["E", "B"], color: [1, 1, 1], size: 1}
+            {name: "d", type: "Segment", args: ["E", "B"], color: [1, 1, 1], size: 0}
 
 
         ];
