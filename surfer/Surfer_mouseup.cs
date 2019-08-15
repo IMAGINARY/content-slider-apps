@@ -1,0 +1,3 @@
+playanimation();
+
+dragging = false;
