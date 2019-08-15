@@ -34,7 +34,7 @@ class SurferApp extends CindyApp {
       animation: {
         autoplay: true
       },
-      use: ["CindyGL", "symbolic"],
+      use: ["CindyGL", "katex", "symbolic"],
       geometry: [{
           name: "PA",
           kind: "P",
