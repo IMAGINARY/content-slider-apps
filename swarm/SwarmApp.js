@@ -90,7 +90,7 @@ class SwarmApp extends CindyApp {
         }
 
         return {
-            scripts: await CindyApp.loadScripts(relativeUrl('Swarm_'), ['init', 'mousedown', 'mouseup', 'move'], '.cs'),
+            scripts: await CindyApp.loadScripts(relativeUrl('Swarm_'), ['init', 'mousedown', 'draw', 'mouseup'], '.cs'),
             geometry: gslp,
             behavior: physics,
             images: {
