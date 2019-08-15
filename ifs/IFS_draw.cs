@@ -4,7 +4,18 @@ if(idleanimation,
     omega = sin((p:"xy0")_1*1000)/2;//some "random-deterministic" value for each point;
     p.xy = p:"xy0" + .02*(cos(omega*seconds()),sin(omega*seconds()));
   );
+  framecnt = 0;
 );
+
+exalpha = sqrt(clamp(1-(seconds()-waittime)/explaintime)*clamp(seconds()/waittime));
+
+static = framecnt>200 & exalpha<.001;
+
+if(static,
+  pauseanimation();
+  errc("paused IFS because it is likely to be satic.");
+);
+framecnt = framecnt+1;
 
 snap();
 gentrafos();
@@ -27,7 +38,7 @@ colorplot(L,R,"ifs",
          );
 drawimage(L,R,"ifs");
 
-exalpha = sqrt(clamp(1-(seconds()-waittime)/explaintime)*clamp(seconds()/waittime));
+
 if(exalpha>0.01,
   //t = mod(seconds(),2)/2;
   t = -cos(max(0,seconds()-waittime))/2+.5;

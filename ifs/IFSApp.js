@@ -11,7 +11,7 @@ class IFSApp extends CindyApp {
 
 
     return {
-      scripts: await CindyApp.loadScripts(relativeUrl('IFS_'), ['init', 'draw', 'mousedown'], '.cs'),
+      scripts: await CindyApp.loadScripts(relativeUrl('IFS_'), ['init', 'draw', 'mousedown', 'mousedrag'], '.cs'),
       defaultAppearance: {},
       images: {
         im1: relativeUrl("img/01_Tree.png"),

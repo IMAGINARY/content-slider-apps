@@ -13,9 +13,10 @@ poss=(
  (1.2, -.6)
 );
 idleanimation=true;
+paused = false;
 
 sel=1;
-
+framecnt = 0;
 
 L = (-K,-K,1);
 R = (K,-K,1);
@@ -167,7 +168,11 @@ init() := (
   clearimage("ifs");
   clearimage("seed");
   resetclock();
-  CF = 0.5;
+  if(!paused,
+    playanimation();
+    framecnt = 0;
+  );
+  CF = 0.2;
 );
 
 createimage("ifs", res, res);
@@ -180,16 +185,19 @@ applytrafo(T, p) := (
 );
 
 pause():=(
+  paused = true;
   pauseanimation();
-  select(randomint(length(poss)-1)+1);
 );
 
 resume():=(
+  paused = false;
   select(sel);
   playanimation();
 );
 
-restart() := (
+reset() := (
+  paused = false;
+  framecnt = 0;
   select(randomint(length(poss)-1)+1);
   idleanimation = true;
   playanimation();
