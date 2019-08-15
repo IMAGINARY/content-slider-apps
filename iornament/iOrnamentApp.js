@@ -13,7 +13,7 @@ class iOrnament extends CindyApp {
     let ydiff = 1.3;
 
     return {
-      scripts: await CindyApp.loadScripts(relativeUrl('iOrnament_'), ['init', 'draw', 'mousedown', 'mousedrag', 'mouseup', 'tick'], '.cs'),
+      scripts: await CindyApp.loadScripts(relativeUrl('iOrnament_'), ['init', 'draw', 'mousedown', 'mousedrag', 'tick'], '.cs'),
       defaultAppearance: {},
       images: {
         "trash": relativeUrl("img/Trash.png"),
