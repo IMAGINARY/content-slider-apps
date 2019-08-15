@@ -196,9 +196,7 @@ resume():=(
 );
 
 reset() := (
-  paused = false;
   framecnt = 0;
   select(randomint(length(poss)-1)+1);
   idleanimation = true;
-  playanimation();
 );
