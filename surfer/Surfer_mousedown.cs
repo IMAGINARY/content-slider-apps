@@ -1,4 +1,4 @@
-playanimation();
+if(!paused, playanimation());
 
 sx = mouse().x;
 sy = mouse().y;

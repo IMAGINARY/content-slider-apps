@@ -348,18 +348,20 @@ clipedScene(pixel) := (
   color //return value
 );
 
+paused = false;
 pause():=(
   pauseanimation();
-  select(randomint(length(poss)-1)+1);
+  paused = true;
 );
 
 resume():=(
-  select(sel);
+  paused = false;
   playanimation();
 );
 
-restart() := (
+reset() := (
   select(randomint(length(poss)-1)+1);
   idleanimation = true;
+  paused = false;
   playanimation();
 );
