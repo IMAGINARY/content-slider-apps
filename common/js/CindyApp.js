@@ -115,14 +115,18 @@ class CindyApp extends Application {
 
     pause() {
         console.log(`pause ${this.constructor.name}`);
-        if (this._isReady)
+        if (this._isReady) {
             this.cindy.evokeCS('pause();');
+            this.cindy.stop();
+        }
     }
 
     resume() {
         console.log(`resume ${this.constructor.name}`);
-        if (this._isReady)
+        if (this._isReady) {
             this.cindy.evokeCS('resume();');
+            this.cindy.play();
+        }
     }
 
     restart(pauseAfterRestart) {
