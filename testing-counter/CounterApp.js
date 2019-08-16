@@ -1,8 +1,13 @@
 import Application from '../common/js/application.js';
 
 class CounterApp extends Application {
-    constructor() {
-        super();
+    static defaultConfig = {
+        appName: 'CounterApp',
+    };
+
+    constructor(config = {}) {
+        super(Object.assign(CounterApp.defaultConfig, config));
+
         const div = document.createElement("div");
         div.style.fontSize = '64px';
         div.style.color = '#' + Math.floor(Math.random() * 16777215).toString(16);
@@ -34,18 +39,6 @@ class CounterApp extends Application {
 
     get domElement() {
         return this._domElement;
-    }
-
-    get name() {
-        return this.constructor.name;
-    }
-
-    get description() {
-        return 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.';
-    }
-
-    get credits() {
-        return 'Author 2a<br/>Author 2b';
     }
 
     pause() {

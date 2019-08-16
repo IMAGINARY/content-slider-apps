@@ -1,8 +1,14 @@
 import CindyApp from "../common/js/CindyApp.js";
 
 class LunarApp extends CindyApp {
-  constructor() {
-    super();
+  static defaultConfig = {
+    appName: 'Lunar Lockout',
+    appDescription: 'Bewege den orangen Kreis in die Mitte des Feldes.',
+    appCredits: 'Level & Implemtierung: Aaron Montag. Spielidee inspiriert von Hiroshi Yamamoto.',
+  };
+
+  constructor(config = {}) {
+    super(Object.assign(LunarApp.defaultConfig, config));
   }
 
   async _initCindyArgs() {
@@ -108,18 +114,6 @@ class LunarApp extends CindyApp {
       behavior: [],
       use: ["loadlevels"]
     };
-  }
-
-  get name() {
-    return 'Lunar Lockout';
-  }
-
-  get description() {
-    return `Bewege den orangen Kreis in die Mitte des Feldes`;
-  }
-
-  get credits() {
-    return 'Level & Implemtierung: Aaron Montag. Spielidee inspiriert von Hiroshi Yamamoto';
   }
 }
 

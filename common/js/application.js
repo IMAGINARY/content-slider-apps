@@ -1,5 +1,13 @@
 class Application {
-    constructor() {
+    static defaultConfig = {
+        appName: 'App name',
+        appDescription: '',
+        appCredits: '',
+    };
+
+    constructor(config = {}) {
+        this._config = Object.assign(Application.defaultConfig, config);
+
         this._applicationReadyPromise = Promise.resolve();
         this._isReady = false;
 
@@ -21,16 +29,20 @@ class Application {
         return this._domElement;
     }
 
+    get config() {
+        return this._config;
+    }
+
     get name() {
-        return 'Application'
+        return this._config.appName;
     }
 
     get description() {
-        return 'Application description.'
+        return this._config.appDescription;
     }
 
     get credits() {
-        return 'Application credits'
+        return this._config.appCredits;
     }
 
     pause() {

@@ -1,8 +1,14 @@
 import CindyApp from "../common/js/CindyApp.js";
 
-class iOrnament extends CindyApp {
-  constructor() {
-    super({pauseScript: '', resumeScript: ''});
+class iOrnamentApp extends CindyApp {
+  static defaultConfig = {
+    appName: 'iOrnament',
+    pauseScript: '',
+    resumeScript: '',
+  };
+
+  constructor(config = {}) {
+    super(Object.assign(iOrnamentApp.defaultConfig, config));
   }
 
   async _initCindyArgs() {
@@ -333,18 +339,6 @@ class iOrnament extends CindyApp {
       ]
     };
   }
-
-  get name() {
-    return 'iOrnmanet';
-  }
-
-  get description() {
-    return 'TODO';
-  }
-
-  get credits() {
-    return 'TODO';
-  }
 }
 
-export default iOrnament;
+export default iOrnamentApp;

@@ -1,8 +1,12 @@
 import CindyApp from "../common/js/CindyApp.js";
 
 class EventTesterApp extends CindyApp {
-    constructor() {
-        super();
+    static defaultConfig = {
+        appName: 'EVENT TESTER',
+    };
+
+    constructor(config = {}) {
+        super(Object.assign(EventTesterApp.defaultConfig, config));
     }
 
     async _initCindyArgs() {
@@ -27,18 +31,6 @@ class EventTesterApp extends CindyApp {
                 }],
             cinderella: {build: 1812, version: [2, 9, 1812]}
         };
-    }
-
-    get name() {
-        return 'EVENT TESTER';
-    }
-
-    get description() {
-        return '';
-    }
-
-    get credits() {
-        return '';
     }
 }
 

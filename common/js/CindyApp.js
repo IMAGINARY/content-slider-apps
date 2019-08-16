@@ -1,15 +1,16 @@
 import Application from './application.js';
 
 class CindyApp extends Application {
+    static defaultConfig = {
+        appName: 'CindyJS app',
+        pauseScript: 'pause();',
+        resumeScript: 'resume();',
+        resetScript: 'reset();',
+    };
+
     constructor(config = {}) {
-        super();
+        super(Object.assign(CindyApp.defaultConfig, config));
         console.log("CindyApp called");
-        const defaultConfig = {
-            pauseScript: 'pause();',
-            resumeScript: 'resume();',
-            resetScript: 'reset();',
-        };
-        this._cindyAppConfig = Object.assign(defaultConfig, config);
         this._cindy = null;
         this._cindyPromise = (async () => createCindy.newInstance(await this.cindyArgs))()
             .then(cindy => this._cindy = cindy);
@@ -106,22 +107,10 @@ class CindyApp extends Application {
         return this.canvas;
     }
 
-    get name() {
-        return 'CindyApp';
-    }
-
-    get description() {
-        return 'Eine App, die mit CindyJS erstellt wurde.';
-    }
-
-    get credits() {
-        return '';
-    }
-
     pause() {
         super.pause();
         if (this._isReady) {
-            this.cindy.evokeCS(this._cindyAppConfig.pauseScript);
+            this.cindy.evokeCS(this.config.pauseScript);
             this.cindy.stop();
         }
     }
@@ -129,7 +118,7 @@ class CindyApp extends Application {
     resume() {
         super.resume();
         if (this._isReady) {
-            this.cindy.evokeCS(this._cindyAppConfig.resumeScript);
+            this.cindy.evokeCS(this.config.resumeScript);
             this.cindy.play();
         }
     }
@@ -137,7 +126,7 @@ class CindyApp extends Application {
     reset() {
         super.reset();
         if (this._isReady) {
-            this.cindy.evokeCS(this._cindyAppConfig.resetScript);
+            this.cindy.evokeCS(this.config.resetScript);
         }
     }
 }

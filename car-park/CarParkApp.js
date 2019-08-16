@@ -1,8 +1,15 @@
 import CindyApp from "../common/js/CindyApp.js";
 
 class CarParkApp extends CindyApp {
-    constructor() {
-        super({pauseScript: '', resumeScript: ''});
+    static defaultConfig = {
+        appName: 'Ausparken',
+        appDescription: 'Wer schafft es, das rote Rennauto auszuparken? Leider stehen einige Autos im Weg, denen wiederum andere Autos im Weg stehen. Dieses Knobelspiel wurde 1970 von Nobuyuki Yoshigahara erfunden.',
+        pauseScript: '',
+        resumeScript: '',
+    };
+
+    constructor(config = {}) {
+        super(Object.assign(CarParkApp.defaultConfig, config));
     }
 
     async _initCindyArgs() {
@@ -173,18 +180,6 @@ class CarParkApp extends CindyApp {
                 }
             ]
         };
-    }
-
-    get name() {
-        return 'Ausparken';
-    }
-
-    get description() {
-        return 'Wer schafft es, das rote Rennauto auszuparken? Leider stehen einige Autos im Weg, denen wiederum andere Autos im Weg stehen. Dieses Knobelspiel wurde 1970 von Nobuyuki Yoshigahara erfunden.';
-    }
-
-    get credits() {
-        return '';
     }
 }
 

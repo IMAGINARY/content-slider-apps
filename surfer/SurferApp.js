@@ -1,8 +1,14 @@
 import CindyApp from "../common/js/CindyApp.js";
 
 class SurferApp extends CindyApp {
-  constructor() {
-    super();
+  static defaultConfig = {
+    appName: 'Algebraische Flächen',
+    appDescription: `Algebraische Flächen bestehen aus den Punkten im Raum, die bestimmte polynomielle Gleichungen in den Koordinaten erfüllen. So beschreibt z.B. die Formel\\n<em>x²+y²+z²-1=0</em>\\neine Kugel. Algebraische Kurven und Flächen sind sowohl in der angewandten, als auch in der reinen Mathematik von fundamentaler Bedeutung.`,
+    appCredits: 'Aaron Montag',
+  };
+
+  constructor(config = {}) {
+    super(Object.assign(SurferApp.defaultConfig, config));
   }
 
   async _initCindyArgs() {
@@ -64,21 +70,6 @@ class SurferApp extends CindyApp {
         }
       ]
     };
-  }
-
-  get name() {
-    return 'Algebraische Flächen';
-  }
-
-  get description() {
-    return `Algebraische Flächen bestehen aus den Punkten im Raum, die bestimmte polynomielle Gleichungen in den Koordinaten erfüllen. So beschreibt z.B. die Formel
-<em>x²+y²+z²-1=0</em>
-eine Kugel. Algebraische Kurven und Flächen sind sowohl in der angewandten, als auch in der reinen Mathematik von fundamentaler Bedeutung.
-`;
-  }
-
-  get credits() {
-    return 'Aaron Montag';
   }
 }
 

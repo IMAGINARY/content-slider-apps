@@ -1,8 +1,12 @@
 import Application from '../common/js/application.js';
 
 class RaytracerApp extends Application {
-    constructor() {
-        super();
+    static defaultConfig = {
+        appName: 'RaytracerApp',
+    };
+
+    constructor(config = {}) {
+        super(Object.assign(RaytracerApp.defaultConfig, config));
 
         const object = document.createElement('object');
         object.type = 'text/html';
@@ -19,18 +23,6 @@ class RaytracerApp extends Application {
 
     get domElement() {
         return this._object;
-    }
-
-    get name() {
-        return this.constructor.name;
-    }
-
-    get description() {
-        return 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.';
-    }
-
-    get credits() {
-        return 'Author 2a<br/>Author 2b';
     }
 
     reset() {

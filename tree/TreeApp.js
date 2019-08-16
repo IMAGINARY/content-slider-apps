@@ -1,8 +1,14 @@
 import CindyApp from "../common/js/CindyApp.js";
 
 class TreeApp extends CindyApp {
-    constructor() {
-        super();
+    static defaultConfig = {
+        appName: 'Ein Baum',
+        pauseScript: '',
+        resumeScript: '',
+    };
+
+    constructor(config = {}) {
+        super(Object.assign(TreeApp.defaultConfig, config));
     }
 
     async _initCindyArgs() {
@@ -21,18 +27,6 @@ class TreeApp extends CindyApp {
                 {name: "D", type: "Free", size: 6, pos: [-1.6, -2.5], color: [1, 1, 1]},
             ]
         };
-    }
-
-    get name() {
-        return 'Ein Baum';
-    }
-
-    get description() {
-        return 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.';
-    }
-
-    get credits() {
-        return '';
     }
 }
 

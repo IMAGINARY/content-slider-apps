@@ -1,8 +1,13 @@
 import CindyApp from "../common/js/CindyApp.js";
 
 class SphereChaosApp extends CindyApp {
-    constructor() {
-        super();
+    static defaultConfig = {
+        appName: 'Lichtstrahl',
+        appDescription: 'Wenn sich ein Lichtstrahl zwischen kreisförmigen Spiegeln reflektiert, entsteht <em>deterministisches Chaos</em>: eine kleine Änderung kann unvorhersehbare Auswirkungen haben.  Was passiert, wenn der Lichtstrahl im Inneren eines Kreises startet?',
+    };
+
+    constructor(config = {}) {
+        super(Object.assign(SphereChaosApp.defaultConfig, config));
     }
 
     async _initCindyArgs() {
@@ -62,18 +67,6 @@ class SphereChaosApp extends CindyApp {
                 {name: "Dummy", type: "Free", pos: [100, 100], pinned: false, size: 0, color: [1, 1, 1]}
             ]
         };
-    }
-
-    get name() {
-        return 'Lichtstrahl';
-    }
-
-    get description() {
-        return 'Wenn sich ein Lichtstrahl zwischen kreisförmigen Spiegeln reflektiert, entsteht <em>deterministisches Chaos</em>: eine kleine Änderung kann unvorhersehbare Auswirkungen haben.  Was passiert, wenn der Lichtstrahl im Inneren eines Kreises startet?';
-    }
-
-    get credits() {
-        return '';
     }
 }
 

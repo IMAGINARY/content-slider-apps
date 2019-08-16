@@ -1,8 +1,13 @@
 import CindyApp from "../common/js/CindyApp.js";
 
 class DoublePendulumApp extends CindyApp {
-    constructor() {
-        super();
+    static defaultConfig = {
+        appName: 'Doppelpendel',
+        appDescription: 'An einem Pendel ist ein weiteres Pendel aufgehängt. Dadurch entsteht ein einfaches System, das <em>deterministisches Chaos</em> aufweist. Wie sich das System mit der Zeit verhält, hängt stark von der Startposition, den Längen und Massen der beiden Pendel ab.',
+    };
+
+    constructor(config = {}) {
+        super(Object.assign(DoublePendulumApp.defaultConfig, config));
     }
 
     async _initCindyArgs() {
@@ -112,18 +117,6 @@ class DoublePendulumApp extends CindyApp {
                     {name: "c", behavior: {type: "Gravity", strength: 0.01}}
                 ]
         };
-    }
-
-    get name() {
-        return 'Doppelpendel';
-    }
-
-    get description() {
-        return 'An einem Pendel ist ein weiteres Pendel aufgehängt. Dadurch entsteht ein einfaches System, das <em>deterministisches Chaos</em> aufweist. Wie sich das System mit der Zeit verhält, hängt stark von der Startposition, den Längen und Massen der beiden Pendel ab.';
-    }
-
-    get credits() {
-        return '';
     }
 }
 

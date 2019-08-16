@@ -1,8 +1,14 @@
 import CindyApp from "../common/js/CindyApp.js";
 
 class IFSApp extends CindyApp {
-  constructor() {
-    super();
+  static defaultConfig = {
+    appName: 'Fraktale',
+    appDescription: 'Fraktale sind mathematische Objekte, die Selbstähnlichkeiten aufweisen. Man kann das ursprüngliche Fraktal an verschiedenen Stellen innerhalb des Fraktales finden. In diesem Applet kann mit diesen Selbstähnlichkeiten experimentiert werden.',
+    appCredits: 'Aaron Montag, basierend auf einer Idee von Felix Woitzl',
+  };
+
+  constructor(config = {}) {
+    super(Object.assign(IFSApp.defaultConfig, config));
   }
 
   async _initCindyArgs() {
@@ -39,18 +45,6 @@ class IFSApp extends CindyApp {
         {labeled: false, color:[1,1,1], size: 10, name: "E", type: "Free", pos: [1, -0.3674308286190039, -0.7770817202787361]}
       ]
     };
-  }
-
-  get name() {
-    return 'Fraktale';
-  }
-
-  get description() {
-    return 'Fraktale sind mathematische Objekte, die Selbstähnlichkeiten aufweisen. Man kann das ursprüngliche Fraktal an verschiedenen Stellen innerhalb des Fraktales finden. In diesem Applet kann mit diesen Selbstähnlichkeiten experimentiert werden.';
-  }
-
-  get credits() {
-    return 'Aaron Montag, basierend auf einer Idee von Felix Woitzl';
   }
 }
 

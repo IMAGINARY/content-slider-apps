@@ -1,8 +1,12 @@
 import Application from '../common/js/application.js';
 
 class CarParkIFrameApp extends Application {
-    constructor() {
-        super();
+    static defaultConfig = {
+        appName: 'CarParkIFrameApp',
+    };
+
+    constructor(config = {}) {
+        super(Object.assign(CarParkIFrameApp.defaultConfig, config));
 
         const iframe = document.createElement('iframe');
         this._readyPromise = new Promise(resolve => iframe.addEventListener('load', () => resolve(this)));
@@ -20,18 +24,6 @@ class CarParkIFrameApp extends Application {
 
     get domElement() {
         return this._iframe;
-    }
-
-    get name() {
-        return this.constructor.name;
-    }
-
-    get description() {
-        return 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.';
-    }
-
-    get credits() {
-        return 'Author 2a<br/>Author 2b';
     }
 
     reset() {

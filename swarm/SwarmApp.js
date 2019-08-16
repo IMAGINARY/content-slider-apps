@@ -1,8 +1,13 @@
 import CindyApp from "../common/js/CindyApp.js";
 
 class SwarmApp extends CindyApp {
-    constructor() {
-        super();
+    static defaultConfig = {
+        appName: 'Schwarmsimulator',
+        appDescription: 'Das Schwarmverhalten entsteht dadurch, dass jeder Fisch einfachen Regeln folgt: anderen Fischen und Hindernissen ausweichen, zu den Nachbarfischen und mit ihnen schwimmen, oder einfach weiter schwimmen. Über die Schieberegel kann man die Parameter dieser Regeln anpassen.',
+    };
+
+    constructor(config = {}) {
+        super(Object.assign(SwarmApp.defaultConfig, config));
     }
 
     async _initCindyArgs() {
@@ -104,18 +109,6 @@ class SwarmApp extends CindyApp {
             }]
 
         };
-    }
-
-    get name() {
-        return 'Schwarmsimulator';
-    }
-
-    get description() {
-        return 'Das Schwarmverhalten entsteht dadurch, dass jeder Fisch einfachen Regeln folgt: anderen Fischen und Hindernissen ausweichen, zu den Nachbarfischen und mit ihnen schwimmen, oder einfach weiter schwimmen. Über die Schieberegel kann man die Parameter dieser Regeln anpassen.';
-    }
-
-    get credits() {
-        return '';
     }
 }
 
