@@ -362,6 +362,4 @@ resume():=(
 reset() := (
   select(randomint(length(poss)-1)+1);
   idleanimation = true;
-  paused = false;
-  playanimation();
 );
