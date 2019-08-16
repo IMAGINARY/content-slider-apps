@@ -2,7 +2,7 @@ import CindyApp from '../common/js/CindyApp.js';
 
 class KaleidoscopeApp extends CindyApp {
     constructor() {
-        super();
+        super({pauseScript: '', resumeScript: ''});
     }
 
     async _initCindyArgs() {

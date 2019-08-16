@@ -33,17 +33,10 @@ class RaytracerApp extends Application {
         return 'Author 2a<br/>Author 2b';
     }
 
-    pause() {
-        console.log(`pause ${this.constructor.name}`);
-    }
-
-    resume() {
-        console.log(`resume ${this.constructor.name}`);
-    }
-
-    restart(pauseAfterRestart) {
-        console.log(`restart ${this.constructor.name}`);
-        this._object.src += 'a';
+    reset() {
+        super.reset();
+        if (this.isReady)
+            this._object.src += 'a';
     }
 }
 

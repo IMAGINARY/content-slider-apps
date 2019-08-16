@@ -49,23 +49,26 @@ class CounterApp extends Application {
     }
 
     pause() {
-        console.log(`pause ${this.constructor.name}`);
-        window.clearTimeout(this._timeout);
-        this._timeout = 0;
+        super.pause();
+        if (this.isReady) {
+            window.clearTimeout(this._timeout);
+            this._timeout = 0;
+        }
     }
 
     resume() {
-        console.log(`resume ${this.constructor.name}`);
-        if (this._timeout === 0)
-            this._requestAnimation();
+        super.resume();
+        if (this.isReady) {
+            if (this._timeout === 0)
+                this._requestAnimation();
+        }
     }
 
-    restart(pauseAfterRestart) {
-        console.log(`restart ${this.constructor.name}`);
-        this._number = 0;
-        this._render();
-        if (!pauseAfterRestart && this._timeout === 0)
-            this._requestAnimation();
+    reset() {
+        super.reset();
+        if (this.isReady) {
+            this._number = 0;
+        }
     }
 }
 

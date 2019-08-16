@@ -1,18 +1,23 @@
 import Application from './application.js';
 
 class CindyApp extends Application {
-    constructor() {
+    constructor(config = {}) {
         super();
         console.log("CindyApp called");
+        const defaultConfig = {
+            pauseScript: 'pause();',
+            resumeScript: 'resume();',
+            resetScript: 'reset();',
+        };
+        this._cindyAppConfig = Object.assign(defaultConfig, config);
         this._cindy = null;
         this._cindyPromise = (async () => createCindy.newInstance(await this.cindyArgs))()
             .then(cindy => this._cindy = cindy);
-        this._isReady = false;
-        this._readyPromise = CindyApp.waitForDomInsertion(this.canvas, document)
+        this._cindyAppReadyPromise = super.ready
+            .then(() => CindyApp.waitForDomInsertion(this.canvas, document))
             .then(() => this.cindyReady)
             .then(cindy => {
                 cindy.startup();
-                this._isReady = true;
                 return this;
             });
     }
@@ -94,7 +99,7 @@ class CindyApp extends Application {
     }
 
     get ready() {
-        return this._readyPromise;
+        return this._cindyAppReadyPromise;
     }
 
     get domElement() {
@@ -114,25 +119,26 @@ class CindyApp extends Application {
     }
 
     pause() {
-        console.log(`pause ${this.constructor.name}`);
+        super.pause();
         if (this._isReady) {
-            this.cindy.evokeCS('pause();');
+            this.cindy.evokeCS(this._cindyAppConfig.pauseScript);
             this.cindy.stop();
         }
     }
 
     resume() {
-        console.log(`resume ${this.constructor.name}`);
+        super.resume();
         if (this._isReady) {
-            this.cindy.evokeCS('resume();');
+            this.cindy.evokeCS(this._cindyAppConfig.resumeScript);
             this.cindy.play();
         }
     }
 
-    restart(pauseAfterRestart) {
-        console.log(`restart ${this.constructor.name}`);
-        if (this._isReady)
-            this.cindy.evokeCS('reset();');
+    reset() {
+        super.reset();
+        if (this._isReady) {
+            this.cindy.evokeCS(this._cindyAppConfig.resetScript);
+        }
     }
 }
 

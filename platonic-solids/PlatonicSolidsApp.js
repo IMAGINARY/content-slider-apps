@@ -2,7 +2,7 @@ import CindyApp from "../common/js/CindyApp.js";
 
 class PlatonicSolidsApp extends CindyApp {
     constructor() {
-        super();
+        super({resetScript: 'resetAll();', resumeScript: ''});
     }
 
     async _initCindyArgs() {
@@ -161,12 +161,6 @@ class PlatonicSolidsApp extends CindyApp {
 
     get credits() {
         return '';
-    }
-
-    restart(pauseAfterRestart) {
-        console.log(`restart ${this.constructor.name}`);
-        if (this._isReady)
-            this.cindy.evokeCS('resetAll();');
     }
 }
 

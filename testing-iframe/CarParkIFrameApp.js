@@ -34,16 +34,8 @@ class CarParkIFrameApp extends Application {
         return 'Author 2a<br/>Author 2b';
     }
 
-    pause() {
-        console.log(`pause ${this.constructor.name}`);
-    }
-
-    resume() {
-        console.log(`resume ${this.constructor.name}`);
-    }
-
-    restart(pauseAfterRestart) {
-        console.log(`restart ${this.constructor.name}`);
+    reset() {
+        super.reset();
         this._iframe.src += 'a';
     }
 }

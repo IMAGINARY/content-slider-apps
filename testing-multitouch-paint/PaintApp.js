@@ -112,17 +112,9 @@ class PaintApp extends Application {
         return 'Author 2a<br/>Author 2b';
     }
 
-    pause() {
-        console.log(`pause ${this.constructor.name}`);
-    }
-
-    resume() {
-        console.log(`resume ${this.constructor.name}`);
-    }
-
-    restart(pauseAfterRestart) {
-        console.log(`restart ${this.constructor.name}`);
-        this._context.clearRect(0, 0, this._canvas.width, this._canvas.height);
+    reset() {
+        if (this.isReady)
+            this._context.clearRect(0, 0, this._canvas.width, this._canvas.height);
     }
 }
 
