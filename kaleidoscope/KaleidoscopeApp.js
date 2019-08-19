@@ -1,15 +1,17 @@
 import CindyApp from '../common/js/CindyApp.js';
 
 class KaleidoscopeApp extends CindyApp {
-    static defaultConfig = {
-        appName: 'Kaleidoskop',
-        appDescription: 'Bei diesem Kaleidoskop mit 3 Spiegeln ergeben sich Muster, die sich ins Unendliche fortsetzen. Am großen Schiebeschalter kann man einstellen, wie oft gespiegelt werden soll. An den Punkten läßt sich die Position von Bild und Kaleidoskop verändern.',
-        pauseScript: '',
-        resumeScript: '',
-    };
-
     constructor(config = {}) {
         super(Object.assign(KaleidoscopeApp.defaultConfig, config));
+    }
+
+    static get defaultConfig() {
+        return {
+            appName: 'Kaleidoskop',
+            appDescription: 'Bei diesem Kaleidoskop mit 3 Spiegeln ergeben sich Muster, die sich ins Unendliche fortsetzen. Am großen Schiebeschalter kann man einstellen, wie oft gespiegelt werden soll. An den Punkten läßt sich die Position von Bild und Kaleidoskop verändern.',
+            pauseScript: '',
+            resumeScript: '',
+        };
     }
 
     async _initCindyArgs() {

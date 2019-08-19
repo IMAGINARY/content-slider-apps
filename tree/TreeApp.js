@@ -1,14 +1,16 @@
 import CindyApp from "../common/js/CindyApp.js";
 
 class TreeApp extends CindyApp {
-    static defaultConfig = {
-        appName: 'Ein Baum',
-        pauseScript: '',
-        resumeScript: '',
-    };
-
     constructor(config = {}) {
         super(Object.assign(TreeApp.defaultConfig, config));
+    }
+
+    static get defaultConfig() {
+        return {
+            appName: 'Ein Baum',
+            pauseScript: '',
+            resumeScript: '',
+        };
     }
 
     async _initCindyArgs() {

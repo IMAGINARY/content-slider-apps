@@ -1,10 +1,6 @@
 import Application from '../common/js/application.js';
 
 class CounterApp extends Application {
-    static defaultConfig = {
-        appName: 'CounterApp',
-    };
-
     constructor(config = {}) {
         super(Object.assign(CounterApp.defaultConfig, config));
 
@@ -16,6 +12,12 @@ class CounterApp extends Application {
 
         this._number = 0;
         this._timeout = 0;
+    }
+
+    static get defaultConfig() {
+        return {
+            appName: 'CounterApp',
+        };
     }
 
     _animate() {

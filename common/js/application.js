@@ -1,10 +1,4 @@
 class Application {
-    static defaultConfig = {
-        appName: 'App name',
-        appDescription: '',
-        appCredits: '',
-    };
-
     constructor(config = {}) {
         this._config = Object.assign(Application.defaultConfig, config);
 
@@ -13,6 +7,14 @@ class Application {
 
         // the this.ready might be overwritten by a superclass, so we only query it after the stack has become empty
         Promise.resolve().then(() => this.ready.then(() => this._isReady = true));
+    }
+
+    static get defaultConfig() {
+        return {
+            appName: 'App name',
+            appDescription: '',
+            appCredits: '',
+        };
     }
 
     get isReady() {

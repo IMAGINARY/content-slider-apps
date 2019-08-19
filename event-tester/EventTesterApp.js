@@ -1,12 +1,14 @@
 import CindyApp from "../common/js/CindyApp.js";
 
 class EventTesterApp extends CindyApp {
-    static defaultConfig = {
-        appName: 'EVENT TESTER',
-    };
-
     constructor(config = {}) {
         super(Object.assign(EventTesterApp.defaultConfig, config));
+    }
+
+    static get defaultConfig() {
+        return {
+            appName: 'EVENT TESTER',
+        };
     }
 
     async _initCindyArgs() {

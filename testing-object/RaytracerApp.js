@@ -1,10 +1,6 @@
 import Application from '../common/js/application.js';
 
 class RaytracerApp extends Application {
-    static defaultConfig = {
-        appName: 'RaytracerApp',
-    };
-
     constructor(config = {}) {
         super(Object.assign(RaytracerApp.defaultConfig, config));
 
@@ -15,6 +11,12 @@ class RaytracerApp extends Application {
         object.style.height = '100%';
 
         this._object = object;
+    }
+
+    static get defaultConfig() {
+        return {
+            appName: 'RaytracerApp',
+        };
     }
 
     get ready() {

@@ -1,15 +1,17 @@
 import CindyApp from "../common/js/CindyApp.js";
 
 class PlatonicSolidsApp extends CindyApp {
-    static defaultConfig = {
-        appName: 'Platonische Körper',
-        appDescription: 'Hier können platonische Körper ineinander geschachtelt werden. Man achte auf die Vielfalt an Querbeziehungen, die sich durch die Art des Schachtelns ergeben.',
-        resetScript: 'resetAll();',
-        resumeScript: ''
-    };
-
     constructor(config = {}) {
         super(Object.assign(PlatonicSolidsApp.defaultConfig, config));
+    }
+
+    static get defaultConfig() {
+        return {
+            appName: 'Platonische Körper',
+            appDescription: 'Hier können platonische Körper ineinander geschachtelt werden. Man achte auf die Vielfalt an Querbeziehungen, die sich durch die Art des Schachtelns ergeben.',
+            resetScript: 'resetAll();',
+            resumeScript: ''
+        };
     }
 
     async _initCindyArgs() {

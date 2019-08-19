@@ -1,10 +1,6 @@
 import Application from '../common/js/application.js';
 
 class PaintApp extends Application {
-    static defaultConfig = {
-        appName: 'PaintApp',
-    };
-
     constructor(config = {}) {
         super(Object.assign(PaintApp.defaultConfig, config));
 
@@ -94,6 +90,12 @@ class PaintApp extends Application {
         this._div = div;
         this._canvas = canvas;
         this._context = c;
+    }
+
+    static get defaultConfig() {
+        return {
+            appName: 'PaintApp',
+        };
     }
 
     get ready() {

@@ -1,13 +1,15 @@
 import CindyApp from "../common/js/CindyApp.js";
 
 class ImageSpiralApp extends CindyApp {
-    static defaultConfig = {
-        appName: 'Spirale',
-        appDescription: 'Ein Bild wird um ein Zentrum gedreht und gestaucht oder gestreckt, das nennt man eine <em>Drehstreckung</em>. Das so veränderte Bild wird wieder gedreht und um denselben Faktor gestaucht oder gestreckt und so weiter. Dadurch entstehen wie von selbst faszinierende Bilder.',
-    };
-
     constructor(config = {}) {
         super(Object.assign(ImageSpiralApp.defaultConfig, config));
+    }
+
+    static get defaultConfig() {
+        return {
+            appName: 'Spirale',
+            appDescription: 'Ein Bild wird um ein Zentrum gedreht und gestaucht oder gestreckt, das nennt man eine <em>Drehstreckung</em>. Das so veränderte Bild wird wieder gedreht und um denselben Faktor gestaucht oder gestreckt und so weiter. Dadurch entstehen wie von selbst faszinierende Bilder.',
+        };
     }
 
     async _initCindyArgs() {

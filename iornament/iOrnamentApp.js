@@ -1,14 +1,16 @@
 import CindyApp from "../common/js/CindyApp.js";
 
 class iOrnamentApp extends CindyApp {
-  static defaultConfig = {
-    appName: 'iOrnament',
-    pauseScript: '',
-    resumeScript: '',
-  };
-
   constructor(config = {}) {
     super(Object.assign(iOrnamentApp.defaultConfig, config));
+  }
+
+  static get defaultConfig() {
+    return {
+      appName: 'iOrnament',
+      pauseScript: '',
+      resumeScript: '',
+    };
   }
 
   async _initCindyArgs() {

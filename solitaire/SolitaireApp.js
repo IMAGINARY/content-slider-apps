@@ -1,15 +1,17 @@
 import CindyApp from "../common/js/CindyApp.js";
 
 class SolitaireApp extends CindyApp {
-    static defaultConfig = {
-        appName: 'Solitaire-Spiel',
-        appDescription: 'In jedem Spielzug überspringt man mit einer Kugel eine andere, die dann weggenommen wird. Nach 13 Zügen soll nur noch eine Kugel übrig bleiben. Das Ganze ist gar nicht so einfach. Profis schaffen es, den letzten Spielstein dort zu positionieren, wo zu Beginn das Loch war.',
-        pauseScript: '',
-        resumeScript: '',
-    };
-
     constructor(config = {}) {
         super(Object.assign(SolitaireApp.defaultConfig, config));
+    }
+
+    static get defaultConfig() {
+        return {
+            appName: 'Solitaire-Spiel',
+            appDescription: 'In jedem Spielzug überspringt man mit einer Kugel eine andere, die dann weggenommen wird. Nach 13 Zügen soll nur noch eine Kugel übrig bleiben. Das Ganze ist gar nicht so einfach. Profis schaffen es, den letzten Spielstein dort zu positionieren, wo zu Beginn das Loch war.',
+            pauseScript: '',
+            resumeScript: '',
+        };
     }
 
     async _initCindyArgs() {

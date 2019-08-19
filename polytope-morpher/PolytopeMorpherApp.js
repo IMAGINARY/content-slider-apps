@@ -1,14 +1,16 @@
 import CindyApp from "../common/js/CindyApp.js";
 
 class PolytopeMorpherApp extends CindyApp {
-    static defaultConfig = {
-        appName: 'Polyeder basteln',
-        appDescription: 'Ausgehend von einem platonischen Körper kann man durch das Anwenden von drei Operationen neue symmetrische Körper erzeugen. Ein Druck auf den Zauberstab übernimmt das aktuelle Objekt als neuen Ausgangspunkt für die Verformungen.',
-        resetScript: 'resetAll();',
-    };
-
     constructor(config = {}) {
         super(Object.assign(PolytopeMorpherApp.defaultConfig, config));
+    }
+
+    static get defaultConfig() {
+        return {
+            appName: 'Polyeder basteln',
+            appDescription: 'Ausgehend von einem platonischen Körper kann man durch das Anwenden von drei Operationen neue symmetrische Körper erzeugen. Ein Druck auf den Zauberstab übernimmt das aktuelle Objekt als neuen Ausgangspunkt für die Verformungen.',
+            resetScript: 'resetAll();',
+        };
     }
 
     async _initCindyArgs() {

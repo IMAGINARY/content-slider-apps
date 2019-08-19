@@ -1,10 +1,6 @@
 import Application from '../common/js/application.js';
 
 class CarParkIFrameApp extends Application {
-    static defaultConfig = {
-        appName: 'CarParkIFrameApp',
-    };
-
     constructor(config = {}) {
         super(Object.assign(CarParkIFrameApp.defaultConfig, config));
 
@@ -16,6 +12,12 @@ class CarParkIFrameApp extends Application {
         iframe.style.height = '100%';
 
         this._iframe = iframe;
+    }
+
+    static get defaultConfig() {
+        return {
+            appName: 'CarParkIFrameApp',
+        };
     }
 
     get ready() {

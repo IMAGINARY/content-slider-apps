@@ -1,13 +1,6 @@
 import Application from './application.js';
 
 class CindyApp extends Application {
-    static defaultConfig = {
-        appName: 'CindyJS app',
-        pauseScript: 'pause();',
-        resumeScript: 'resume();',
-        resetScript: 'reset();',
-    };
-
     constructor(config = {}) {
         super(Object.assign(CindyApp.defaultConfig, config));
         console.log("CindyApp called");
@@ -21,6 +14,15 @@ class CindyApp extends Application {
                 cindy.startup();
                 return this;
             });
+    }
+
+    static get defaultConfig() {
+        return {
+            appName: 'CindyJS app',
+            pauseScript: 'pause();',
+            resumeScript: 'resume();',
+            resetScript: 'reset();',
+        };
     }
 
     static async request(obj) {
