@@ -1,0 +1,24 @@
+$field-width: 900px;
+$game-container-margin-top: 40px;
+$grid-spacing: 20px;
+$grid-row-cells: 4;
+$tile-size: ($field-width - $grid-spacing * ($grid-row-cells + 1)) / $grid-row-cells;
+$tile-border-radius: 3px;
+$mobile-threshold: $field-width + 20px;
+$transition-speed: 100ms;
+
+a {
+  color: $text-color;
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.container {
+  width: $field-width;
+  margin: 0 auto;
+  background: $background-color;
+  color: $text-color;
+  font-family: "Brown", Arial, sans-serif;
+  font-size: 18px;
+}
