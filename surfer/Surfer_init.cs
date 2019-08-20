@@ -363,6 +363,6 @@ resume():=(
 );
 
 reset() := (
-  select(randomint(length(poss)-1)+1);
+  select(randomint(length(poss)-4)+4);//do not select the boring surfaces
   idleanimation = true;
 );
