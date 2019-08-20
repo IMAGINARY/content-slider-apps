@@ -19,11 +19,10 @@ drawpoint(p,r,col,depth):=(
 );
 init=0;
 
+resetclock();
 
 
-
-wx=0;
-wy=0;
+wx = cos(seconds())/200; wy = sin(seconds())/200;
 
 choice=3;
 multicol=1;
@@ -416,6 +415,7 @@ edges=true;
 
 choice=2;
 tchoice=1;
+dragging = false;
 
 
 
@@ -426,6 +426,7 @@ reset():=(
  objects=[];
  count=1;
  celllist=[];
+ wx = cos(seconds())/200; wy = sin(seconds())/200;
 );
 
 
@@ -616,7 +617,7 @@ resetall():=(
    S.homog=(4, 0.3131313, -0.2525252);
 );
 pause():=(
-   stopanimation();
+   pauseanimation();
 );
 
 
@@ -639,4 +640,10 @@ dehighlight(but):= fillpoly(
       off+but+(1,1)*w
   ),color->(1,1,1.5)*.2,alpha->0.7
 
+);
+
+
+resume() := (
+  playanimation();
+  wx = cos(seconds())/200; wy = sin(seconds())/200;
 );

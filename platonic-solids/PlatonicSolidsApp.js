@@ -17,8 +17,9 @@ class PlatonicSolidsApp extends CindyApp {
     async _initCindyArgs() {
         const relativeUrl = filename => new URL(filename, import.meta.url).href;
         return {
-            scripts: await CindyApp.loadScripts(relativeUrl('PlatonicSolids_'), ['draw', 'init', 'mousedown', 'mousedrag', 'mouseUpX', 'tick'], '.cs'),
+            scripts: await CindyApp.loadScripts(relativeUrl('PlatonicSolids_'), ['draw', 'init', 'mousedown', 'mousedrag', 'mouseup', 'tick'], '.cs'),
             defaultAppearance: {},
+            autoplay: true,
             images: {
                 image11: relativeUrl("assets/image-11.png"),
                 image12: relativeUrl("assets/image-12.png"),
