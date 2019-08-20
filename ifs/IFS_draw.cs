@@ -1,12 +1,14 @@
+exalpha = sqrt(clamp(1-(seconds()-waittime)/explaintime)*clamp(seconds()/waittime));
+
 if(idleanimation,
   forall(allpoints(),p,
     omega = sin((p:"xy0")_1*1000)/2;//some "random-deterministic" value for each point;
-    p.xy = p:"xy0" + .05*(cos(omega*seconds()),sin(omega*seconds()));
+    radius = .05*smoothclamp((seconds()-waittime-explaintime)/5);
+    p.xy = p:"xy0" + radius*(cos(omega*seconds()),sin(omega*seconds()));
   );
   framecnt = 0;
 );
 
-exalpha = sqrt(clamp(1-(seconds()-waittime)/explaintime)*clamp(seconds()/waittime));
 
 static = framecnt>200 & exalpha<.001;
 
@@ -20,7 +22,6 @@ snap();
 gentrafos();
 N = length(Trafos);
 
-clamp(v) := min(max(0,v),1);
 
 clearimage("seed");
 canvas(L,R,"seed",

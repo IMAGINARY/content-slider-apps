@@ -203,3 +203,7 @@ reset() := (
   select(randomint(length(poss)-1)+1);
   idleanimation = true;
 );
+
+clamp(v) := min(max(0,v),1);
+
+smoothclamp(v) := .5-.5*cos(clamp(v)*pi);
