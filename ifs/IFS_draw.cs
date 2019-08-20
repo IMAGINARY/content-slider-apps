@@ -49,7 +49,7 @@ colorplot(L,R,"ifs",
           CF = imagergb((-1,-1),(1,-1),"CF",.00001*#).r;
           forall(1..N, k,
                  other = imagergb(Trafos_k*L, Trafos_k*R, "ifs", #);
-                 color = color + ((1-CF)*1.3+CF/N)*other;
+                 color = color + ((1-CF)*1.1+CF/N)*other;
                 );
           color*(1-((#*#)/(K*K))^2); //fade out
          );
@@ -66,7 +66,7 @@ if(exalpha>0.01,
     CF = imagergb((-1,-1),(1,-1),"CF",.00001*#).r;
     forall(1..N, k,
      other = imagergb(iTrafos_k*L, iTrafos_k*R, "ifs", #);
-     color = color + ((1-t)/N+t*1)*((1-CF)*1.3+CF/N)*other;
+     color = color + ((1-t)/N+t*1)*((1-CF)*1.1+CF/N)*other;
     );
     exalpha*[color_1, color_2, color_3, 1];//fade background
   );
