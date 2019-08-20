@@ -1,7 +1,10 @@
-
+maxsavedstrokes = 15; //do not save more than this number of strokes
 
 if(dragging,
    strokelist=strokelist++[stroke];
+   if(length(strokelist)>maxsavedstrokes,
+    strokelist = strokelist_(2..length(strokelist));
+   );
 );
 
 dragging=false;
