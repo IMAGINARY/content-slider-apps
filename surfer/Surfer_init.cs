@@ -31,6 +31,8 @@ sliders = (
 
 text = ["",20];
 
+T8(x):=128*x^8-256*x^6+160*x^4-32*x^2+1;
+
 select(k) := (
   sel = k;
   if(sel==1,
@@ -66,14 +68,14 @@ select(k) := (
   );
   if(sel==6,
      setzoom(.6);
-     seta(0);
-     fun(x,y,z) := (-2*a/125+x^8+y^8+z^8-2*x^6-2*y^6-2*z^6+1.25*x^4+1.25*y^4+1.25*z^4-0.25*x^2-0.25*y^2-0.25*z^2+0.03125);
+     seta(1);
+     fun(x,y,z) := T8(x)+T8(y)+T8(z)+2*a-1;
      text = ["Chmutov Octik", 30];
   );
   if(sel==7,
      seta(1);
      setzoom(0.3);
-     fun(x,y,z) := (a*(-1/4*(1-sqrt(2))*(x^2+y^2)^2+(x^2+y^2)*((1-1/sqrt(2))*z^2+1/8*(2-7*sqrt(2)))-z^4+(0.5+sqrt(2))*z^2-1/16*(1-12*sqrt(2)))^2-(cos(0*pi/4)*x+sin(0*pi/4)*y-1)*(cos(pi/4)*x+sin(pi/4)*y-1)*(cos(2*pi/4)*x+sin(2*pi/4)*y-1)*(cos(3*pi/4)*x+sin(3*pi/4)*y-1)*(cos(4*pi/4)*x+sin(4*pi/4)*y-1)*(cos(5*pi/4)*x+sin(5*pi/4)*y-1)*(cos(6*pi/4)*x+sin(6*pi/4)*y-1)*(cos(7*pi/4)*x+sin(7*pi/4)*y-1));
+     fun(x,y,z) := (a*(1/4*(sqrt(2)-1)*(x^2+y^2)^2+(x^2+y^2)*((1-1/sqrt(2))*z^2+1/8*(2-7*sqrt(2)))-z^4+(0.5+sqrt(2))*z^2-1/16*(1-12*sqrt(2)))^2-(cos(0*pi/4)*x+sin(0*pi/4)*y-1)*(cos(pi/4)*x+sin(pi/4)*y-1)*(cos(2*pi/4)*x+sin(2*pi/4)*y-1)*(cos(3*pi/4)*x+sin(3*pi/4)*y-1)*(cos(4*pi/4)*x+sin(4*pi/4)*y-1)*(cos(5*pi/4)*x+sin(5*pi/4)*y-1)*(cos(6*pi/4)*x+sin(6*pi/4)*y-1)*(cos(7*pi/4)*x+sin(7*pi/4)*y-1));
      text = ["Endraß Octik",30];
   );
   if(sel==8,
