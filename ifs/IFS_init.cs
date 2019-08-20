@@ -108,8 +108,8 @@ select(k) := (
   if(sel==4,
     used = [A,B,C,D];
     A.xy = [-1.75,0]/2.5;
-    B.xy = [-1,1]/2.5;
-    C.xy = [1,-1]/2.5;
+    B.xy = [-1.6,0.5]/2.5;
+    C.xy = [1.6,-0.5]/2.5;
     D.xy = [1.75,0]/2.5;
     scene() := (
       fillcircle((0,0),10, color->[1/255,2/255,3/255]);
@@ -131,8 +131,8 @@ select(k) := (
   if(sel==5,
     used = [A,B,C,D,E];
     A.xy = [-0.0639, -0.119];
-    B.xy = [-0.6992, -0.1289];
-    C.xy = [0.3234, 0.3398];
+    B.xy = [-0.72, -0.1289];
+    C.xy = [0.3034, 0.3098];
     D.xy = [-0.404, 0.4922];
     E.xy = [-0.3182, 0.6276];
     scene() := (
@@ -193,6 +193,8 @@ resume():=(
   paused = false;
   select(sel);
   playanimation();
+  framecnt = 0;
+  idleanimation = true;
 );
 
 reset() := (

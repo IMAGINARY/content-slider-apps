@@ -1,8 +1,7 @@
-
 if(idleanimation,
   forall(allpoints(),p,
     omega = sin((p:"xy0")_1*1000)/2;//some "random-deterministic" value for each point;
-    p.xy = p:"xy0" + .02*(cos(omega*seconds()),sin(omega*seconds()));
+    p.xy = p:"xy0" + .05*(cos(omega*seconds()),sin(omega*seconds()));
   );
   framecnt = 0;
 );

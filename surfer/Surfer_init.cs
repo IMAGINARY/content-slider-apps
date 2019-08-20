@@ -359,6 +359,7 @@ pause():=(
 resume():=(
   paused = false;
   playanimation();
+  idleanimation = true;
 );
 
 reset() := (
