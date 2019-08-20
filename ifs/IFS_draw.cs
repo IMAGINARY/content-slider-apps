@@ -27,8 +27,26 @@ canvas(L,R,"seed",
    scene();
 );
 
+
+mp = min(Trafos, T, 1/(|det(T)|))*1.5;
+nsamples = 20;
+samplescale = .6/sqrt(nsamples);
+colorplot((0,0),(1,0),"CF",
+  //cavg = sum(1..3, j, imagergb((0,0),(1,0),"ifs",pts_j+(0.52,0.55)))/3;
+  cavg = [0,0,0];
+  repeat(nsamples, j,
+    phi = j*137.507764°;
+    cavg = cavg + imagergb((-1,-1),(1,-1),"ifs", samplescale*re(sqrt(j))*(cos(phi), sin(phi))); //some random sample points
+  );
+  cavg = cavg/nsamples;
+  CF = imagergb((-1,-1),(1,-1),"CF",.00001*#).r;
+  (.9*CF+.1*|cavg|/mp)
+);
+
+
 colorplot(L,R,"ifs",
           color = imagergb(L,R,"seed",#);
+          CF = imagergb((-1,-1),(1,-1),"CF",.00001*#).r;
           forall(1..N, k,
                  other = imagergb(Trafos_k*L, Trafos_k*R, "ifs", #);
                  color = color + ((1-CF)*1.3+CF/N)*other;
@@ -38,27 +56,24 @@ colorplot(L,R,"ifs",
 drawimage(L,R,"ifs");
 
 
+
 if(exalpha>0.01,
   //t = mod(seconds(),2)/2;
   t = -cos(max(0,seconds()-waittime))/2+.5;
   iTrafos = t*apply(Trafos, T, T/T_3_3)+(1-t)*apply(Trafos,[[1,0,0],[0,1,0],[0,0,1]]); //mix with identity
-  colorplot(
+  colorplot(L,R,"anim",
     color = [0,0,0];
+    CF = imagergb((-1,-1),(1,-1),"CF",.00001*#).r;
     forall(1..N, k,
      other = imagergb(iTrafos_k*L, iTrafos_k*R, "ifs", #);
      color = color + ((1-t)/N+t*1)*((1-CF)*1.3+CF/N)*other;
     );
     exalpha*[color_1, color_2, color_3, 1];//fade background
   );
+  drawimage(L,R,"anim");
 
 );
 
-
-pts = directproduct(-1..1,-1..1)/3;
-
-cavg = sum(pts, p, imagergb(L,R,"ifs",p+(0.02,0.05)))/length(pts);
-mp = min(Trafos, T, 1/(|det(T)|))*1.5;
-CF = clamp(.9*CF+.1*|cavg|/mp);
 
 
 ims = 0.14;

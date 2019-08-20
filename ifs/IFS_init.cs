@@ -172,11 +172,12 @@ init() := (
     playanimation();
     framecnt = 0;
   );
-  CF = 0.2;
 );
 
 createimage("ifs", res, res);
 createimage("seed", res, res);
+createimage("anim", res, res);
+createimage("CF", 1, 1);
 select(1);
 
 applytrafo(T, p) := (
