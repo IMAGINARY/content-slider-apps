@@ -42,9 +42,9 @@ r2=rad1;
 m3=C.xy;
 r3=rad2;
 
-fillcircle(m1,r1,color->(.25,0,0));
-fillcircle(m2,r2,color->(.25,0,0));
-fillcircle(m3,r3,color->(.25,0,0));
+fillcircle(m1,r1,color->(.1,.1,.1));
+fillcircle(m2,r2,color->(.1,.1,.1));
+fillcircle(m3,r3,color->(.1,.1,.1));
 
 o1=["circ",m1,r1];
 o2=["circ",m2,r2];
@@ -99,25 +99,27 @@ l=intersect(p,s,o1)++intersect(p,s,o2)++intersect(p,s,o3);
 
 l=sort(l,#_2);
 
+ahue=colrot+count;
+if(ahue>150,ahue=ahue-150);
 if(length(l)>0,(
  hit=l_1;
  erg=reflect(p,s,hit_1,hit_2);
 //   draw(erg_1);
- draw(p,erg_1,color->(1,1,1),alpha->alpha,size->4);
+ draw(p,erg_1,color->(hue((ahue*(1/n)))),alpha->alpha,size->4);
 //  draw(erg_1,erg_1+erg_2*.1,color->(1,0,0),size->2);
  p=re(erg_1);
  s=re(erg_2);
 ),(
- draw(p,p+100*s,color->(1,1,1),alpha->alpha,size->4);
+ draw(p,p+100*s,color->(hue((ahue*(1/n)))),alpha->alpha,size->4);
  stop=true;
 )
 );
 alpha=alpha*dim;
 );
 
-    drawcircle(A,rad0,color->(1,.9,0),size->3);
-    drawcircle(B,rad1,color->(1,.9,0),size->3);
-    drawcircle(C,rad2,color->(1,.9,0),size->3);
+    drawcircle(A,rad0,color->(1,1,1),size->3);
+    drawcircle(B,rad1,color->(1,1,1),size->3);
+    drawcircle(C,rad2,color->(1,1,1),size->3);
 //drawtext((-5,5),sel,color->(1,1,1));
 olda=A.xy;
 oldb=B.xy;

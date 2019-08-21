@@ -1,4 +1,6 @@
-pauseanimation();
+  idle=0;
+  mousedown=1;
+// pauseanimation();
 pendanimation=false;
 sel=-1;
 diffr=0;

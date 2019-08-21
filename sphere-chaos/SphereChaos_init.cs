@@ -1,3 +1,6 @@
+idle=1;
+mousedown=0;
+colrot=0;
 rad0=5;
 rad1=5;
 rad2=7;
