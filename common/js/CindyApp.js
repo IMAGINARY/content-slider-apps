@@ -4,6 +4,7 @@ class CindyApp extends Application {
     constructor(config = {}) {
         super(Object.assign(CindyApp.defaultConfig, config));
         console.log("CindyApp called");
+        this._isCindyPaused = false;
         this._cindy = null;
         this._cindyPromise = (async () => createCindy.newInstance(await this.cindyArgs))()
             .then(cindy => this._cindy = cindy);
@@ -112,8 +113,9 @@ class CindyApp extends Application {
     pause() {
         super.pause();
         if (this._isReady) {
+            this.cindy.pause();
             this.cindy.evokeCS(this.config.pauseScript);
-            this.cindy.stop();
+            this._isCindyPaused = true;
         }
     }
 
@@ -122,13 +124,17 @@ class CindyApp extends Application {
         if (this._isReady) {
             this.cindy.evokeCS(this.config.resumeScript);
             this.cindy.play();
+            this._isCindyPaused = false;
         }
     }
 
     reset() {
         super.reset();
         if (this._isReady) {
+            this.cindy.stop()
             this.cindy.evokeCS(this.config.resetScript);
+            if(!this._isCindyPaused)
+                this.cindy.play();
         }
     }
 }
