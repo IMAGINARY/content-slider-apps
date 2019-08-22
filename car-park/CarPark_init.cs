@@ -339,8 +339,7 @@ level40=[
 levels=[level1,level3,level10,level11,level14,level27,level40];
 
 
-devlevel(levels_(sel+1));
-
+devlevel(randomlevel(sel));
 
 
 ;
@@ -364,7 +363,7 @@ repeat(6,i,
   )
 );
 
-n=length(levels);
+n=5;
 apply(1..n,#,
   h=L.y+(#-1)*(M.y-L.y)/(n-1);
   draw((M.x-.2,h),(M.x+.2,h),color->(1,1,1));
@@ -373,7 +372,7 @@ apply(1..n,#,
 sel=round(|M,N|/|M,L|*(n-1));
 N.xy=sel*(L-M)/(n-1)+M;
 if(sel!=selold,
-  devlevel(levels_(sel+1));
+  devlevel(randomlevel(sel));
   solved=false;
 );
 
@@ -444,7 +443,9 @@ reset():=(
     N.xy=sel*(L-M)/(n-1)+M;
     special=[];
 
-    devlevel(levels_(sel+1));
+    //devlevel(levels_(sel+1));
+    devlevel(randomlevel(sel));
+
     solved=false;
 
     selold=sel;

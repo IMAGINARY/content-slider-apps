@@ -6,5 +6,6 @@ if(startindex>length(animation),
 //TODO WHY DOES STOPANIM NOT WORK
 pauseanimation();
 special=[];
+devlevel(randomlevel(sel));
 solved=false;
 )

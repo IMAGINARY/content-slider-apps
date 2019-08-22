@@ -15,10 +15,68 @@ class CarParkApp extends CindyApp {
     }
 
     async _initCindyArgs() {
-        const relativeUrl = filename => new URL(filename, import.meta.url).href;
+        const relativeUrl = filename => new URL(filename,
+            import.meta.url).href;
+
+        let levels = await Promise.all(["beginner", "easy", "medium", "hard", "extreme"].map(l => CindyApp.request({
+            url: relativeUrl(`levels/${l}.txt`)
+        })));
+
+        CindyJS.registerPlugin(1, "carparklevels", function(api) {
+            function wrap(v) { //converts js-lists of lists of real numbers to CS-object.
+                if (typeof v === "number") {
+                    return {
+                        "ctype": "number",
+                        "value": {
+                            'real': v,
+                            'imag': 0
+                        }
+                    };
+                } else if (typeof v === "object" && v.length !== undefined) {
+                    return {
+                        "ctype": "list",
+                        "value": v.map(wrap)
+                    }
+                }
+            };
+
+            api.defineFunction("randomlevel", 1, function(args, modifs) {
+                let set = api.evaluate(args[0]).value.real | 0;
+
+                let randomentry = arr => arr[Math.floor(Math.random() * arr.length)];
+
+                let levelstr = randomentry(levels[set].split('\n')).split(" ")[1];
+                let bins = {};
+                for (let i = 0; i < 36; i++) {
+                    let c = levelstr[i];
+                    if (c !== 'o') {
+                        if (!bins[c]) bins[c] = [];
+                        bins[c].push([1 + i % 6, 6 - (i / 6 | 0)]); //convert to Cindy-coordinates
+                    }
+                }
+                let cindyformat = [
+                    [],
+                    [],
+                    []
+                ];
+                for (let c in bins) {
+                    if (c == 'A') {
+                        cindyformat[2].push(bins[c].sort());
+                    } else if (bins[c].length == 2) {
+                        cindyformat[0].push(bins[c].sort());
+                    } else if (bins[c].length == 3) {
+                        cindyformat[1].push([bins[c][0], bins[c][2]].sort());
+                    }
+                }
+                return wrap(cindyformat);
+            });
+        });
+
+
         return {
             scripts: await CindyApp.loadScripts(relativeUrl('CarPark_'), ['draw', 'init', 'mousedown', 'mousedrag', 'mouseup', 'tick'], '.cs'),
             defaultAppearance: {},
+            use: ["carparklevels"],
             images: {
                 a1: relativeUrl("assets/a1.png"),
                 a10: relativeUrl("assets/a10.png"),
@@ -44,10 +102,11 @@ class CarParkApp extends CindyApp {
             ports: [{
                 element: this.canvas,
                 background: "rgba(0,0,0,0)",
-                transform: [{visibleRect: [-0.7280283924068959, 15.687837617026014, 23.320393343872503, -2.3484786851835353]}]
+                transform: [{
+                    visibleRect: [-0.7280283924068959, 15.687837617026014, 23.320393343872503, -2.3484786851835353]
+                }]
             }],
-            geometry: [
-                {
+            geometry: [{
                     name: "A",
                     type: "Free",
                     pos: [4, 2.896551724137931, 0.27586206896551724],
