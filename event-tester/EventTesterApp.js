@@ -8,6 +8,9 @@ class EventTesterApp extends CindyApp {
     static get defaultConfig() {
         return {
             appName: 'EVENT TESTER',
+            pauseScript: '',
+            resumeScript: '',
+            resetScript: '',
         };
     }
 
