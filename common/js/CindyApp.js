@@ -114,17 +114,17 @@ class CindyApp extends Application {
         super.pause();
         if (this._isReady) {
             this.cindy.pause();
-            this.cindy.evokeCS(this.config.pauseScript);
             this._isCindyPaused = true;
+            this.cindy.evokeCS(this.config.pauseScript);
         }
     }
 
     resume() {
         super.resume();
         if (this._isReady) {
-            this.cindy.evokeCS(this.config.resumeScript);
             this.cindy.play();
             this._isCindyPaused = false;
+            this.cindy.evokeCS(this.config.resumeScript);
         }
     }
 
@@ -132,9 +132,9 @@ class CindyApp extends Application {
         super.reset();
         if (this._isReady) {
             this.cindy.stop()
-            this.cindy.evokeCS(this.config.resetScript);
             if(!this._isCindyPaused)
                 this.cindy.play();
+            this.cindy.evokeCS(this.config.resetScript);
         }
     }
 }
