@@ -16,6 +16,7 @@ pause():=(
 resume():=(
   externalpaused = false;
   lastsimulationtime = 0;
+  triggerinternalanimation();
 );
 
 triggerinternalanimation():=(
