@@ -9,6 +9,7 @@ class ImageSpiralApp extends CindyApp {
         return {
             appName: 'Spirale',
             appDescription: 'Ein Bild wird um ein Zentrum gedreht und gestaucht oder gestreckt, das nennt man eine <em>Drehstreckung</em>. Das so veränderte Bild wird wieder gedreht und um denselben Faktor gestaucht oder gestreckt und so weiter. Dadurch entstehen wie von selbst faszinierende Bilder.',
+            pauseScript: '',
         };
     }
 
