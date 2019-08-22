@@ -10,6 +10,8 @@ class LunarApp extends CindyApp {
       appName: 'Lunar Lockout',
       appDescription: 'Wer schafft es den violetten Kreis in die Mitte zu bewegen? Dazu können die verschiedenen Kreise jeweils so weit wie möglich nach oben, rechts, unten oder links verschoben werden.',
       appCredits: 'Level & Implemtierung: Aaron Montag. Spielidee inspiriert von Hiroshi Yamamoto.',
+      pauseScript: '',
+      resumeScript: '',
     };
   }
 

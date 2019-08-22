@@ -25,7 +25,7 @@ reset(k) := (
 
     mode = "select";
     T = 0;
-    resetclock();
+    resetclock();playanimation();
 );
 
 computeP(k) := (
@@ -49,15 +49,6 @@ isfree(f) := (
 );
 lastk = 0;
 setk(1);
-
-
-pause():=(
-  pauseanimation();
-);
-
-resume():=(
-  playanimation();
-);
 
 reset() := (
   setk(randomint(length(levels)-1)+1);
