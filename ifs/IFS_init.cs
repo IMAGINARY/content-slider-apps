@@ -165,8 +165,10 @@ select(k) := (
 );
 
 init() := (
+  idleanimation = true;
   clearimage("ifs");
   clearimage("seed");
+  deltat = 0;
   resetclock();
   if(!paused,
     playanimation();
@@ -178,7 +180,6 @@ createimage("ifs", res, res);
 createimage("seed", res, res);
 createimage("anim", res, res);
 createimage("CF", 1, 1);
-select(1);
 
 applytrafo(T, p) := (
   h = T*[p_1,p_2,1];
@@ -187,23 +188,26 @@ applytrafo(T, p) := (
 
 pause():=(
   paused = true;
-  pauseanimation();
+  deltat = myseconds();
+  resetclock();
 );
 
 resume():=(
   paused = false;
-  select(sel);
-  playanimation();
-  framecnt = 0;
-  idleanimation = true;
+  resetclock();
 );
 
 reset() := (
   framecnt = 0;
   select(randomint(length(poss)-1)+1);
-  idleanimation = true;
 );
+reset();
 
 clamp(v) := min(max(0,v),1);
 
 smoothclamp(v) := .5-.5*cos(clamp(v)*pi);
+
+//time that has passed when app has been active
+myseconds() := (
+  seconds()+deltat;
+);
