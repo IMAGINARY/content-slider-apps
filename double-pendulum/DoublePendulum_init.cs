@@ -7,11 +7,28 @@ oldb=B.xy;
 oldc=C.xy;
 
 n=300;
+externalpaused = false;
+
+pause():=(
+  externalpaused = true;
+);
+
+resume():=(
+  externalpaused = false;
+  lastsimulationtime = 0;
+);
+
+triggerinternalanimation():=(
+  if(pressed1 & !externalpaused,
+    lastsimulationtime = 0;
+    resetclock();
+    playanimation();
+    ,
+    pauseanimation()
+  );
+);
 
 reset():=(
-  resetclock();
-  lastsimulationtime = 0;
-  stopanimation();
   A.homog=(4, -2.40740, 0.462962);
   B.homog=(8, 4, 1);
   C.homog=(9, 7, 1);
@@ -20,19 +37,6 @@ reset():=(
   l=[];
   pressed1=true;
   pressed2=true;
+  triggerinternalanimation();
 );
 reset();
-
-pause():=(
-  pauseanimation();
-);
-
-resume():=(
-  if(pressed1,
-    lastsimulationtime = 0;
-    resetclock();
-    playanimation();
-    ,
-    pauseanimation()
-  );
-);
