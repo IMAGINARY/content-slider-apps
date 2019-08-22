@@ -10,7 +10,6 @@ class KaleidoscopeApp extends CindyApp {
             appName: 'Kaleidoskop',
             appDescription: 'Bei diesem Kaleidoskop mit 3 Spiegeln ergeben sich Muster, die sich ins Unendliche fortsetzen. Am großen Schiebeschalter kann man einstellen, wie oft gespiegelt werden soll. An den Punkten läßt sich die Position von Bild und Kaleidoskop verändern.',
             pauseScript: '',
-            resumeScript: '',
         };
     }
 
