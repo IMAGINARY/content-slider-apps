@@ -1113,9 +1113,13 @@ apply(strokelist,strox,
  );
 );
 );
+resetdraw();
 );
 reset();
 
+resume():= (
+  pauseanimation();
+);
 
 resetdraw():=(
 clearimage("tile");
@@ -1137,3 +1141,4 @@ playanimation();
 fundsel=false;
 glowing=false;
 symannot=false;
+pauseanimation();

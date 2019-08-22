@@ -1,5 +1,5 @@
 
-      if(strokecount>length(strokelist),pauseanimation(),
+  if(strokecount>length(strokelist),pauseanimation(),
         canvas(A,B,C,"tile",
             strox=strokelist_strokecount;
      size=strox_1_1;
