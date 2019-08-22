@@ -10,7 +10,9 @@ class PlatonicSolidsApp extends CindyApp {
             appName: 'Platonische Körper',
             appDescription: 'Hier können platonische Körper ineinander geschachtelt werden. Man achte auf die Vielfalt an Querbeziehungen, die sich durch die Art des Schachtelns ergeben.',
             resetScript: 'resetAll();',
-            resumeScript: ''
+            resumeScript: '',
+            pauseScript: '',
+
         };
     }
 

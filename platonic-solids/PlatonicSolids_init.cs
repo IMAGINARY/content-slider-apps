@@ -426,7 +426,6 @@ reset():=(
  objects=[];
  count=1;
  celllist=[];
- wx = cos(seconds())/200; wy = sin(seconds())/200;
 );
 
 
@@ -615,9 +614,7 @@ resetall():=(
    sequenz=[2];
    edges=true;
    S.homog=(4, 0.3131313, -0.2525252);
-);
-pause():=(
-   pauseanimation();
+   wx = cos(seconds())/200; wy = sin(seconds())/200;
 );
 
 
@@ -640,10 +637,4 @@ dehighlight(but):= fillpoly(
       off+but+(1,1)*w
   ),color->(1,1,1.5)*.2,alpha->0.7
 
-);
-
-
-resume() := (
-  playanimation();
-  wx = cos(seconds())/200; wy = sin(seconds())/200;
 );
