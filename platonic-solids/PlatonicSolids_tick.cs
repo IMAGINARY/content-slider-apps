@@ -1,7 +1,7 @@
- wx=wx*0.998;
- wy=wy*0.998;
+ wx=wx*0.995;
+ wy=wy*0.995;
 
-if(|(wx,wy)|<0.001,pauseanimation();stopanimation(););
+if(|(wx,wy)|<0.0001,pauseanimation(),playanimation());
 
 sp=0.6;
 mmmx=[

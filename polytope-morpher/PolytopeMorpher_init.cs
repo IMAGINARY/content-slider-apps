@@ -433,12 +433,9 @@ resetall():=(
 
 
 );
-pause():=(
-   stopanimation();
-);
 
 resume():=(
-   if(pendinganimation,playanimation());
+   if(pendinganimation,playanimation(),pauseanimation());
 );
 
 highlight(but):= connect(

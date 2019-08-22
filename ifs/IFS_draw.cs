@@ -1,10 +1,10 @@
-exalpha = sqrt(clamp(1-(seconds()-waittime)/explaintime)*clamp(seconds()/waittime));
+exalpha = sqrt(clamp(1-(myseconds()-waittime)/explaintime)*clamp(myseconds()/waittime));
 
 if(idleanimation,
   forall(allpoints(),p,
     omega = sin((p:"xy0")_1*1000)/2;//some "random-deterministic" value for each point;
-    radius = .05*smoothclamp((seconds()-waittime-explaintime)/5);
-    p.xy = p:"xy0" + radius*(cos(omega*seconds()),sin(omega*seconds()));
+    radius = .05*smoothclamp((myseconds()-waittime-explaintime)/5);
+    p.xy = p:"xy0" + radius*(cos(omega*myseconds()),sin(omega*myseconds()));
   );
   framecnt = 0;
 );
@@ -14,7 +14,7 @@ static = framecnt>200 & exalpha<.001;
 
 if(static,
   pauseanimation();
-  errc("paused IFS because it is likely to be satic.");
+  errc("paused IFS because it is likely to be staic.");
 );
 framecnt = framecnt+1;
 
@@ -59,8 +59,8 @@ drawimage(L,R,"ifs");
 
 
 if(exalpha>0.01,
-  //t = mod(seconds(),2)/2;
-  t = -cos(max(0,seconds()-waittime))/2+.5;
+  //t = mod(myseconds(),2)/2;
+  t = -cos(max(0,myseconds()-waittime))/2+.5;
   iTrafos = t*apply(Trafos, T, T/T_3_3)+(1-t)*apply(Trafos,[[1,0,0],[0,1,0],[0,0,1]]); //mix with identity
   colorplot(L,R,"anim",
     color = [0,0,0];

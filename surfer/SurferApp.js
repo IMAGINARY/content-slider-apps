@@ -11,6 +11,8 @@ class SurferApp extends CindyApp {
       appName: 'Algebraische Flächen',
       appDescription: `Algebraische Flächen bestehen aus den Punkten im Raum, die bestimmte polynomielle Gleichungen in den Koordinaten erfüllen. So beschreibt z.B. die Formel\\n<em>x²+y²+z²-1=0</em>\\neine Kugel. Algebraische Kurven und Flächen sind sowohl in der angewandten, als auch in der reinen Mathematik von fundamentaler Bedeutung.`,
       appCredits: 'Aaron Montag',
+      pauseScript: '',
+      resumeScript: ''
     };
   }
 

@@ -9,6 +9,7 @@ class SphereChaosApp extends CindyApp {
         return {
             appName: 'Lichtstrahl',
             appDescription: 'Wenn sich ein Lichtstrahl zwischen kreisförmigen Spiegeln reflektiert, entsteht <em>deterministisches Chaos</em>: eine kleine Änderung kann unvorhersehbare Auswirkungen haben.  Was passiert, wenn der Lichtstrahl im Inneren eines Kreises startet?',
+            pauseScript: '',
         };
     }
 

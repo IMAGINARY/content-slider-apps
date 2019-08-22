@@ -8,8 +8,7 @@ class iOrnamentApp extends CindyApp {
   static get defaultConfig() {
     return {
       appName: 'iOrnament',
-      pauseScript: '',
-      resumeScript: '',
+      pauseScript: ''
     };
   }
 

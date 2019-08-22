@@ -48,3 +48,8 @@ setk(mod(k, length(levels))+1)
 );
 
 );
+
+//save ressources
+if(mode!="animation" & !solved,
+  pauseanimation();
+);

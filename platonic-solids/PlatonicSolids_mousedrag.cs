@@ -1,36 +1,18 @@
 if(|mouse().x|<13,
 
 if(dragging,
-
+errc("drag");
 xx=mouse().x;
 yy=mouse().y;
-wy=(startx-xx)*.2;
-wx=-(starty-yy)*.2;
 
-mmmx=[
-  [1,0,0],
-  [0,cos(wx),sin(wx)],
-  [0,-sin(wx),cos(wx)]
-];
-
-
-mmmy=[
-  [cos(wy),0,-sin(wy)],
-  [0,1,0],
-  [sin(wy),0,cos(wy)]
-];
-
-
-
-  mat=mmmx*mmmy*mat;
-
-
+fact = .98;
+wy=fact*wy+(1-fact)*(startx-xx)*.4;
+wx=fact*wx-(1-fact)*(starty-yy)*.4;
 
 startx=xx;
 starty=yy;
 
+if(|(wx,wy)|>0.0001,playanimation(), pauseanimation());
+
 );
-
-if(|(wx,wy)|>0.2,playanimation());
-
 );

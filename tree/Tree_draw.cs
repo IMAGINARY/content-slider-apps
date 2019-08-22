@@ -14,3 +14,5 @@ nn=12;
 // drawimage((-15,-11),(15,-11),"back");
 
 tree(A.homog,B.homog,nn);
+
+pauseanimation(); //draw the tree only once

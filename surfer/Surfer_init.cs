@@ -350,18 +350,6 @@ clipedScene(pixel) := (
   color //return value
 );
 
-paused = false;
-pause():=(
-  pauseanimation();
-  paused = true;
-);
-
-resume():=(
-  paused = false;
-  playanimation();
-  idleanimation = true;
-);
-
 reset() := (
   select(randomint(length(poss)-4)+4);//do not select the boring surfaces
   idleanimation = true;

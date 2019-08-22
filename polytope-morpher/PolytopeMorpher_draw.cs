@@ -13,8 +13,8 @@ if(W.y>=V.y,W.xy=V.xy);
 
 //layer(0);
 clrscr();
-errf(c):=errc(c);
-//errf(c):=();
+//errf(c):=errc(c);
+errf(c):=();
 //err("A1 "+seconds());
 //err(choice);
 //err(tchoice);

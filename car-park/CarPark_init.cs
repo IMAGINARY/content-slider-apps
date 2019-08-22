@@ -453,4 +453,5 @@ reset():=(
     if(special!=[],
      drawobj(special,.9);
     );
+    pauseanimation();
 );

@@ -10,6 +10,7 @@ class PolytopeMorpherApp extends CindyApp {
             appName: 'Polyeder basteln',
             appDescription: 'Ausgehend von einem platonischen Körper kann man durch das Anwenden von drei Operationen neue symmetrische Körper erzeugen. Ein Druck auf den Zauberstab übernimmt das aktuelle Objekt als neuen Ausgangspunkt für die Verformungen.',
             resetScript: 'resetAll();',
+            pauseScript: '',
         };
     }
 

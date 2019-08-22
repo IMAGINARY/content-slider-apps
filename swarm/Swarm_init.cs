@@ -1,4 +1,3 @@
-//  playanimation();
 feed=false;
 
 pts=allmasses()--[K,L,J];
@@ -7,10 +6,3 @@ apply(pts,#:"vold"=#.v);
 
 sizes=1.2*apply(pts,random()*.9+.8);
 colors=apply(pts,random());
-
-pause():=(
-  pauseanimation();
-);
-resume():=(
-  playanimation();
-);

@@ -29,7 +29,7 @@ if(targetsonray==[],
    posB = pos;
    T = |posB_sel - posA_sel|/10;
    mode = "animation";
-   resetclock();
+   resetclock();playanimation();
    resetpossible = true;
    sel = 0;
   );
