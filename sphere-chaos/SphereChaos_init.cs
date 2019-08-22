@@ -14,15 +14,12 @@ D.homog=(3,3,1);
 E.homog=(13, -3, 1);
 pendanimation=true;
 
-    );
+);
+reset();
 
-    playanimation();
 resume():=(
-   if(pendanimation,playanimation());
-
+   if(pendanimation,playanimation(), pauseanimation());
 );
-pause():=(
-   stopanimation();
 
-);
 pendanimation=true;
+playanimation();
