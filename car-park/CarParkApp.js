@@ -10,7 +10,7 @@ class CarParkApp extends CindyApp {
             appName: 'Ausparken',
             appDescription: 'Wer schafft es, das rote Rennauto auszuparken? Leider stehen einige Autos im Weg, denen wiederum andere Autos im Weg stehen. Dieses Knobelspiel wurde 1970 von Nobuyuki Yoshigahara erfunden.',
             pauseScript: '',
-            resumeScript: '',
+            resumeScript: 'pauseanimation();',
         };
     }
 
