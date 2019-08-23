@@ -337,6 +337,7 @@ reset():=(
 
     // select new set of randomly chosen levels and select the one that matches the current difficulty
     levels = getrandomizedlevels(numlevels,numdifficulties);
+    sliderindexold=-1;
 
     // redraw everything
     allthedrawing();
