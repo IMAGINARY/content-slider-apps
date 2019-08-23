@@ -21,6 +21,7 @@ alldata=[];
 special=[];
 oldcar=[];
 interval=[0,0];
+move=["",""];
 // GLOBALS END
 
 upaction():=(
