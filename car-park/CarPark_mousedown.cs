@@ -2,10 +2,8 @@ if(downpending,
   upaction();
 );
 if(|mouse().x-N.x|<2,
-err("HITIT");
-   nn=mouse().xy;
-   sel=round(|M,nn|/|M,L|*(n-1));
-   N.xy=sel*(L-M)/(n-1)+M;
+  moveto(N,mouse());
+  processslider();
 );
 downpending=true;
 downaction();

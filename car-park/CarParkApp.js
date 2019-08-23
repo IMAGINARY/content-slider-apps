@@ -224,7 +224,7 @@ class CarParkApp extends CindyApp {
                 },
                 {
                     name: "N",
-                    type: "PointOnLine",
+                    type: "PointOnSegment",
                     args: ["c"],
                     pos: [4, 0.2861021698578434, 0.2017656373068423],
                     narrow: 200,
