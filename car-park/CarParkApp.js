@@ -18,9 +18,20 @@ class CarParkApp extends CindyApp {
         const relativeUrl = filename => new URL(filename,
             import.meta.url).href;
 
-        let levels = await Promise.all(["beginner", "easy", "medium", "hard", "extreme"].map(l => CindyApp.request({
+        const levelFiles = await Promise.all(["beginner", "easy", "medium", "hard", "extreme"].map(l => CindyApp.request({
             url: relativeUrl(`levels/${l}.txt`)
         })));
+
+        // filter out invalid lines and parse level files
+        const whitespaceRegExp = /\s+/g;
+        const levelRegExp = /^[oxA-Z]{36}$/;
+        const reduceWhiteSpace = s => s.replace(whitespaceRegExp, ' ').trim();
+        const processLevelFile = f => f.split('\n')
+            .map(reduceWhiteSpace)
+            .map(l => l.split(" "))
+            .filter(l => l.length === 3)
+            .filter(l => levelRegExp.test(l[1]));
+        const levels = levelFiles.map(processLevelFile);
 
         CindyJS.registerPlugin(1, "carparklevels", function(api) {
             function wrap(v) { //converts js-lists of lists of real numbers to CS-object.
@@ -45,7 +56,7 @@ class CarParkApp extends CindyApp {
 
                 let randomentry = arr => arr[Math.floor(Math.random() * arr.length)];
 
-                let levelstr = randomentry(levels[set].split('\n')).split(" ")[1];
+                const levelstr = randomentry(levels[set])[1];
                 let bins = {};
                 for (let i = 0; i < 36; i++) {
                     let c = levelstr[i];
