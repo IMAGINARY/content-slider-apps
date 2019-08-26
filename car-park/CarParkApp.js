@@ -11,14 +11,110 @@ class CarParkApp extends CindyApp {
             appDescription: 'Wer schafft es, das rote Rennauto auszuparken? Leider stehen einige Autos im Weg, denen wiederum andere Autos im Weg stehen. Dieses Knobelspiel wurde 1970 von Nobuyuki Yoshigahara erfunden.',
             pauseScript: '',
             resumeScript: 'pauseanimation();',
+            numLevels: 7,
         };
     }
 
     async _initCindyArgs() {
-        const relativeUrl = filename => new URL(filename, import.meta.url).href;
+        const relativeUrl = filename => new URL(filename,
+            import.meta.url).href;
+
+        const levelFiles = await Promise.all(["beginner", "easy", "medium", "hard", "extreme"].map(l => CindyApp.request({
+            url: relativeUrl(`levels/${l}.txt`)
+        })));
+
+        // filter out invalid lines and parse level files
+        const whitespaceRegExp = /\s+/g;
+        const levelRegExp = /^[oxA-Z]{36}$/;
+        const reduceWhiteSpace = s => s.replace(whitespaceRegExp, ' ').trim();
+        const processLevelFile = f => f.split('\n')
+            .map(reduceWhiteSpace)
+            .map(l => l.split(" "))
+            .filter(l => l.length === 3)
+            .filter(l => levelRegExp.test(l[1]));
+        const levelSets = levelFiles.map(processLevelFile);
+
+        function wrap(v) { //converts js-lists of lists of real numbers to CS-object.
+            if (typeof v === "number") {
+                return {
+                    "ctype": "number",
+                    "value": {
+                        'real': v,
+                        'imag': 0
+                    }
+                };
+            } else if (typeof v === "object" && v.length !== undefined) {
+                return {
+                    "ctype": "list",
+                    "value": v.map(wrap)
+                }
+            }
+        }
+
+        function convertLevelFormat(levelstr) {
+            const bins = {};
+            for (let i = 0; i < 36; i++) {
+                const c = levelstr[i];
+                if (c !== 'o') {
+                    if (!bins[c]) bins[c] = [];
+                    bins[c].push([1 + i % 6, 6 - (i / 6 | 0)]); //convert to Cindy-coordinates
+                }
+            }
+            const cindyformat = [[], [], []];
+            Object.keys(bins).forEach(c => {
+                if (c === 'A') {
+                    cindyformat[2].push(bins[c].sort());
+                } else if (bins[c].length === 2) {
+                    cindyformat[0].push(bins[c].sort());
+                } else if (bins[c].length === 3) {
+                    cindyformat[1].push([bins[c][0], bins[c][2]].sort());
+                }
+            });
+            return cindyformat;
+        }
+
+        function shuffledLevels(numLevels) {
+            // keep start index for each set to to avoid selecting the same level twice
+            const setLengths = levelSets.map(set => set.length);
+            const levels = new Array(numLevels).fill(0).map((v, k) => {
+                const setIndex = Math.floor((k * (levelSets.length - 1)) / (numLevels - 1));
+                const set = levelSets[setIndex];
+                if (setLengths[setIndex] > 0) {
+                    // select a random level and move it to the end of the set to avoid returning duplicate levels
+                    const levelIndex = Math.floor(Math.random() * setLengths[setIndex]);
+                    const level = set[levelIndex];
+                    set[levelIndex] = set[setLengths[setIndex] - 1];
+                    set[setLengths[setIndex] - 1] = level;
+                    setLengths[setIndex]--;
+                    return level;
+                } else {
+                    // can not select levels without having duplicates, so just choose a random one
+                    if (levelSets.length === 0) {
+                        throw new Error("Car park level set is empty");
+                    } else {
+                        return set[Math.floor(Math.random() * set.length)];
+                    }
+                }
+            });
+            return levels;
+        }
+
+        CindyJS.registerPlugin(1, "carparklevels", (api) => {
+            api.defineFunction("getshuffledlevels", 1, (args) => {
+                const numLevels = api.evaluate(args[0]).value.real | 0;
+                const levels = shuffledLevels(numLevels);
+                return wrap(levels.map(level => convertLevelFormat(level[1])));
+            });
+            api.defineFunction("getshuffledlevels", 0, (args) => {
+                const levels = shuffledLevels(this.config.numLevels);
+                return wrap(levels.map(level => convertLevelFormat(level[1])));
+            });
+        });
+
         return {
             scripts: await CindyApp.loadScripts(relativeUrl('CarPark_'), ['draw', 'init', 'mousedown', 'mousedrag', 'mouseup', 'tick'], '.cs'),
             defaultAppearance: {},
+            use: ["carparklevels"],
             images: {
                 a1: relativeUrl("assets/a1.png"),
                 a10: relativeUrl("assets/a10.png"),
@@ -44,10 +140,11 @@ class CarParkApp extends CindyApp {
             ports: [{
                 element: this.canvas,
                 background: "rgba(0,0,0,0)",
-                transform: [{visibleRect: [-0.7280283924068959, 15.687837617026014, 23.320393343872503, -2.3484786851835353]}]
+                transform: [{
+                    visibleRect: [-0.7280283924068959, 15.687837617026014, 23.320393343872503, -2.3484786851835353]
+                }]
             }],
-            geometry: [
-                {
+            geometry: [{
                     name: "A",
                     type: "Free",
                     pos: [4, 2.896551724137931, 0.27586206896551724],
@@ -165,7 +262,7 @@ class CarParkApp extends CindyApp {
                 },
                 {
                     name: "N",
-                    type: "PointOnLine",
+                    type: "PointOnSegment",
                     args: ["c"],
                     pos: [4, 0.2861021698578434, 0.2017656373068423],
                     narrow: 200,

@@ -5,6 +5,5 @@ startindex=startindex+1;
 if(startindex>length(animation),
 //TODO WHY DOES STOPANIM NOT WORK
 pauseanimation();
-special=[];
-solved=false;
-)
+setsliderindex(mod(getsliderindex()+1,length(levels)));
+);
