@@ -11,6 +11,7 @@ class CarParkApp extends CindyApp {
             appDescription: 'Wer schafft es, das rote Rennauto auszuparken? Leider stehen einige Autos im Weg, denen wiederum andere Autos im Weg stehen. Dieses Knobelspiel wurde 1970 von Nobuyuki Yoshigahara erfunden.',
             pauseScript: '',
             resumeScript: 'pauseanimation();',
+            numLevels: 7,
         };
     }
 
@@ -31,58 +32,84 @@ class CarParkApp extends CindyApp {
             .map(l => l.split(" "))
             .filter(l => l.length === 3)
             .filter(l => levelRegExp.test(l[1]));
-        const levels = levelFiles.map(processLevelFile);
+        const levelSets = levelFiles.map(processLevelFile);
 
-        CindyJS.registerPlugin(1, "carparklevels", function(api) {
-            function wrap(v) { //converts js-lists of lists of real numbers to CS-object.
-                if (typeof v === "number") {
-                    return {
-                        "ctype": "number",
-                        "value": {
-                            'real': v,
-                            'imag': 0
-                        }
-                    };
-                } else if (typeof v === "object" && v.length !== undefined) {
-                    return {
-                        "ctype": "list",
-                        "value": v.map(wrap)
+        function wrap(v) { //converts js-lists of lists of real numbers to CS-object.
+            if (typeof v === "number") {
+                return {
+                    "ctype": "number",
+                    "value": {
+                        'real': v,
+                        'imag': 0
+                    }
+                };
+            } else if (typeof v === "object" && v.length !== undefined) {
+                return {
+                    "ctype": "list",
+                    "value": v.map(wrap)
+                }
+            }
+        }
+
+        function convertLevelFormat(levelstr) {
+            const bins = {};
+            for (let i = 0; i < 36; i++) {
+                const c = levelstr[i];
+                if (c !== 'o') {
+                    if (!bins[c]) bins[c] = [];
+                    bins[c].push([1 + i % 6, 6 - (i / 6 | 0)]); //convert to Cindy-coordinates
+                }
+            }
+            const cindyformat = [[], [], []];
+            Object.keys(bins).forEach(c => {
+                if (c === 'A') {
+                    cindyformat[2].push(bins[c].sort());
+                } else if (bins[c].length === 2) {
+                    cindyformat[0].push(bins[c].sort());
+                } else if (bins[c].length === 3) {
+                    cindyformat[1].push([bins[c][0], bins[c][2]].sort());
+                }
+            });
+            return cindyformat;
+        }
+
+        function shuffledLevels(numLevels) {
+            // keep start index for each set to to avoid selecting the same level twice
+            const setLengths = levelSets.map(set => set.length);
+            const levels = new Array(numLevels).fill(0).map((v, k) => {
+                const setIndex = Math.floor((k * (levelSets.length - 1)) / (numLevels - 1));
+                const set = levelSets[setIndex];
+                if (setLengths[setIndex] > 0) {
+                    // select a random level and move it to the end of the set to avoid returning duplicate levels
+                    const levelIndex = Math.floor(Math.random() * setLengths[setIndex]);
+                    const level = set[levelIndex];
+                    set[levelIndex] = set[setLengths[setIndex] - 1];
+                    set[setLengths[setIndex] - 1] = level;
+                    setLengths[setIndex]--;
+                    return level;
+                } else {
+                    // can not select levels without having duplicates, so just choose a random one
+                    if (levelSets.length === 0) {
+                        throw new Error("Car park level set is empty");
+                    } else {
+                        return set[Math.floor(Math.random() * set.length)];
                     }
                 }
-            };
+            });
+            return levels;
+        }
 
-            api.defineFunction("randomlevel", 1, function(args, modifs) {
-                let set = api.evaluate(args[0]).value.real | 0;
-
-                let randomentry = arr => arr[Math.floor(Math.random() * arr.length)];
-
-                const levelstr = randomentry(levels[set])[1];
-                let bins = {};
-                for (let i = 0; i < 36; i++) {
-                    let c = levelstr[i];
-                    if (c !== 'o') {
-                        if (!bins[c]) bins[c] = [];
-                        bins[c].push([1 + i % 6, 6 - (i / 6 | 0)]); //convert to Cindy-coordinates
-                    }
-                }
-                let cindyformat = [
-                    [],
-                    [],
-                    []
-                ];
-                for (let c in bins) {
-                    if (c == 'A') {
-                        cindyformat[2].push(bins[c].sort());
-                    } else if (bins[c].length == 2) {
-                        cindyformat[0].push(bins[c].sort());
-                    } else if (bins[c].length == 3) {
-                        cindyformat[1].push([bins[c][0], bins[c][2]].sort());
-                    }
-                }
-                return wrap(cindyformat);
+        CindyJS.registerPlugin(1, "carparklevels", (api) => {
+            api.defineFunction("getshuffledlevels", 1, (args) => {
+                const numLevels = api.evaluate(args[0]).value.real | 0;
+                const levels = shuffledLevels(numLevels);
+                return wrap(levels.map(level => convertLevelFormat(level[1])));
+            });
+            api.defineFunction("getshuffledlevels", 0, (args) => {
+                const levels = shuffledLevels(this.config.numLevels);
+                return wrap(levels.map(level => convertLevelFormat(level[1])));
             });
         });
-
 
         return {
             scripts: await CindyApp.loadScripts(relativeUrl('CarPark_'), ['draw', 'init', 'mousedown', 'mousedrag', 'mouseup', 'tick'], '.cs'),

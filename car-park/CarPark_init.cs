@@ -1,6 +1,4 @@
 // GLOBALS BEGIN
-numlevels=7;
-numdifficulties=5;
 
 // will be set in reset()
 levels=[];
@@ -210,19 +208,15 @@ getinterval(car):=(
   erg;
 );
 
-getrandomizedlevels(numlevels,numdifficulties):=(
-  apply(0..(numlevels-1),randomlevel(floor((#*numdifficulties)/numlevels)));
-);
-
 snapslider():=(
   // move N on the line to the position that belongs to its index
-  moveto(N,M+(getsliderindex()/(numlevels-1))*(L-M));
+  moveto(N,M+(getsliderindex()/(length(levels)-1))*(L-M));
 );
 
 setsliderindex(index):=(
   regional(boundedindex);
-  boundedindex=max(0,min(index,numlevels-1));
-  moveto(N,M+(boundedindex/(numlevels-1))*(L-M));
+  boundedindex=max(0,min(index,length(levels)-1));
+  moveto(N,M+(boundedindex/(length(levels)-1))*(L-M));
 );
 
 getsliderindex():=(
@@ -236,7 +230,7 @@ getsliderindex():=(
   t=(vecMN*vecML)/(vecML*vecML);
 
   // this is the index
-  round(t*(numlevels-1));
+  round(t*(length(levels)-1));
 );
 
 processslider():=(
@@ -269,8 +263,8 @@ repeat(6,i,
   )
 );
 
-apply(1..numlevels,#,
-  h=L.y+(#-1)*(M.y-L.y)/(numlevels-1);
+apply(1..length(levels),#,
+  h=L.y+(#-1)*(M.y-L.y)/(length(levels)-1);
   draw((M.x-.2,h),(M.x+.2,h),color->(1,1,1));
 );
 
@@ -331,13 +325,13 @@ solvedsequence():=(
 );
 
 reset():=(
-    // shuffle car and truck colors
-    carpermutations = apply(1..numlevels,shuffle(1..12));
-    truckpermutations = apply(1..numlevels,shuffle(1..7));
-
     // select new set of randomly chosen levels and select the one that matches the current difficulty
-    levels = getrandomizedlevels(numlevels,numdifficulties);
+    levels = getshuffledlevels();
     sliderindexold=-1;
+
+    // shuffle car and truck colors
+    carpermutations = apply(1..length(levels),shuffle(1..12));
+    truckpermutations = apply(1..length(levels),shuffle(1..7));
 
     // redraw everything
     allthedrawing();
