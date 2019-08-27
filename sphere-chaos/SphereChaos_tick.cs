@@ -1,8 +1,2 @@
-if(idle==1,
-   ttt=0.1;
-      E.xy=gauss(complex(E-D)*exp(.03*i*ttt))+D;
- );
-if(mousedown==0,
-  colrot=colrot+0.25;
-  if(colrot>=150,colrot=0);
-);
+if(idle==1,RayEnd.xy=gauss(complex(RayEnd-RayBegin)*exp(.03*i*0.1))+RayBegin);
+if(mousedown==0,colrot=mod(colrot+0.25,150));

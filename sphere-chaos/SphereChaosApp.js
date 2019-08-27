@@ -10,6 +10,7 @@ class SphereChaosApp extends CindyApp {
             appName: 'Lichtstrahl',
             appDescription: 'Wenn sich ein Lichtstrahl zwischen kreisförmigen Spiegeln reflektiert, entsteht <em>deterministisches Chaos</em>: eine kleine Änderung kann unvorhersehbare Auswirkungen haben.  Was passiert, wenn der Lichtstrahl im Inneren eines Kreises startet?',
             pauseScript: '',
+            resumeScript: '',
         };
     }
 
@@ -21,55 +22,99 @@ class SphereChaosApp extends CindyApp {
             ports: [{
                 element: this.canvas,
                 background: "rgba(0,0,0,0)",
-
                 transform: [{visibleRect: [-16.291666666666668, 19.5, 26.375, -12.5]}]
             }],
-            geometry: [
-                {
-                    name: "A",
-                    type: "Free",
-                    pos: [1.4857142857142855, -4, 1.4081632653061225],
-                    color: [1, 0, 0],
-                    alpha: 0.8999999761581421,
-                    pointborder: false,
-                    size: 9,
-                    narrow: 100
-                },
-                {
-                    name: "B",
-                    type: "Free",
-                    pos: [-1.2, 9, 1],
-                    color: [1, 0, 0],
-                    alpha: 0.8999999761581421,
-                    pointborder: false,
-                    size: 9,
-                    narrow: 100
-                },
-                {
-                    name: "C",
-                    type: "Free",
-                    pos: [12.043333333333337, 6.035, 1],
-                    color: [1, 0, 0],
-                    alpha: 0.8999999761581421,
-                    pointborder: false,
-                    size: 9,
-                    narrow: 100
-                },
-                {
-                    name: "D",
-                    type: "Free",
-                    pos: [3, 3, 1],
-                    color: [1, 0.7, 0],
-                    alpha: 0.8999999761581421,
-                    pointborder: false,
-                    size: 9,
-                    narrow: 100
-                },
-                {name: "C3", type: "CircleMr", args: ["D"], radius: 1, size: 3, color: [0, 0, 1], alpha: 0},
-                {name: "E", type: "Free", pos: [13, -3, 1], pinned: false, size: 4, color: [1, 1, 1], narrow: 100},
-                {name: "Dummy", type: "Free", pos: [100, 100], pinned: false, size: 0, color: [1, 1, 1]}
-            ]
-        };
+            angleUnit: "°",
+            geometry:
+                [
+                    {
+                        name: "M1",
+                        type: "Free",
+                        pos: [1.4857142857142855, -4, 1.4081632653061225],
+                        color: [1, 1, 1],
+                        size: 9,
+                    },
+                    {
+                        name: "C1",
+                        type: "CircleByRadius",
+                        pos: [1.4857142857142855, -4, 1.4081632653061225],
+                        args: ["M1"],
+                        radius: 5,
+                        color: [1, 1, 1],
+                        size: 5,
+                    },
+                    {
+                        name: "M2",
+                        type: "Free",
+                        pos: [-1.2, 9, 1],
+                        radius: 5,
+                        color: [1, 1, 1],
+                        size: 9,
+                    },
+                    {
+                        name: "C2",
+                        type: "CircleByRadius",
+                        args: ["M2"],
+                        radius: 5,
+                        color: [1, 1, 1],
+                        size: 5,
+                    },
+                    {
+                        name: "M3",
+                        type: "Free",
+                        pos: [12.043333333333337, 6.035, 1],
+                        color: [1, 1, 1],
+                        size: 9,
+                    },
+                    {
+                        name: "C3",
+                        type: "CircleByRadius",
+                        args: ["M3"],
+                        radius: 7,
+                        color: [1, 1, 1],
+                        size: 5,
+                    },
+                    {
+                        name: "RayBegin",
+                        type: "Free",
+                        pos: [3, 3, 1],
+                        color: [1, 1, 1],
+                        size: 9,
+                        labeled: false,
+                    },
+                    {
+                        name: "RayCircle",
+                        type: "CircleByRadius",
+                        color: [0.0, 0.0, 1.0],
+                        radius: 3,
+                        args: ["RayBegin"],
+                        labeled: false,
+                        visible: false,
+                    },
+                    {
+                        name: "RayEnd",
+                        type: "PointOnCircle",
+                        pos: [5.5725, 1.4565], // should be angle: 329*(Math.PI/180), but it doesn't work
+                        color: [1.0, 0.0, 0.0],
+                        args: ["RayCircle"],
+                        alpha: 0.0,
+                        border: false,
+                        labeled: false,
+                    },
+                    {
+                        name: "Ray",
+                        type: "Segment",
+                        color: [1, 1, 1],
+                        alpha: 0.2,
+                        args: ["RayBegin", "RayEnd"],
+                        size: 5,
+                        arrowshape: "line", arrowsides: "==>", arrowsize: 1, arrowposition: 1.0,
+                        labeled: false,
+                        visible: true
+                    }
+                ]
+        }
+            ;
     }
 }
 
