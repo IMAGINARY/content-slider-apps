@@ -10,7 +10,15 @@ class KaleidoscopeApp extends CindyApp {
             appName: 'Kaleidoskop',
             appDescription: 'Bei diesem Kaleidoskop mit 3 Spiegeln ergeben sich Muster, die sich ins Unendliche fortsetzen. Am großen Schiebeschalter kann man einstellen, wie oft gespiegelt werden soll. An den Punkten läßt sich die Position von Bild und Kaleidoskop verändern.',
             pauseScript: '',
+            image1: 'assets/bild.png',
+            image2: 'assets/bild2.png',
+            image3: 'assets/bild3.png',
+            image4: 'assets/bild4.png',
         };
+    }
+
+    static async retrieveConfigOverrides() {
+        return this.retrieveConfigOverridesJsonByClass(import.meta.url);
     }
 
     async _initCindyArgs() {
@@ -19,12 +27,10 @@ class KaleidoscopeApp extends CindyApp {
             scripts: await CindyApp.loadScripts(relativeUrl('Kaleidoscope_'), ['init', 'mousedown', 'mouseUpX', 'draw', 'tick'], '.cs'),
             defaultAppearance: {},
             images: {
-                bild: relativeUrl("assets/bild.png"),
-                bild2: relativeUrl("assets/bild2.png"),
-                bild3: relativeUrl("assets/bild3.png"),
-                bild4: relativeUrl("assets/bild4.png"),
-                bild4X: relativeUrl("assets/bild4X.png"),
-                bildX: relativeUrl("assets/bildX.png"),
+                bild: relativeUrl(this.config.image1),
+                bild2: relativeUrl(this.config.image2),
+                bild3: relativeUrl(this.config.image3),
+                bild4: relativeUrl(this.config.image4),
             },
             ports: [{
                 element: this.canvas,

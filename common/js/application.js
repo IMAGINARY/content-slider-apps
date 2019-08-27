@@ -1,3 +1,5 @@
+const _configOverridesPromises = {};
+
 class Application {
     constructor(config = {}) {
         this._config = Object.assign(Application.defaultConfig, config);
@@ -15,6 +17,22 @@ class Application {
             appDescription: '',
             appCredits: '',
         };
+    }
+
+    static async retrieveConfigOverrides() {
+        return Promise.resolve({});
+    }
+
+    /***
+     * This method returns an array of config overrides for the class in question.
+     * The format is `{type:'..', config: {...}}`. `type` determines how to interpret the override such that an
+     * application can check whether the override applies or not. If it does, `config` contains the properties
+     * to override. Several overrides may or may not be combined when passing them to the class constructor.
+     */
+    static async getConfigOverrides() {
+        if (typeof _configOverridesPromises[this.name] === 'undefined')
+            _configOverridesPromises[this.name] = this.retrieveConfigOverrides(); // when overwritten in a subclass, it will be called on the subclass
+        return _configOverridesPromises[this.name];
     }
 
     get isReady() {

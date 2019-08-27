@@ -15,6 +15,10 @@ class CarParkApp extends CindyApp {
         };
     }
 
+    static async retrieveConfigOverrides() {
+        return this.retrieveConfigOverridesJsonByClass(import.meta.url);
+    }
+
     async _initCindyArgs() {
         const relativeUrl = filename => new URL(filename,
             import.meta.url).href;
