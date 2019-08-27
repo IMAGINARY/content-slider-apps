@@ -27,7 +27,14 @@ class CindyApp extends Application {
     }
 
     static async retrieveConfigOverridesJsonByClass(baseUrl) {
-        return CindyApp.request({url: new URL(this.name + 'Overrides.json', baseUrl).href});
+        const url = new URL(this.name + 'Overrides.json', baseUrl).href;
+        const jsonText = await CindyApp.request({url: url});
+        if (typeof jsonText === 'string')
+            return JSON.parse(jsonText);
+        else if (typeof jsonText === 'object')
+            return jsonText;
+        else
+            throw new Error(`Error processing config override file ${url}`);
     }
 
     static async request(obj) {
