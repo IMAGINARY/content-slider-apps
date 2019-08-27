@@ -26,6 +26,10 @@ class CindyApp extends Application {
         };
     }
 
+    static async retrieveConfigOverridesJsonByClass(baseUrl) {
+        return CindyApp.request({url: new URL(this.name + 'Overrides.json', baseUrl).href});
+    }
+
     static async request(obj) {
         return new Promise((resolve, reject) => {
             let xhr = new XMLHttpRequest();
@@ -132,7 +136,7 @@ class CindyApp extends Application {
         super.reset();
         if (this._isReady) {
             this.cindy.stop()
-            if(!this._isCindyPaused)
+            if (!this._isCindyPaused)
                 this.cindy.play();
             this.cindy.evokeCS(this.config.resetScript);
         }

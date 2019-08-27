@@ -1,3 +1,5 @@
+const _configOverridesPromises = {};
+
 class Application {
     constructor(config = {}) {
         this._config = Object.assign(Application.defaultConfig, config);
@@ -15,6 +17,16 @@ class Application {
             appDescription: '',
             appCredits: '',
         };
+    }
+
+    static async retrieveConfigOverrides() {
+        return Promise.resolve({});
+    }
+
+    static async getConfigOverrides() {
+        if (typeof _configOverridesPromises[this.name] === 'undefined')
+            _configOverridesPromises[this.name] = this.retrieveConfigOverrides(); // when overwritten in a subclass, it will be called on the subclass
+        return _configOverridesPromises[this.name];
     }
 
     get isReady() {
