@@ -20,7 +20,7 @@ class Application {
     }
 
     static async retrieveConfigOverrides() {
-        return Promise.resolve({});
+        return Promise.resolve([]);
     }
 
     /***
