@@ -10,7 +10,17 @@ class ImageSpiralApp extends CindyApp {
             appName: 'Spirale',
             appDescription: 'Ein Bild wird um ein Zentrum gedreht und gestaucht oder gestreckt, das nennt man eine <em>Drehstreckung</em>. Das so veränderte Bild wird wieder gedreht und um denselben Faktor gestaucht oder gestreckt und so weiter. Dadurch entstehen wie von selbst faszinierende Bilder.',
             pauseScript: '',
+            image1: 'assets/test1.png',
+            image2: 'assets/test2.png',
+            image3: 'assets/test3.png',
+            image4: 'assets/test4.png',
+            image5: 'assets/test5.png',
+            image6: 'assets/test6.png',
         };
+    }
+
+    static async retrieveConfigOverrides() {
+        return this.retrieveConfigOverridesJsonByClass(import.meta.url);
     }
 
     async _initCindyArgs() {
@@ -19,12 +29,12 @@ class ImageSpiralApp extends CindyApp {
             scripts: await CindyApp.loadScripts(relativeUrl('ImageSpiral_'), ['init', 'mousedown', 'draw', 'tick'], '.cs'),
             defaultAppearance: {},
             images: {
-                test1: relativeUrl('assets/test1.png'),
-                test2: relativeUrl('assets/test2.png'),
-                test3: relativeUrl('assets/test3.png'),
-                test4: relativeUrl('assets/test4.png'),
-                test5: relativeUrl('assets/test5.png'),
-                test6: relativeUrl('assets/test6.png'),
+                test1: relativeUrl(this.config.image1),
+                test2: relativeUrl(this.config.image2),
+                test3: relativeUrl(this.config.image3),
+                test4: relativeUrl(this.config.image4),
+                test5: relativeUrl(this.config.image5),
+                test6: relativeUrl(this.config.image6),
             },
             ports: [{
                 element: this.canvas,
