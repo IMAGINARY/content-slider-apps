@@ -1,8 +1,8 @@
 import Application from '../common/js/application.js';
-import './2048-content-slider-v1.1/js/game2048.js';
+import './2048-content-slider-v1.2/js/game2048.js';
 import '../common/js/loadjs/3.6.1/loadjs.min.js';
 
-const _cssUrl = new URL('2048-content-slider-v1.1/style/main.css', import.meta.url).href;
+const _cssUrl = new URL('2048-content-slider-v1.2/style/main.css', import.meta.url).href;
 const _cssReady = loadjs(['css!' + _cssUrl], {returnPromise: true});
 
 class Game2048App extends Application {
