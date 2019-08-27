@@ -1,2 +1,10 @@
 [
+  {
+    "type": "whenzel",
+    "when": "????-05-27",
+    "config": {
+      "appDescription": "Heute hätte Nob Yoshigahara, der Erfinder dieses Spiels, Geburtstag gehabt. Er wurde 68 Jahre alt. Deshalb darfst du heute in 68 verschiedenen Leveln versuchen das rote Auto auszuparken.",
+      "numLevels": 68
+    }
+  }
 ]
