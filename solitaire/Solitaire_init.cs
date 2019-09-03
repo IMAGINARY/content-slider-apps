@@ -10,22 +10,22 @@ resetfield() := (
 
   if(fieldtype==1,
     // English style
-    unit = 3;
+    unit = 3.5;
     pegs = (directproduct(-3..3,-1..1)++directproduct(-1..1,(-3..-2)++2..3));
     active = pegs -- [(0,0)];
-    delta = (3,-.5);
+    delta = (2.5,-.5);
     pegs = unit*apply(pegs, #+delta);
     active = unit*apply(active, #+delta);
   );
   if(fieldtype==2,
     // French (European) style, 37 holes, 17th century;
-    unit = 3;
+    unit = 3.5;
     pegs = (directproduct(-3..3,-1..1)++directproduct(-1..1,(-3..-2)++2..3)++directproduct([-2,2],[-2,2]));
     start = [1,0];
     if(random()>0.5, start=-start);
     if(random()>0.5, start=start_[2,1]);
     active = pegs -- [start];
-    delta = (3,-.5);
+    delta = (2.5,-.5);
     pegs = unit*apply(pegs, #+delta);
     active = unit*apply(active, #+delta);
   );
@@ -78,8 +78,6 @@ pressed=false;
 
 moving=false;
   pos=(0,0);
-
-resetfield();
 
 special=[];
 drawpeg(p):=(
@@ -146,16 +144,22 @@ drawstuff(mp):=(
  );
 );
 
-drawpos(#):=(
+
+drawwaterring(pp, t) := (
+  forall(1..9,k,
+    drawcircle(pp,unit/2*t,size->3*k,color->(.5,.5,.6),alpha->.1*(.5-.5*cos(t*2*pi)));
+  );
+);
+drawpos(pp):=(
     /*off=(.1,-.1);
     drawcircle(#+off,2,color->(0,0.5,0.2),size->9*3,alpha->0.1);
     drawcircle(#+off,2,color->(0,0.5,0.2),size->7*3,alpha->0.1);
     drawcircle(#+off,2,color->(0,0.5,0.2),size->5*3,alpha->0.1);
     drawcircle(#+off,2,color->(0,0.5,0.2),size->3*3,alpha->0.1);
     drawcircle(#+off,2,color->(0,0.5,0.2),size->1*3,alpha->0.1);*/
-    forall(1..9,k,
-      drawcircle(#,unit/2*.9,size->3*k,color->(1,.2,.6),alpha->.02);
-    );
+    drawwaterring(pp, mod(seconds()/2,1));
+    drawwaterring(pp, mod(seconds()/2+1/2,1));
+
 );
 movingfilm=false;
 waiting=false;
@@ -200,10 +204,10 @@ stillpossible():=(
 
 reset():=(
    //pegs=[[17.88,-11],[8.8,4.72],[-0.28,-11],[4.26,-3.14],[13.34,-3.14],[15.61,-7.07],[8.8,-3.14],[8.8,-11],[6.53,-7.07],[1.99,-7.07],[4.26,-11],[13.34,-11],[6.53,0.79],[11.07,0.79],[11.07,-7.07]] ;
+   resetclock();
    resetfield();
    special=[];
-)
+   pauseanimation();
+);
 
-
-
-;
+reset();

@@ -17,4 +17,5 @@ if(length(found)==1&!movingfilm,
 timestamp=seconds();
 waiting=true;
 waiting=false;//TOTGELEGT
-//playanimation();
+
+playanimation();
