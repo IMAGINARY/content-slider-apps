@@ -18,6 +18,7 @@ class SolitaireApp extends CindyApp {
         const relativeUrl = filename => new URL(filename, import.meta.url).href;
 
         this.canvas.style.backgroundImage = `url('${relativeUrl("assets/background.png")}')`;
+        this.canvas.style.backgroundSize = "cover";
 
         return {
             scripts: await CindyApp.loadScripts(relativeUrl('Solitaire_'), ['draw', 'init', 'mousedown', 'mousedrag', 'mouseup', 'tick'], '.cs'),
