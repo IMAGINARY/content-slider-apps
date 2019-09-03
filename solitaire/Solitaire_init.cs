@@ -81,6 +81,10 @@ moving=false;
   pos=(0,0);
 
 special=[];
+
+getomega0(p) := (
+  sin(p*[-22*pi*121,32])/4; //something small random based on the position;
+);
 drawpeg(p):=(
  /*gsave();
  clip(circle(p+(0.2,-0.2),2.4));
@@ -88,6 +92,9 @@ drawpeg(p):=(
  grestore();*/
  //fillcircle(p,unit/2,color->[1,.3,0], alpha->.5);
  d1 = [-unit/2,-unit/2]; d2 = [unit/2,-unit/2];
+
+ d1 = gauss(complex(d1*exp(i*getomega0(p))));
+ d2 = gauss(complex(d2*exp(i*getomega0(p))));
  if(gameend,
     d1 = gauss(complex(d1*exp(i*seconds())));
     d2 = gauss(complex(d2*exp(i*seconds())));
@@ -101,12 +108,12 @@ drawemptypeg(p):=(
  if(middleanimation & seconds()<1, if(p==middle_1,
    drawit = false;
    drawimage(p+d1,p+d2, "emptypeg", alpha->seconds());
+   d1 = gauss(complex(d1*exp(i*getomega0(p))));
+   d2 = gauss(complex(d2*exp(i*getomega0(p))));
    omega = sin(p*[21,12]); //almost random but constant in time
    d1 = gauss(complex(d1*exp(omega*i*seconds())))*(.5+.5*cos(pi*seconds()));
    d2 = gauss(complex(d2*exp(omega*i*seconds())))*(.5+.5*cos(pi*seconds()));
    drawimage(p+d1,p+d2, "peg"); drawit = false;
-
-
  ), middleanimation = false;);
 
  if(drawit,
