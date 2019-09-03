@@ -1,13 +1,14 @@
-randomfield() := (
-  k = randomint(3);
-  if(k==0,
+fieldtype = randomint(3); //every day another field
+
+resetfield() := (
+  if(fieldtype==0,
     //Triangular
     unit=4.54;
     pegs=[[17.88,-11],[8.8,4.72],[-0.28,-11],[4.26,-3.14],[13.34,-3.14],[15.61,-7.07],[8.8,-3.14],[8.8,-11],[6.53,-7.07],[1.99,-7.07],[4.26,-11],[13.34,-11],[6.53,0.79],[11.07,0.79],[11.07,-7.07]] ;
     active=pegs--[pegs_(randomint(15)+1)];
   );
 
-  if(k==1,
+  if(fieldtype==1,
     // English style
     unit = 3;
     pegs = (directproduct(-3..3,-1..1)++directproduct(-1..1,(-3..-2)++2..3));
@@ -16,7 +17,7 @@ randomfield() := (
     pegs = unit*apply(pegs, #+delta);
     active = unit*apply(active, #+delta);
   );
-  if(k==2,
+  if(fieldtype==2,
     // French (European) style, 37 holes, 17th century;
     unit = 3;
     pegs = (directproduct(-3..3,-1..1)++directproduct(-1..1,(-3..-2)++2..3)++directproduct([-2,2],[-2,2]));
@@ -78,7 +79,7 @@ pressed=false;
 moving=false;
   pos=(0,0);
 
-randomfield();
+resetfield();
 
 special=[];
 drawpeg(p):=(
@@ -198,10 +199,8 @@ stillpossible():=(
 );
 
 reset():=(
-
-err("RESET");
    //pegs=[[17.88,-11],[8.8,4.72],[-0.28,-11],[4.26,-3.14],[13.34,-3.14],[15.61,-7.07],[8.8,-3.14],[8.8,-11],[6.53,-7.07],[1.99,-7.07],[4.26,-11],[13.34,-11],[6.53,0.79],[11.07,0.79],[11.07,-7.07]] ;
-   randomfield();
+   resetfield();
    special=[];
 )
 
