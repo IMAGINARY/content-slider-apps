@@ -86,7 +86,12 @@ drawpeg(p):=(
  drawimage(A,B,"boardB");
  grestore();*/
  //fillcircle(p,unit/2,color->[1,.3,0], alpha->.5);
- drawimage(p+[-unit/2,-unit/2],p+[unit/2,-unit/2], "peg");
+ d1 = [-unit/2,-unit/2]; d2 = [unit/2,-unit/2];
+ if(gameend,
+    d1 = gauss(complex(d1*exp(i*seconds())));
+    d2 = gauss(complex(d2*exp(i*seconds())));
+ );
+ drawimage(p+d1,p+d2, "peg");
 );
 
 drawemptypeg(p):=(
@@ -138,9 +143,15 @@ drawstuff(mp):=(
   );
  );
  drawspecial(mp);
- if(!moving&!stillpossible(),
-   drawtext((-4,4),"Ende:",color->(1,1,1),size->30);
-   drawtext((-4,2.0),length(active)+" sind übrig",color->(1,1,1),size->30);
+ gameend = !moving&!stillpossible();
+
+ if(gameend,
+    playanimation();
+    if(length(active)==1,
+      drawtext((-4,4),"Gewonnen!",color->(0,0,0),size->30);
+      ,
+      drawtext((-4,4),"Ende:" + newline + length(active)+" sind übrig",color->(0,0,0),size->30);
+    );
  );
 );
 
@@ -203,6 +214,7 @@ stillpossible():=(
 );
 
 reset():=(
+   gameend = false;
    //pegs=[[17.88,-11],[8.8,4.72],[-0.28,-11],[4.26,-3.14],[13.34,-3.14],[15.61,-7.07],[8.8,-3.14],[8.8,-11],[6.53,-7.07],[1.99,-7.07],[4.26,-11],[13.34,-11],[6.53,0.79],[11.07,0.79],[11.07,-7.07]] ;
    resetclock();
    resetfield();
