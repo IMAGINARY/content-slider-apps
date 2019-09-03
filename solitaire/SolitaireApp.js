@@ -16,15 +16,16 @@ class SolitaireApp extends CindyApp {
 
     async _initCindyArgs() {
         const relativeUrl = filename => new URL(filename, import.meta.url).href;
+
+        this.canvas.style.backgroundImage = `url('${relativeUrl("assets/background.png")}')`;
+
         return {
             scripts: await CindyApp.loadScripts(relativeUrl('Solitaire_'), ['draw', 'init', 'mousedown', 'mousedrag', 'mouseup', 'tick'], '.cs'),
             defaultAppearance: {},
             images: {
-                balls: relativeUrl("assets/balls.png"),
-                boardAX: relativeUrl("assets/boardAX.png"),
-                boardB: relativeUrl("assets/boardB.png"),
-                boardC: relativeUrl("assets/boardC.png"),
-                replay: relativeUrl("assets/Replay.png")
+                replay: relativeUrl("assets/Replay.png"),
+                peg: relativeUrl("assets/peg.png"),
+                emptypeg: relativeUrl("assets/emptypeg.png"),
             },
             ports: [{
                 element: this.canvas,

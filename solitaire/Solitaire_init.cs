@@ -9,22 +9,22 @@ randomfield() := (
 
   if(k==1,
     // English style
-    unit = 3.5;
+    unit = 3;
     pegs = (directproduct(-3..3,-1..1)++directproduct(-1..1,(-3..-2)++2..3));
     active = pegs -- [(0,0)];
-    delta = (2,-.5);
+    delta = (3,-.5);
     pegs = unit*apply(pegs, #+delta);
     active = unit*apply(active, #+delta);
   );
   if(k==2,
     // French (European) style, 37 holes, 17th century;
-    unit = 3.5;
+    unit = 3;
     pegs = (directproduct(-3..3,-1..1)++directproduct(-1..1,(-3..-2)++2..3)++directproduct([-2,2],[-2,2]));
     start = [1,0];
     if(random()>0.5, start=-start);
     if(random()>0.5, start=start_[2,1]);
     active = pegs -- [start];
-    delta = (2,-.5);
+    delta = (3,-.5);
     pegs = unit*apply(pegs, #+delta);
     active = unit*apply(active, #+delta);
   );
@@ -86,28 +86,40 @@ drawpeg(p):=(
  clip(circle(p+(0.2,-0.2),2.4));
  drawimage(A,B,"boardB");
  grestore();*/
- fillcircle(p,unit/2,color->[1,.3,0], alpha->.5);
+ //fillcircle(p,unit/2,color->[1,.3,0], alpha->.5);
+ drawimage(p+[-unit/2,-unit/2],p+[unit/2,-unit/2], "peg");
+);
+
+drawemptypeg(p):=(
+ drawimage(p+[-unit/2,-unit/2],p+[unit/2,-unit/2], "emptypeg");
 );
 
 drawspecial(pp):=(
 
   if(special!=[],
-    gsave();
+    //gsave();
     diff=pp-pos;
 
-    off=(0,-0.1);
-    fill(circle(special+diff+off,1.75),color->(.5,0,0),alpha->.1);
+    off=(0,0);
+    /*fill(circle(special+diff+off,1.75),color->(.5,0,0),alpha->.1);
     fill(circle(special+diff+off,1.7),color->(.5,0,0),alpha->.1);
     fill(circle(special+diff+off,1.65),color->(.5,0,0),alpha->.1);
     fill(circle(special+diff+off,1.6),color->(.5,0,0),alpha->.1);
     fill(circle(special+diff+off,1.55),color->(.5,0,0),alpha->.1);
-    fill(circle(special+diff+off,1.5),color->(.5,0,0),alpha->.1);
-    clip(circle(special+diff,2.4));
+    fill(circle(special+diff+off,1.5),color->(.5,0,0),alpha->.1);*/
+  /*  clip(circle(special+diff,2.4));
     drawimage(A+diff,B+diff,"boardAX");
     fill(circle(special+diff,1.5),color->(0,0,0),alpha->.1);
     grestore();
+*/
+  //  fillcircle(pp,unit/2,color->[1,.3,.5], alpha->.5);
 
-    fillcircle(pp,unit/2,color->[1,.3,.5], alpha->.5);
+  //shadow
+    forall(unit/10/2*(5..12),r,
+      fillcircle(pp,r,color->(0,0,0),alpha->.02);
+    );
+
+    drawimage(pp+[-unit/2,-unit/2],pp+[unit/2,-unit/2], "peg");
   );
 );
 
@@ -116,15 +128,17 @@ drawspecial(pp):=(
 drawstuff(mp):=(
 //clrscr();
 
- drawimage(A,B,"boardC");
+ //drawimage(A,B,"boardC");
  apply(active,p,drawpeg(p));
- drawspecial(mp);
+ apply(pegs -- active,p,drawemptypeg(p));
+
  if(special!=[],
   posmo= possiblemoves(special);
   apply(posmo,
     drawpos(#);
   );
  );
+ drawspecial(mp);
  if(!moving&!stillpossible(),
    drawtext((-4,4),"Ende:",color->(1,1,1),size->30);
    drawtext((-4,2.0),length(active)+" sind übrig",color->(1,1,1),size->30);
@@ -132,12 +146,15 @@ drawstuff(mp):=(
 );
 
 drawpos(#):=(
-    off=(.1,-.1);
+    /*off=(.1,-.1);
     drawcircle(#+off,2,color->(0,0.5,0.2),size->9*3,alpha->0.1);
     drawcircle(#+off,2,color->(0,0.5,0.2),size->7*3,alpha->0.1);
     drawcircle(#+off,2,color->(0,0.5,0.2),size->5*3,alpha->0.1);
     drawcircle(#+off,2,color->(0,0.5,0.2),size->3*3,alpha->0.1);
-    drawcircle(#+off,2,color->(0,0.5,0.2),size->1*3,alpha->0.1);
+    drawcircle(#+off,2,color->(0,0.5,0.2),size->1*3,alpha->0.1);*/
+    forall(1..9,k,
+      drawcircle(#,unit/2*.9,size->3*k,color->(1,.2,.6),alpha->.02);
+    );
 );
 movingfilm=false;
 waiting=false;
