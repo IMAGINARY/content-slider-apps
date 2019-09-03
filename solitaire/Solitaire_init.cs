@@ -50,6 +50,7 @@ if(moving,
     if(abs(|special-hit|/unit-2)<0.1&length(middle)==1,
       active=active++hits;
       active=active--middle;
+      resetclock(); middleanimation = true;
      // playtone(62,channel->9,velocity->.4);
     special=[];
     moving=false;
@@ -95,7 +96,22 @@ drawpeg(p):=(
 );
 
 drawemptypeg(p):=(
- drawimage(p+[-unit/2,-unit/2],p+[unit/2,-unit/2], "emptypeg");
+ d1 = [-unit/2,-unit/2]; d2 = [unit/2,-unit/2];
+ drawit = true;
+ if(middleanimation & seconds()<1, if(p==middle_1,
+   drawit = false;
+   drawimage(p+d1,p+d2, "emptypeg", alpha->seconds());
+   omega = sin(p*[21,12]); //almost random but constant in time
+   d1 = gauss(complex(d1*exp(omega*i*seconds())))*(.5+.5*cos(pi*seconds()));
+   d2 = gauss(complex(d2*exp(omega*i*seconds())))*(.5+.5*cos(pi*seconds()));
+   drawimage(p+d1,p+d2, "peg"); drawit = false;
+
+
+ ), middleanimation = false;);
+
+ if(drawit,
+  drawimage(p+d1,p+d2, "emptypeg");
+ );
 );
 
 drawspecial(pp):=(
@@ -215,6 +231,7 @@ stillpossible():=(
 
 reset():=(
    gameend = false;
+   middleanimation = false;
    //pegs=[[17.88,-11],[8.8,4.72],[-0.28,-11],[4.26,-3.14],[13.34,-3.14],[15.61,-7.07],[8.8,-3.14],[8.8,-11],[6.53,-7.07],[1.99,-7.07],[4.26,-11],[13.34,-11],[6.53,0.79],[11.07,0.79],[11.07,-7.07]] ;
    resetclock();
    resetfield();
