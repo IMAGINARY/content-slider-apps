@@ -69,7 +69,7 @@ class SpaceApp extends CindyApp {
       // keep start index for each set to to avoid selecting the same level twice
       const setLengths = levelSets.map(set => set.length);
       const levels = new Array(numLevels).fill(0).map((v, k) => {
-        const setIndex = Math.floor((k * (levelSets.length - 1)) / (numLevels - 1));
+        const setIndex = Math.floor((k * (levelSets.length)) / (numLevels));
         const set = levelSets[setIndex];
         if (setLengths[setIndex] > 0) {
           // select a random level and move it to the end of the set to avoid returning duplicate levels
