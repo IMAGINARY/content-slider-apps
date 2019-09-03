@@ -1,13 +1,13 @@
 import CindyApp from "../common/js/CindyApp.js";
 
-class LunarApp extends CindyApp {
+class SpaceApp extends CindyApp {
   constructor(config = {}) {
-    super(Object.assign(LunarApp.defaultConfig, config));
+    super(Object.assign(SpaceApp.defaultConfig, config));
   }
 
   static get defaultConfig() {
     return {
-      appName: 'Lunar Lockout',
+      appName: 'Space Rescue',
       appDescription: 'Wer schafft es den violetten Kreis in die Mitte zu bewegen? Dazu können die verschiedenen Kreise jeweils so weit wie möglich nach oben, rechts, unten oder links verschoben werden.',
       appCredits: 'Level & Implemtierung: Aaron Montag. Spielidee inspiriert von Hiroshi Yamamoto.',
       pauseScript: '',
@@ -21,7 +21,7 @@ class LunarApp extends CindyApp {
     let SIZE = 7;
 
     let levels = await CindyApp.request({
-      url: relativeUrl("Lunar_levels.txt")
+      url: relativeUrl("Space_levels.txt")
     });
 
     function wrap(v) { //converts js-lists of lists of real numbers to CS-object.
@@ -71,7 +71,7 @@ class LunarApp extends CindyApp {
     this.canvas.style.backgroundImage = `url('${relativeUrl("background.jpg")}')`;
 
     return {
-      scripts: await CindyApp.loadScripts(relativeUrl('Lunar_'), ['init', 'draw', 'mousedown', 'mouseup'], '.cs'),
+      scripts: await CindyApp.loadScripts(relativeUrl('Space_'), ['init', 'draw', 'mousedown', 'mouseup'], '.cs'),
       geometry: [{
           name: "P0",
           type: "Free",
@@ -121,4 +121,4 @@ class LunarApp extends CindyApp {
   }
 }
 
-export default LunarApp;
+export default SpaceApp;
