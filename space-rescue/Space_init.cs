@@ -1,4 +1,4 @@
-levels = loadlevels();
+levels = getshuffledlevels();
 
 gettargetsonray(d) := (
   targetsonray = select(pos, p,

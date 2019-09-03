@@ -12,17 +12,25 @@ class SpaceApp extends CindyApp {
       appCredits: 'Level & Implemtierung: Aaron Montag. Spielidee inspiriert von Hiroshi Yamamoto.',
       pauseScript: '',
       resumeScript: '',
+      numLevels: 10
     };
   }
 
   async _initCindyArgs() {
     const relativeUrl = filename => new URL(filename,
       import.meta.url).href;
-    let SIZE = 7;
+    const SIZE = 7;
 
-    let levels = await CindyApp.request({
-      url: relativeUrl("Space_levels.txt")
-    });
+    const levelFiles = await Promise.all(["beginner", "easy", "medium", "hard", "extreme"].map(l => CindyApp.request({
+      url: relativeUrl(`levels/${l}.txt`)
+    })));
+
+    // filter out invalid lines and parse level files
+    const whitespaceRegExp = /\s+/g;
+    const levelRegExp = /([\.oS]{7}\n){6}([\.oS]{7})/g;
+
+    const processLevelFile = f => f.match(levelRegExp);
+    const levelSets = levelFiles.map(processLevelFile);
 
     function wrap(v) { //converts js-lists of lists of real numbers to CS-object.
       if (typeof v === "number") {
@@ -39,34 +47,62 @@ class SpaceApp extends CindyApp {
           "value": v.map(wrap)
         }
       }
-    };
+    }
 
-    CindyJS.registerPlugin(1, "loadlevels", function(api) {
-      // Define a CindyScript function called "verdoppeln"
-      // that takes a single argument
-      api.defineFunction("loadlevels", 0, function(args, modifs) {
-        let j = 0;
-        let res = [],
-          cur = [];
-        let robot = [1, 1];
+    function convertLevelFormat(levelstr) {
+      let objects = [];
+      let robot = [1, 1];
+      let lines = levelstr.split('\n');
+      for (let j = 0; j < lines.length; j++) {
+        for (let i = 0; i < lines[j].length; i++) {
+          let c = lines[i][j];
+          if (c === 'o')
+            objects.push([i + 1, SIZE - j]);
+          else if (c === 'S')
+            robot = [i + 1, SIZE - j];
+        }
+      }
+      return [robot].concat(objects);
+    }
 
-        levels.split('\n').filter(line => (line.length == SIZE)).forEach(function(line) {
-          for (let i = 0; i < SIZE; i++) {
-            if (line[i] == 'o')
-              cur.push([i + 1, SIZE - j]);
-            else if (line[i] == 'S')
-              robot = [i + 1, SIZE - j];
+    function shuffledLevels(numLevels) {
+      // keep start index for each set to to avoid selecting the same level twice
+      const setLengths = levelSets.map(set => set.length);
+      const levels = new Array(numLevels).fill(0).map((v, k) => {
+        const setIndex = Math.floor((k * (levelSets.length - 1)) / (numLevels - 1));
+        const set = levelSets[setIndex];
+        if (setLengths[setIndex] > 0) {
+          // select a random level and move it to the end of the set to avoid returning duplicate levels
+          const levelIndex = Math.floor(Math.random() * setLengths[setIndex]);
+          const level = set[levelIndex];
+          set[levelIndex] = set[setLengths[setIndex] - 1];
+          set[setLengths[setIndex] - 1] = level;
+          setLengths[setIndex]--;
+          return level;
+        } else {
+          // can not select levels without having duplicates, so just choose a random one
+          if (levelSets.length === 0) {
+            throw new Error("Space Rescue level set is empty");
+          } else {
+            return set[Math.floor(Math.random() * set.length)];
           }
-          j++;
-          if (j == SIZE) {
-            j = 0;
-            res.push([robot].concat(cur));
-            cur = [];
-          }
-        });
-        return wrap(res);
+        }
+      });
+      return levels;
+    }
+
+    CindyJS.registerPlugin(1, "spacelevels", (api) => {
+      api.defineFunction("getshuffledlevels", 1, (args) => {
+        const numLevels = api.evaluate(args[0]).value.real | 0;
+        const levels = shuffledLevels(numLevels);
+        return wrap(levels.map(level => convertLevelFormat(level)));
+      });
+      api.defineFunction("getshuffledlevels", 0, (args) => {
+        const levels = shuffledLevels(this.config.numLevels);
+        return wrap(levels.map(level => convertLevelFormat(level)));
       });
     });
+
 
     this.canvas.style.backgroundImage = `url('${relativeUrl("background.jpg")}')`;
 
@@ -111,12 +147,12 @@ class SpaceApp extends CindyApp {
         virtualheight: 750,
         virtualwidth: 1000,
         transform: [{
-          visibleRect: [0.2, SIZE+1, SIZE + 2.2, 0]
+          visibleRect: [0.2, SIZE + 1, SIZE + 2.2, 0]
         }]
       }],
       autoplay: true,
       behavior: [],
-      use: ["loadlevels"]
+      use: ["spacelevels"]
     };
   }
 }
