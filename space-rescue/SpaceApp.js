@@ -112,7 +112,7 @@ class SpaceApp extends CindyApp {
       geometry: [{
           name: "P0",
           type: "Free",
-          pos: [SIZE + 2, 1],
+          pos: [SIZE + 1.7, 1],
           pinned: true,
           color: [1, 0, 0],
           visible: false
@@ -120,7 +120,7 @@ class SpaceApp extends CindyApp {
         {
           name: "P1",
           type: "Free",
-          pos: [SIZE + 2, SIZE],
+          pos: [SIZE + 1.7, SIZE],
           pinned: true,
           color: [1, 0, 0],
           visible: false

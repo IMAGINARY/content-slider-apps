@@ -53,3 +53,7 @@ setk(mod(k, length(levels))+1)
 if(mode!="animation" & !solved,
   pauseanimation();
 );
+
+
+drawtext(P0+(.3,0),"leicht",color->(1,1,1));
+drawtext(P1+(.3,0),"schwer",color->(1,1,1));
