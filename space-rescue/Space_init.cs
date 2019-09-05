@@ -51,5 +51,5 @@ lastk = 0;
 setk(1);
 
 reset() := (
-  setk(randomint(length(levels)-1)+1);
+  setk(1);
 );

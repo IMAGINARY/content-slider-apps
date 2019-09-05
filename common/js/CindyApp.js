@@ -1,22 +1,23 @@
 import Application from './application.js';
 
 class CindyApp extends Application {
-    constructor(config = {}) {
-        super(Object.assign(CindyApp.defaultConfig, config));
-        console.log("CindyApp called");
-        this._isCindyPaused = false;
-        this._cindy = null;
-        this._cindyPromise = (async () => createCindy.newInstance(await this.cindyArgs))()
-            .then(cindy => this._cindy = cindy);
-        this._cindyAppReadyPromise = super.ready
-            .then(() => CindyApp.waitForDomInsertion(this.canvas, document))
-            .then(() => this.cindyReady)
-            .then(cindy => {
-                cindy.startup();
-                return this;
-            });
-    }
-
+  constructor(config = {}) {
+          super(Object.assign(CindyApp.defaultConfig, config));
+          console.log("CindyApp called");
+          this._isCindyPaused = false;
+          this._cindy = null;
+          this._cindyAppReadyPromise = super.ready
+              .then(() => CindyApp.waitForDomInsertion(this.canvas, document))
+              .then(() => {
+                  return (async () => createCindy.newInstance(await this.cindyArgs))();
+              })
+              .then(cindy => {
+                  this._cindy = cindy;
+                  cindy.startup();
+                  return this;
+              });
+      }
+      
     static get defaultConfig() {
         return {
             appName: 'CindyJS app',
