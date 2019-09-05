@@ -151,6 +151,20 @@ class SpaceApp extends CindyApp {
           visibleRect: [0.2, SIZE + 1, SIZE + 2.2, 0]
         }]
       }],
+      images: {
+        target: relativeUrl("img/target.png"),
+        o1: relativeUrl("img/o1.png"),
+        o2: relativeUrl("img/o2.png"),
+        o3: relativeUrl("img/o3.png"),
+        o4: relativeUrl("img/o4.png"),
+        o5: relativeUrl("img/o5.png"),
+        o6: relativeUrl("img/o6.png"),
+        o7: relativeUrl("img/o7.png"),
+        o8: relativeUrl("img/o8.png"),
+        o9: relativeUrl("img/o9.png"),
+        o10: relativeUrl("img/o10.png"),
+        selected: relativeUrl("img/selected.png")
+      },
       autoplay: true,
       behavior: [],
       use: ["spacelevels"]

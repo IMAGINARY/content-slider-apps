@@ -50,6 +50,10 @@ isfree(f) := (
 lastk = 0;
 setk(1);
 
+drawimg(pos, size, img) := (
+  drawimage(pos+[-size,-size],pos+[size,-size],img);
+);
+
 reset() := (
   setk(1);
 );

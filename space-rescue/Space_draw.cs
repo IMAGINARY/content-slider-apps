@@ -32,12 +32,24 @@ forall(2..(SIZE-1),x,
   draw((1,x),(SIZE,x), color->[1,1,1], size->.5, alpha->.4);
 );
 
-drawcircle(TARGET,.55, size->4,color->[.6,.5,1], alpha->.7);
+
+//drawcircle(TARGET,.55, size->4,color->[.6,.5,1], alpha->.7);
+drawimg(TARGET, .55, "target");
+
+/*
 forall(mpos, p, if(p!=mpos_1, fillcircle(p,.5, color->[.9,.5,.1], alpha->.7)));
 fillcircle(mpos_1, if(solved,1/(2+5*seconds()),.5), color->[.6,.5,1], alpha->.7);
+*/
+
 
 if(sel>0,
-fillcircle(mpos_sel,.3, color->[.8,0,0]);
+  drawimg(mpos_sel,.5,"selected");
+);
+
+forall(1..length(mpos), k, drawimg(mpos_k, if(k!=1 % !solved, .5, 1/(2+5*seconds())), "o"+k));
+
+if(sel>0,
+//fillcircle(mpos_sel,.3, color->[.8,0,0]);
 forall([(-1,0),(1,0),(0,1),(0,-1)],d,
   if(gettargetsonray(d)!=[] & isfree(mpos_sel+d),
     draw(mpos_sel+.7*d,mpos_sel+1.2*d, color->[.8,0,0], size->6, arrow->true);
