@@ -26,7 +26,12 @@ mpos = pos;
 
 solved = (pos_1==TARGET);
 
-connect([(1,1),(SIZE,1),(SIZE,SIZE),(1,SIZE),(1,1)], color->[1,1,1]);
+connect([(1,1),(SIZE,1),(SIZE,SIZE),(1,SIZE),(1,1)], size->1.5, color->[1,1,1]);
+forall(2..(SIZE-1),x,
+  draw((x,1),(x,SIZE), color->[1,1,1], size->.5, alpha->.4);
+  draw((1,x),(SIZE,x), color->[1,1,1], size->.5, alpha->.4);
+);
+
 drawcircle(TARGET,.55, size->4,color->[.6,.5,1], alpha->.7);
 forall(mpos, p, if(p!=mpos_1, fillcircle(p,.5, color->[.9,.5,.1], alpha->.7)));
 fillcircle(mpos_1, if(solved,1/(2+5*seconds()),.5), color->[.6,.5,1], alpha->.7);
