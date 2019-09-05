@@ -104,7 +104,7 @@ class SpaceApp extends CindyApp {
     });
 
 
-    this.canvas.style.backgroundImage = `url('${relativeUrl("background.jpg")}')`;
+    this.canvas.style.backgroundImage = `url('${relativeUrl("img/background.jpg")}')`;
     this.canvas.style.backgroundSize = "cover";
 
     return {
