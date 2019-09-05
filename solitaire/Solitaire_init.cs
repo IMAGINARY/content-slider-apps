@@ -74,7 +74,8 @@ if(moving,
 animating=false;
 
 //KNOPF POSITION
-rect=[[23,-4],[26,-4],[26,-1],[23,-1]];
+//rect=[[23,-4],[26,-4],[26,-1],[23,-1]];
+rect=[[25,-16],[29,-16],[29,-12],[25,-12]];
 pressed=false;
 
 moving=false;
@@ -171,9 +172,9 @@ drawstuff(mp):=(
  if(gameend,
     playanimation();
     if(length(active)==1,
-      drawtext((-4,4),"Gewonnen!",color->(0,0,0),size->30);
+      drawtext((-9,-14),"Gewonnen!",color->(1,1,1),size->50);
       ,
-      drawtext((-4,4),"Ende:" + newline + length(active)+" sind übrig",color->(0,0,0),size->30);
+      drawtext((-9,-14),"Ende:" + newline + length(active)+" sind übrig",color->(1,1,1),size->50);
     );
  );
 );

@@ -25,6 +25,7 @@ class SolitaireApp extends CindyApp {
             defaultAppearance: {},
             images: {
                 replay: relativeUrl("assets/Replay.png"),
+                replaypressed: relativeUrl("assets/Replay.png"),
                 peg: relativeUrl("assets/peg.png"),
                 emptypeg: relativeUrl("assets/emptypeg.png"),
             },
