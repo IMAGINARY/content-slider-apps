@@ -106,14 +106,12 @@ drawpeg(p):=(
 drawemptypeg(p):=(
  d1 = [-unit/2,-unit/2]; d2 = [unit/2,-unit/2];
  drawit = true;
- if(middleanimation & seconds()<1, if(p==middle_1,
+ if(middleanimation & seconds()<0.8, if(p==middle_1,
    drawit = false;
-   drawimage(p+d1,p+d2, "emptypeg", alpha->seconds());
    d1 = gauss(complex(d1*exp(i*getomega0(p))));
    d2 = gauss(complex(d2*exp(i*getomega0(p))));
-   omega = sin(p*[21,12]); //almost random but constant in time
-   d1 = gauss(complex(d1*exp(omega*i*seconds())))*(.5+.5*cos(pi*seconds()));
-   d2 = gauss(complex(d2*exp(omega*i*seconds())))*(.5+.5*cos(pi*seconds()));
+   d1 = gauss(complex(d1*exp(12*i*seconds())))*(.5+.5*cos(pi*seconds()*1.25));
+   d2 = gauss(complex(d2*exp(12*i*seconds())))*(.5+.5*cos(pi*seconds()*1.25));
    drawimage(p+d1,p+d2, "peg"); drawit = false;
  ), middleanimation = false;);
 
@@ -142,12 +140,7 @@ drawspecial(pp):=(
 */
   //  fillcircle(pp,unit/2,color->[1,.3,.5], alpha->.5);
 
-  //shadow
-    forall(unit/10/2*(5..12),r,
-      fillcircle(pp,r,color->(0,0,0),alpha->.02);
-    );
-
-    drawimage(pp+[-unit/2,-unit/2],pp+[unit/2,-unit/2], "peg");
+    drawimage(pp+[-unit/2,-unit/2],pp+[unit/2,-unit/2], "pegdrag");
   );
 );
 
@@ -182,7 +175,7 @@ drawstuff(mp):=(
 
 drawwaterring(pp, t) := (
   forall(1..9,k,
-    drawcircle(pp,unit/2*t,size->3*k,color->(.5,.5,.6),alpha->.1*(.5-.5*cos(t*2*pi)));
+    drawcircle(pp,unit/2*t,size->3*k,color->(.9882,.7255,.8667),alpha->.1*(.6-.5*cos(t*2*pi)));
   );
 );
 drawpos(pp):=(
@@ -192,8 +185,8 @@ drawpos(pp):=(
     drawcircle(#+off,2,color->(0,0.5,0.2),size->5*3,alpha->0.1);
     drawcircle(#+off,2,color->(0,0.5,0.2),size->3*3,alpha->0.1);
     drawcircle(#+off,2,color->(0,0.5,0.2),size->1*3,alpha->0.1);*/
-    drawwaterring(pp, mod(seconds()/2,1));
-    drawwaterring(pp, mod(seconds()/2+1/2,1));
+    drawwaterring(pp, mod((seconds()-lastclickts)/2,1));
+    drawwaterring(pp, mod((seconds()-lastclickts)/2+1/2,1));
 
 );
 movingfilm=false;
@@ -245,6 +238,7 @@ reset():=(
    resetfield();
    special=[];
    pauseanimation();
+   lastclickts=seconds();
 );
 
 reset();

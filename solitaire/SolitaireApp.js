@@ -17,7 +17,7 @@ class SolitaireApp extends CindyApp {
     async _initCindyArgs() {
         const relativeUrl = filename => new URL(filename, import.meta.url).href;
 
-        this.canvas.style.backgroundImage = `url('${relativeUrl("assets/background.png")}')`;
+        this.canvas.style.backgroundImage = `url('${relativeUrl("assets/background.jpg")}')`;
         this.canvas.style.backgroundSize = "cover";
 
         return {
@@ -27,6 +27,7 @@ class SolitaireApp extends CindyApp {
                 replay: relativeUrl("assets/Replay.png"),
                 replaypressed: relativeUrl("assets/Replay.png"),
                 peg: relativeUrl("assets/peg.png"),
+                pegdrag: relativeUrl("assets/pegdrag.png"),
                 emptypeg: relativeUrl("assets/emptypeg.png"),
             },
             ports: [{

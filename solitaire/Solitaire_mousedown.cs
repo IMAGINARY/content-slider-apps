@@ -15,6 +15,7 @@ if(length(found)==1&!movingfilm,
   lastmouse=mouse().xy;
 );
 timestamp=seconds();
+lastclickts=seconds();
 waiting=true;
 waiting=false;//TOTGELEGT
 
