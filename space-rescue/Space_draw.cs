@@ -46,7 +46,7 @@ if(sel>0,
   drawimg(mpos_sel,.5,"selected");
 );
 
-forall(1..length(mpos), k, drawimg(mpos_k, if(k!=1 % !solved, .5, 1/(2+5*seconds())), "o"+k));
+forall(1..length(mpos), k, drawimg(mpos_k, if(k!=1 % !solved, .5, 1/(2+1.5*seconds())), "o"+k));
 
 if(sel>0,
 //fillcircle(mpos_sel,.3, color->[.8,0,0]);
