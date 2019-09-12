@@ -26,15 +26,15 @@ mpos = pos;
 
 solved = (pos_1==TARGET);
 
-connect([(1,1),(SIZE,1),(SIZE,SIZE),(1,SIZE),(1,1)], size->1.5, color->[1,1,1]);
-forall(2..(SIZE-1),x,
-  draw((x,1),(x,SIZE), color->[1,1,1], size->.5, alpha->.4);
-  draw((1,x),(SIZE,x), color->[1,1,1], size->.5, alpha->.4);
+connect([(.5,.5),(SIZE+.5,.5),(SIZE+.5,SIZE+.5),(.5,SIZE+.5),(.5,.5)], size->2, color->[1,1,1]);
+forall(1..(SIZE),x,
+  draw((x+.5,.5),(x+.5,SIZE+.5), color->[1,1,1], size->1, alpha->.65);
+  draw((.5,x-.5),(SIZE+.5,x-.5), color->[1,1,1], size->1, alpha->.65);
 );
 
 
 //drawcircle(TARGET,.55, size->4,color->[.6,.5,1], alpha->.7);
-drawimg(TARGET, .55, "target");
+drawimg(TARGET, .6, "target");
 
 /*
 forall(mpos, p, if(p!=mpos_1, fillcircle(p,.5, color->[.9,.5,.1], alpha->.7)));
@@ -52,7 +52,7 @@ if(sel>0,
 //fillcircle(mpos_sel,.3, color->[.8,0,0]);
 forall([(-1,0),(1,0),(0,1),(0,-1)],d,
   if(gettargetsonray(d)!=[] & isfree(mpos_sel+d),
-    draw(mpos_sel+.7*d,mpos_sel+1.2*d, color->[.8,0,0], size->6, arrow->true);
+    draw(mpos_sel+.7*d,mpos_sel+1.2*d, color->[.7647,.1412,.1569], size->6, arrow->true);
   );
  );
 );
