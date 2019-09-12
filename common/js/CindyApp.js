@@ -1,23 +1,28 @@
 import Application from './application.js';
 
 class CindyApp extends Application {
-  constructor(config = {}) {
-          super(Object.assign(CindyApp.defaultConfig, config));
-          console.log("CindyApp called");
-          this._isCindyPaused = false;
-          this._cindy = null;
-          this._cindyAppReadyPromise = super.ready
-              .then(() => CindyApp.waitForDomInsertion(this.canvas, document))
-              .then(() => {
-                  return (async () => createCindy.newInstance(await this.cindyArgs))();
-              })
-              .then(cindy => {
-                  this._cindy = cindy;
-                  cindy.startup();
-                  return this;
-              });
-      }
-      
+    constructor(config = {}) {
+        super(Object.assign(CindyApp.defaultConfig, config));
+        console.log("CindyApp called");
+        this._isCindyPaused = false;
+        this._cindy = null;
+
+        // trigger loading of cindy arguments
+        const cindyArgs = this.cindyArgs;
+
+        this._cindyAppReadyPromise = super.ready
+            .then(() => CindyApp.waitForDomInsertion(this.canvas, document.body))
+            .then(async () => {
+                console.assert(this.canvas.clientWidth !== 0, 'canvas has 0 clientWidth');
+                console.assert(this.canvas.clientHeight !== 0, 'canvas has 0 clientHeight');
+                this._cindy = CindyJS.newInstance(await cindyArgs);
+                this._cindy.startup();
+                return this;
+            });
+        // for backwards compatibility; should not be used anymore
+        this._cindyPromise = this._cindyAppReadyPromise.then(() => this._cindy);
+    }
+
     static get defaultConfig() {
         return {
             appName: 'CindyJS app',
@@ -101,7 +106,7 @@ class CindyApp extends Application {
             if (element.parentElement === null) {
                 // resolve after insertion of the element into the given DOM subtree
                 const observer = new MutationObserver(() => {
-                    if (element.parentElement !== null) {
+                    if (root.contains(element)) {
                         observer.disconnect();
                         resolve();
                     }
