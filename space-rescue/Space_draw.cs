@@ -58,7 +58,7 @@ forall([(-1,0),(1,0),(0,1),(0,-1)],d,
 );
 
 if(solved,
-drawtext(TARGET, color->[1,1,1],"Level " + k +" gelöst!");
+drawtext((4,0.2), color->[1,1,1],"Level " + k +" gelöst!", bold->true, align->"mid");
 //fillcircle(TARGET,seconds(),color->[1,0,0], alpha->.3);
 if(seconds()>2,
 setk(mod(k, length(levels))+1)
@@ -72,5 +72,5 @@ if(mode!="animation" & !solved,
 );
 
 
-drawtext(P0+(.3,0),"leicht",color->(1,1,1));
-drawtext(P1+(.3,0),"schwer",color->(1,1,1));
+drawtext(P0+(.25,-0.05),"leicht",color->(1,1,1),bold->true);
+drawtext(P1+(.25,-0.05),"schwer",color->(1,1,1),bold->true);
