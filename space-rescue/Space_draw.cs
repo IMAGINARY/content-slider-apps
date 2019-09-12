@@ -11,7 +11,7 @@ setk(k);
 
 
 //reset text
-if(resetpossible, drawtext((-.5,SIZE/2), size->140, "⟲", color->[1,1,1], alpha->resetalpha));
+if(resetpossible, drawtext((SIZE+1,.75), size->140, "⟲", color->[1,1,1], alpha->resetalpha));
 
 if(mode=="animation" & seconds()<T,
 lambda = seconds()/T;
