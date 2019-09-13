@@ -8,7 +8,7 @@ class SpaceApp extends CindyApp {
   static get defaultConfig() {
     return {
       appName: 'Space Rescue',
-      appDescription: 'Wer schafft es den violetten Kreis in die Mitte zu bewegen? Dazu können die verschiedenen Kreise jeweils so weit wie möglich nach oben, rechts, unten oder links verschoben werden.',
+      appDescription: 'Die Astronautin und die Robosatelliten können im Weltall jeweils so weit nach oben, rechts, unten oder links fliegen bis sie aneinander stoßen. Wie kann die Astronautin in ihr Raumschiff gelangen?',
       appCredits: 'Level & Implemtierung: Aaron Montag. Spielidee inspiriert von Hiroshi Yamamoto.',
       pauseScript: '',
       resumeScript: '',
