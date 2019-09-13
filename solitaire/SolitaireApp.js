@@ -8,7 +8,7 @@ class SolitaireApp extends CindyApp {
     static get defaultConfig() {
         return {
             appName: 'Solitaire-Spiel',
-            appDescription: 'In jedem Spielzug überspringt man mit einer Kugel eine andere, die dann weggenommen wird. Nach 13 Zügen soll nur noch eine Kugel übrig bleiben. Das Ganze ist gar nicht so einfach. Profis schaffen es, den letzten Spielstein dort zu positionieren, wo zu Beginn das Loch war.',
+            appDescription: 'In jedem Spielzug überspringt man mit einer Spielfigur eine andere, die dann weggenommen wird. Am Ende soll nur noch eine Figur übrig bleiben. Das Ganze ist gar nicht so einfach. Manche Startaufstellungen erlauben es sogar, die letzte Figur dort zu positionieren, wo zu Beginn die Lücke  war.',
             pauseScript: '',
             resumeScript: '',
         };
