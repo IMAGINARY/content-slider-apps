@@ -6,7 +6,7 @@ draw(P + (-.1,0), P + (.1,0), color->[1,1,1]);
 
 
 //snap
-k = round(min(1,max(0,|P2,P0|/|P1,P0|))*(length(levels)-1))+1;
+k = computek();
 setk(k);
 
 

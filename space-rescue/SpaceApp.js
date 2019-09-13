@@ -135,7 +135,7 @@ class SpaceApp extends CindyApp {
         },
         {
           name: "P2",
-          type: "PointOnLine",
+          type: "PointOnSegment",
           args: ["seg"],
           pos: [SIZE + 2, 1.2],
           narrow: 100,
