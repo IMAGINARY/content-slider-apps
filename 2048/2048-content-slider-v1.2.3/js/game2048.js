@@ -3772,6 +3772,15 @@ HTMLView.prototype.addTile = function (tile) {
   this.applyClasses(wrapper, classes);
   inner.classList.add("tile-inner");
   inner.textContent = tile.value;
+  inner.addEventListener('touchstart', function () {
+    return inner.classList.add("hover");
+  });
+  inner.addEventListener('touchend', function () {
+    return inner.classList.remove("hover");
+  });
+  inner.addEventListener('touchcancel', function () {
+    return inner.classList.remove("hover");
+  });
 
   if (tile.previousPosition) {
     // Make sure that the tile gets rendered in the previous position first
@@ -3956,20 +3965,25 @@ InputManager.prototype.bindKeyboard = function () {
 
 InputManager.prototype.bindGameContainer = function (gameContainer) {
   var self = this;
-  var mc = new Hammer.Manager(gameContainer);
-  mc.add(new Hammer.Swipe());
-  mc.on('swiperight', function () {
-    return self.emit("move", 1);
-  });
-  mc.on('swipeleft', function () {
-    return self.emit("move", 3);
-  });
-  mc.on('swipeup', function () {
-    return self.emit("move", 0);
-  });
-  mc.on('swipedown', function () {
-    return self.emit("move", 2);
-  });
+
+  for (var pointers = 1; pointers <= 10; ++pointers) {
+    var mc = new Hammer.Manager(gameContainer);
+    mc.add(new Hammer.Swipe({
+      pointers: pointers
+    }));
+    mc.on('swiperight', function () {
+      return self.emit("move", 1);
+    });
+    mc.on('swipeleft', function () {
+      return self.emit("move", 3);
+    });
+    mc.on('swipeup', function () {
+      return self.emit("move", 0);
+    });
+    mc.on('swipedown', function () {
+      return self.emit("move", 2);
+    });
+  }
 };
 
 InputManager.prototype.bindRestartButton = function (button) {
@@ -3991,8 +4005,8 @@ InputManager.prototype.keepPlaying = function (event) {
 };
 
 InputManager.prototype.bindButtonPress = function (button, fn) {
-  button.addEventListener("click", fn.bind(this));
-  button.addEventListener(this.eventTouchend, fn.bind(this));
+  var hammertime = new Hammer(button);
+  hammertime.on('tap', fn.bind(this));
 };
 
 module.exports = InputManager;
