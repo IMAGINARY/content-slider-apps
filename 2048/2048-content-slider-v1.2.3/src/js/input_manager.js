@@ -59,15 +59,17 @@ InputManager.prototype.bindKeyboard = function () {
 };
 
 InputManager.prototype.bindGameContainer = function (gameContainer) {
-  var self = this;
+  const self = this;
 
-  var mc = new Hammer.Manager(gameContainer);
-  mc.add( new Hammer.Swipe() );
+  for (let pointers = 1; pointers <= 10; ++pointers) {
+    const mc = new Hammer.Manager(gameContainer);
+    mc.add(new Hammer.Swipe({pointers: pointers}));
 
-  mc.on('swiperight', () => self.emit("move", 1 ));
-  mc.on('swipeleft', () => self.emit("move", 3 ));
-  mc.on('swipeup', () => self.emit("move", 0 ));
-  mc.on('swipedown', () => self.emit("move", 2 ));
+    mc.on('swiperight', () => self.emit("move", 1));
+    mc.on('swipeleft', () => self.emit("move", 3));
+    mc.on('swipeup', () => self.emit("move", 0));
+    mc.on('swipedown', () => self.emit("move", 2));
+  }
 };
 
 InputManager.prototype.bindRestartButton = function(button) {
@@ -90,8 +92,8 @@ InputManager.prototype.keepPlaying = function (event) {
 };
 
 InputManager.prototype.bindButtonPress = function (button, fn) {
-  button.addEventListener("click", fn.bind(this));
-  button.addEventListener(this.eventTouchend, fn.bind(this));
+  const hammertime = new Hammer(button);
+  hammertime.on('tap', fn.bind(this));
 };
 
 module.exports = InputManager;
