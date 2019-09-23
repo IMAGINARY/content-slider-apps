@@ -7,6 +7,6 @@ if(mode == "select",
       );
     );
   ,
-    moveto(P2,mouse());
+    if(P0.y-mouse().y < 0.5 & mouse().y - P1.y < 0.5, moveto(P2,mouse()));
   );
 );
