@@ -59,7 +59,7 @@ class SwarmApp extends CindyApp {
         for (var i = 0; i < nn; i++) {
             gslp.push(
                 {
-                    name: "A" + i, type: "Free",
+                    name: "A" + i, type: "Free", narrow: true,
                     pos: [(Math.random() - .5) * 14, (Math.random() - .5) * 14],
                     color: [1, .5, .5], size: .1
                 }
