@@ -14,7 +14,7 @@ class Game2048App extends Application {
     static get defaultConfig() {
         return {
             appName: '2048',
-            appDescription: 'Tippe einen Spielstein an um dessen Punktezahl zu sehen und schiebe gleiche Steine ineinander um daraus einen Neuen mit höherer Punktezahl zu erzeugen. Mit der Zeit wird das Spielfeld dadurch ganz schön voll. Schaffst du es einen 2048er Spielstein zu bilden? Wie viele Steine muss man dazu verschmelzen?',
+            appDescription: 'Tippe einen Spielstein an, um dessen Punktezahl zu sehen. Schiebe gleiche Steine ineinander, um daraus einen Neuen mit höherer Punktezahl zu erzeugen. Mit der Zeit wird das Spielfeld dadurch ganz schön voll. Schaffst du es einen 2048-Spielstein zu bilden? Wie viele Steine muss man dazu verschmelzen?',
         };
     }
 

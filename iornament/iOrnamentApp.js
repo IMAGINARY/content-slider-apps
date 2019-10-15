@@ -8,6 +8,7 @@ class iOrnamentApp extends CindyApp {
   static get defaultConfig() {
     return {
       appName: 'iOrnament',
+      appDescription: 'Zeichne symmetrische Ornamente! Erstaunlicherweise gibt es, sofern ein Flächenornament Verschiebesymmetrien in mindestens zwei Richtungen aufweist, genau 17 strukturell unterschiedliche Typen solcher Ornamente. Man spricht von den 17 <em>kristallographischen Gruppen</em>.',
       pauseScript: ''
     };
   }

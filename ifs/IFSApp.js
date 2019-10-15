@@ -9,7 +9,7 @@ class IFSApp extends CindyApp {
   static get defaultConfig() {
     return {
       appName: 'Fraktale',
-      appDescription: 'Fraktale sind mathematische Objekte, die Selbstähnlichkeiten aufweisen. Man kann das ursprüngliche Fraktal an verschiedenen Stellen innerhalb des Fraktales finden. In diesem Applet kann mit diesen Selbstähnlichkeiten experimentiert werden.',
+      appDescription: 'Fraktale sind mathematische Objekte, die Selbstähnlichkeiten aufweisen. Man kann das ursprüngliche Fraktal an verschiedenen Stellen innerhalb des Fraktales wieder finden. Hier kannst du mit diesen Selbstähnlichkeiten experimentieren.',
        appCredits: 'Aaron Montag, basierend auf einer Idee von Felix Woitzl',
     };
   }

@@ -8,7 +8,7 @@ class SwarmApp extends CindyApp {
     static get defaultConfig() {
         return {
             appName: 'Schwarmsimulator',
-            appDescription: 'Das Schwarmverhalten entsteht dadurch, dass jeder Fisch einfachen Regeln folgt: anderen Fischen und Hindernissen ausweichen, zu den Nachbarfischen und mit ihnen schwimmen, oder einfach weiter schwimmen. Über die Schieberegel kann man die Parameter dieser Regeln anpassen.',
+            appDescription: 'Das Schwarmverhalten entsteht dadurch, dass jeder Fisch einfachen Anweisungen folgt: anderen Fischen und Hindernissen ausweichen, zu den Nachbarfischen und mit ihnen schwimmen, oder einfach weiter schwimmen. Über die Schieberegler kann man die Parameter dieser Anweisungen anpassen.',
             pauseScript: '',
             resumeScript: '',
             resetScript: '',

@@ -7,8 +7,8 @@ class SolitaireApp extends CindyApp {
 
     static get defaultConfig() {
         return {
-            appName: 'Solitaire-Spiel',
-            appDescription: 'In jedem Spielzug überspringt man mit einer Spielfigur eine andere, die dann weggenommen wird. Am Ende soll nur noch eine Figur übrig bleiben. Das Ganze ist gar nicht so einfach. Manche Startaufstellungen erlauben es sogar, die letzte Figur dort zu positionieren, wo zu Beginn die Lücke  war.',
+            appName: 'Solitaire',
+            appDescription: 'In jedem Spielzug überspringt man mit einer Spielfigur eine andere, die dann weggenommen wird. Am Ende soll nur noch eine Figur übrig bleiben. Das Ganze ist gar nicht so einfach. Manche Startaufstellungen erlauben es sogar, die letzte Figur dort zu positionieren, wo zu Beginn die Lücke war.',
             pauseScript: '',
             resumeScript: '',
         };

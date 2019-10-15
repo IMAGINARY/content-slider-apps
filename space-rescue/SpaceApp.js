@@ -8,7 +8,7 @@ class SpaceApp extends CindyApp {
   static get defaultConfig() {
     return {
       appName: 'Space Rescue',
-      appDescription: 'Die Astronautin und die Robosatelliten können im Weltall jeweils so weit nach oben, rechts, unten oder links fliegen bis sie aneinander stoßen. Wie kann die Astronautin in ihr Raumschiff gelangen?',
+      appDescription: 'Die Astronautin und die Robosatelliten können im Weltall jeweils so weit nach oben, rechts, unten oder links fliegen, bis sie aneinander stoßen. Wie kann die Astronautin in ihr Raumschiff gelangen?',
       appCredits: 'Level & Implemtierung: Aaron Montag. Spielidee inspiriert von Hiroshi Yamamoto.',
       pauseScript: '',
       resumeScript: '',
