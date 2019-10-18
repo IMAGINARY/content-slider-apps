@@ -1,2 +1,52 @@
 [
+  {
+    "type": "whenzel",
+    "when": "????-03-20 / ????-06-19",
+    "config": {
+      "image1": "assets/spring/1.jpg",
+      "image2": "assets/spring/2.jpg",
+      "image3": "assets/spring/3.jpg",
+      "image4": "assets/spring/4.jpg"
+    }
+  },
+  {
+    "type": "whenzel",
+    "when": "????-06-20 / ????-09-22",
+    "config": {
+      "image1": "assets/summer/1.jpg",
+      "image2": "assets/summer/2.jpg",
+      "image3": "assets/summer/3.jpg",
+      "image4": "assets/summer/4.jpg"
+    }
+  },
+  {
+    "type": "whenzel",
+    "when": "????-09-21 / ????-12-20",
+    "config": {
+      "image1": "assets/autumn/1.jpg",
+      "image2": "assets/autumn/2.jpg",
+      "image3": "assets/autumn/3.jpg",
+      "image4": "assets/autumn/4.jpg"
+    }
+  },
+  {
+    "type": "whenzel",
+    "when": "????-12-21 / ????-03-19",
+    "config": {
+      "image1": "assets/winter/1.jpg",
+      "image2": "assets/winter/2.jpg",
+      "image3": "assets/winter/3.jpg",
+      "image4": "assets/winter/4.jpg"
+    }
+  },
+  {
+    "type": "whenzel",
+    "when": "@christmas-35 / @christmas+3",
+    "config": {
+      "image1": "assets/christmas/1.jpg",
+      "image2": "assets/christmas/2.jpg",
+      "image3": "assets/christmas/3.jpg",
+      "image4": "assets/christmas/4.jpg"
+    }
+  }
 ]
