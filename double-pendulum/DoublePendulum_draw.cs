@@ -26,8 +26,17 @@ restrict(G,minpt,maxpt);
 drawpoly(button1,color->gray(.8),size->4);
 fillpoly(button2,color->gray(if(pressed2,.3,.5)));
 drawpoly(button2,color->gray(.8),size->4);
+
+
+fillpoly(button3,color->gray(if(true,.3,.5)));
+drawpoly(button3,color->gray(.8),size->4);
+drawtext(button3_1+(2,.5),"Reset",color->(1,1,1),size->34);
+
+
+
 drawtext(button1_1+(2,.5),if(pressed1,"Stop","Start"),color->(1,1,1),size->34);
 drawtext(button2_1+(2,.5),"Spur",color->(1,1,1),size->34);
+
 draw(F,G, arrow->true,size->7,color->(1,1,1));
 
 if(pressed2,
