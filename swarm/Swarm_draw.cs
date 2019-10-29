@@ -1,3 +1,15 @@
+restrict(p,mi,ma):=(
+  xx=max(min(p.x,ma.x),mi.x);
+  yy=max(min(p.y,ma.y),mi.y);
+  p.xy=(xx,yy);
+);
+minpt=(-9.5,-9.5);
+maxpt=(9.5,9.5);
+forall([J,L,K], P,
+  restrict(P,minpt,maxpt);
+);
+
+
 x=S.x;
 if(x<S1.x,x=S1.x);
 if(x>S2.x,x=S2.x);
