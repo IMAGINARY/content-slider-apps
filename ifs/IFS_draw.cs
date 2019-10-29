@@ -1,3 +1,17 @@
+restrict(p,mi,ma):=(
+  xx=max(min(p.x,ma.x),mi.x);
+  yy=max(min(p.y,ma.y),mi.y);
+  p.xy=(xx,yy);
+);
+minpt=(-.8,-.8);
+maxpt=(.8,.8);
+forall(used, P,
+  restrict(P,minpt,maxpt);
+);
+
+
+
+
 exalpha = sqrt(clamp(1-(myseconds()-waittime)/explaintime)*clamp(myseconds()/waittime));
 
 if(idleanimation,
