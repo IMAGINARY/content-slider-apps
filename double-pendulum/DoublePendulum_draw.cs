@@ -11,8 +11,8 @@ restrict(p,mi,ma):=(
     p.xy=(xx,yy);
   );
 );
-minpt=(-11,-20);
-maxpt=(31,11.5);
+minpt=(-10.5,-19.5);
+maxpt=(22,11);
 //draw(minpt,maxpt);
 //draw(minpt);
 //draw(maxpt);
