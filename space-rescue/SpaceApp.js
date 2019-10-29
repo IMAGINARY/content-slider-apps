@@ -21,9 +21,17 @@ class SpaceApp extends CindyApp {
       import.meta.url).href;
     const SIZE = 7;
 
-    const levelFiles = await Promise.all(["beginner", "easy", "medium", "hard", "extreme"].map(l => CindyApp.request({
-      url: relativeUrl(`levels/${l}.txt`)
-    })));
+    const levelFileUrls = [
+      "beginner-1",
+      "beginner-2",
+      "easy-1",
+      "easy-2",
+      "medium-1",
+      "medium-2",
+      "hard",
+      "extreme"
+    ].map(l => relativeUrl(`levels/${l}.txt`));
+    const levelFiles = await Promise.all(levelFileUrls.map(levelUrl => CindyApp.request({url: levelUrl})));
 
     // filter out invalid lines and parse level files
     const whitespaceRegExp = /\s+/g;
